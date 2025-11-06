@@ -1,0 +1,40 @@
+---
+title: "Config"
+description: "Module-specific configuration options for customizing the SDK behavior"
+---
+
+The configuration options allow you to dynamically customize module-specific settings to enhance the user experience. The configurations listed below are not exhaustive and may be extended in the future.
+
+## com.quicko.it.file
+
+We support the following configurations for the file module:
+
+<Card
+  title="com.quicko.it.file.advisory"
+  icon="toggle-left"
+>
+  Toggle advisory CTAs in the filing journey. Defaults to `true`.
+</Card>
+
+**Example Configuration:**
+
+```json
+{
+  "config": {
+    "com.quicko.it.file": {
+      "available": true,
+      "com.quicko.it.file.advisory": {
+        "available": true | false
+      }
+    }
+  }
+}
+```
+
+<Card
+  title="Note"
+  icon="info"
+>
+  Set `"available": false` to disable advisory CTAs in the filing journey.
+</Card>
+

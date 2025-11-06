@@ -1,0 +1,277 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "Quicko Connect | Docs",
+  "description": "Provide an intuitive tax filing experience that imports client data and offers both do-it-yourself and expert assisted options.",
+  "logo": {
+    "light": "static/logo/light.svg",
+    "dark": "static/logo/dark.svg"
+  },
+  "colors": {
+    "primary": "#006AD4",
+    "light": "#007FFF",
+    "dark": "#006AD4"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "favicon": {
+    "light": "static/favicon/favicon.svg",
+    "dark": "static/favicon/favicon.svg"
+  },
+  "navigation": {
+    "products": [
+      {
+        "product": "Connect",
+        "description": "Connect description",
+        "icon": "cable",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "icon": "rocket",
+                "pages": [
+                  "projects/connect/guides/getting-started/index",
+                  "projects/connect/guides/getting-started/authentication"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "icon": "workflow",
+                "href": "api-reference/overview",
+                "pages": [
+                  "projects/connect/guides/integrations/index",
+                  {
+                    "group": "iOS / Android Integration",
+                    "pages": [
+                      "projects/connect/guides/integrations/iosandroid-integration/index",
+                      "projects/connect/guides/integrations/iosandroid-integration/integrating",
+                      "projects/connect/guides/integrations/iosandroid-integration/installing",
+                      {
+                        "group": "Options",
+                        "pages": [
+                          "projects/connect/guides/integrations/iosandroid-integration/options/index",
+                          "projects/connect/guides/integrations/iosandroid-integration/options/config"
+                        ]
+                      },
+                      "projects/connect/guides/integrations/iosandroid-integration/setting_up",
+                      "projects/connect/guides/integrations/iosandroid-integration/triggering",
+                      "projects/connect/guides/integrations/iosandroid-integration/resetting"
+                    ]
+                  },
+                  {
+                    "group": "Web Integration",
+                    "pages": [
+                      "projects/connect/guides/integrations/web-integration/index",
+                      "projects/connect/guides/integrations/web-integration/refer",
+                      "projects/connect/guides/integrations/web-integration/connect"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Events",
+                "pages": [
+                  "projects/connect/guides/events/index",
+                  "projects/connect/guides/events/directory"
+                ]
+              },
+              {
+                "group": "Others",
+                "pages": [
+                  "projects/connect/guides/notifications"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "OAuth",
+                "icon": "book-open",
+                "pages": [
+                  "projects/connect/api-reference/oauth/authorize"
+                ]
+              },
+              {
+                "group": "Open APIs",
+                "icon": "square-terminal",
+                "expanded": true,
+                "pages": [
+                  "projects/connect/api-reference/open-apis/user-details",
+                  "projects/connect/api-reference/open-apis/tax-payer",
+                  {
+                    "group": "File",
+                    "expanded": true,
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/file/itr-details",
+                      "projects/connect/api-reference/open-apis/file/tax-computation"
+                    ]
+                  },
+                  {
+                    "group": "Advisory",
+                    "expanded": true,
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/advisory/order",
+                      "projects/connect/api-reference/open-apis/advisory/orders"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Integrations",
+        "description": "Quicko Integration Docs",
+        "icon": "chart-bar",
+        "href": "/project/analytics",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "icon": "rocket",
+                "pages": [
+                  "projects/analytics/guides/getting-started/index",
+                  "projects/analytics/guides/getting-started/authentication"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "icon": "workflow",
+                "href": "api-reference/overview",
+                "pages": [
+                  "projects/analytics/guides/integrations/index",
+                  {
+                    "group": "iOS / Android Integration",
+                    "pages": [
+                      "projects/analytics/guides/integrations/iosandroid-integration/index"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Customization",
+                "icon": "palette",
+                "pages": [
+                  "essentials/settings",
+                  "essentials/navigation"
+                ]
+              },
+              {
+                "group": "Writing content",
+                "icon": "pen",
+                "pages": [
+                  "essentials/markdown",
+                  "essentials/code",
+                  "essentials/images",
+                  "essentials/reusable-snippets"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "GSP",
+        "description": "Quicko GSP Api Docs",
+        "icon": "smartphone",
+        "href": "/project/analytics",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "icon": "rocket",
+                "pages": [
+                  "projects/analytics/guides/getting-started/index",
+                  "projects/analytics/guides/getting-started/authentication"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "icon": "workflow",
+                "href": "api-reference/overview",
+                "pages": [
+                  "projects/analytics/guides/integrations/index",
+                  {
+                    "group": "iOS / Android Integration",
+                    "pages": [
+                      "projects/analytics/guides/integrations/iosandroid-integration/index"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Customization",
+                "icon": "palette",
+                "pages": [
+                  "essentials/settings",
+                  "essentials/navigation"
+                ]
+              },
+              {
+                "group": "Writing content",
+                "icon": "pen",
+                "pages": [
+                  "essentials/markdown",
+                  "essentials/code",
+                  "essentials/images",
+                  "essentials/reusable-snippets"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@quicko.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://app.connect.quicko.com"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  },
+  "redirects": [
+    {
+      "source": "",
+      "destination": "/projects/connect/guides/getting-started/index"
+    }
+  ],
+  "interaction": {
+    "drilldown": true
+  }
+}

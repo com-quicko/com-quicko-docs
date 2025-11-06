@@ -1,0 +1,114 @@
+---
+title: "Introduction"
+description: "Configure the Quicko Connect SDK behavior with flexible options"
+---
+
+## Overview
+
+The `Options` object provides a flexible mechanism for configuring the behavior of the Quicko Connect SDK. This configuration object allows you to specify various options that can tailor the SDK's functionality to meet specific requirements of your application. The object is completely optional; omitting it will invoke the SDK's default behavior.
+
+## Structure
+
+Each field is optional, and default settings are used if specific options are not provided. Below is a detailed description of each available option:
+
+<AccordionGroup>
+  <Accordion title="1. intent" icon="target" defaultOpen>
+    Specifies the purpose of using the SDK.
+
+    **Values**: `connect` | `refer`
+
+    <Columns cols={2}>
+      <Card
+        title="connect"
+        icon="link"
+      >
+        Specifies the intent to fully integrate into Quicko's ecosystem. It enables consent-based access to user events and Open API functionalities. This option is ideal for applications requiring deeper integration with Quicko's capabilities, such as retrieving user-specific data or actions through the API, which can enhance the application's functionality and user experience.
+      </Card>
+
+      <Card
+        title="refer"
+        icon="arrow-right"
+      >
+        Specifies an intent to use the SDK for a more specific and limited purpose — to assist users in solving their tax-related issues without the need for deep integration into the Quicko ecosystem. SDK operates in a mode that does not involve event callbacks, nor does it provide access to the Open API. This option is tailored for scenarios with the primary goal is to facilitate a straightforward and effortless integration.
+      </Card>
+    </Columns>
+  </Accordion>
+
+  <Accordion title="2. module" icon="puzzle">
+    Defines the module of the product that you wish to interact with.
+
+    **Values**: `com.quicko.it.save` | `com.quicko.it.pay` | `com.quicko.it.file` | `com.quicko.it.track` | `com.quicko.it.advisory`
+
+    <Card
+      title="Available Modules"
+      icon="layers"
+    >
+      - **`com.quicko.it.save`**: Unlock greater insights for your users, help them visualize & plan their taxes.
+      - **`com.quicko.it.pay`**: Offer your users a smarter, quicker, safer way to deal with their tax dues.
+      - **`com.quicko.it.file`**: Seamless, three step tax return filing. Just simply autofill, review and e-file.
+      - **`com.quicko.it.track`**: Harness our unique vantage point across integrations for a comprehensive P&L.
+      - **`com.quicko.it.advisory`**: Leverage our completely online tax advisory and extend the solution to your users.
+    </Card>
+  </Accordion>
+
+  <Accordion title="3. config" icon="settings">
+    Exposes a set of configurations for different `module` options. You can learn more about different configurations here.
+  </Accordion>
+
+  <Accordion title="4. user" icon="user">
+    Provides user-specific details that can be used by the SDK to prefill information for the user when they are authenticating with Quicko.
+
+    **Fields**:
+
+    - **`email`**: The user's email address.
+    - **`mobile`**: An object containing mobile phone details.
+      - **`isd`**: International Subscriber Dialing code, e.g., `91` for India.
+      - **`number`**: The user's mobile phone number (without ISD code).
+    - **`external_id`**: Identifier for a user in your system
+  </Accordion>
+
+  <Accordion title="5. theme" icon="palette">
+    Configures the visual theme of the SDK components.
+
+    **Fields**:
+
+    - **`mode`**: Selects the theme mode.
+      - **Values**: `dark` | `light`
+    - **`seed`**: A hexadecimal color code that determines the primary color theme. For example, `#3962FF`.
+  </Accordion>
+</AccordionGroup>
+
+## Usage Example
+
+Here is a simple JSON representation of the `Options` object with all options set:
+
+```json
+{
+    "intent": "connect",
+    "module": "com.quicko.it.file",
+    "user": {
+        "email": "[email protected]",
+        "mobile": {
+            "isd": "91",
+            "number": "1234567890"
+        },
+        "external_id": "bcfffb86-be2a-4ca4-9697-43340cca0334"
+    },
+    "theme": {
+        "mode": "dark",
+        "seed": "#3962FF"
+    }
+}
+```
+
+## Integration
+
+The `Options` object can be easily integrated into your application setup when initializing the Quicko Connect SDK. Detailed instructions on integrating and using the SDK can be found in other sections of the documentation.
+
+<Card
+  title="Flexibility"
+  icon="sparkles"
+>
+  This flexibility allows developers to customize the SDK to better align with the specific needs of their applications, providing a more tailored user experience.
+</Card>
+

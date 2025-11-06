@@ -1,0 +1,207 @@
+---
+title: "Triggering"
+description: "Launch the Quicko SDK tax solution within your application"
+---
+
+Triggering the QuickoSDK is the process of launching the tax solution within your app. This is typically done by calling the open method provided by the SDK. It's important to note that the implementation of this method varies slightly between Android and iOS, catering to the specific requirements and conventions of each platform.
+
+## `open` method
+
+**Definition:**
+
+```
+open([PlatformSpecific Param], JSONObject options)
+```
+
+### Parameters
+
+1. **Platform Specific Param**
+   - **Android**: `android.content.Context`
+   - **iOS**: `UIViewController`
+2. **options (Options)**: An object that allows customisation of the SDK's user interface.
+
+**Example Usage:**
+
+<Tabs>
+  <Tab title="Java">
+    ```java
+    import org.json.JSONObject;
+
+    // Constructing a JSONObject for the mobile number.
+    JSONObject mobileJson = new JSONObject();
+    mobileJson.put("isd", "91");
+    mobileJson.put("number", "9988774455");
+
+    // Constructing a JSONObject for the user.
+    JSONObject userJson = new JSONObject();
+    userJson.put("email", "[email protected]");
+    userJson.put("mobile", mobileJson);
+
+    // Constructing a JSONObject for the theme.
+    JSONObject themeJson = new JSONObject();
+    themeJson.put("mode", "dark");
+    themeJson.put("seed", "#2962FF");
+
+    // Constructing the root JSONObject which will contain the user and theme details.
+    JSONObject optionsJson = new JSONObject();
+    optionsJson.put("intent", "connect");
+    optionsJson.put("module", "com.quicko.it.file");
+    optionsJson.put("user", userJson);
+    optionsJson.put("theme", themeJson);
+
+    // Triggering the FILE module with the constructed JSON options.
+    // The open() method in QuickoSDK is a suspend function.
+    // Suspend functions in Kotlin require an additional Continuation parameter when called from Java.
+    // Java does not natively support coroutines, so you must explicitly provide a Continuation instance.
+    // Below is an example of invoking the open() method with a "dummy" Continuation to handle or ignore the result.
+    QuickoSDK.INSTANCE.open(
+        getApplicationContext(),  // Pass the application context as the first parameter
+        optionsJson,              // Provide the JSONObject with options as the second parameter
+        new Continuation<Unit>() { // Manually implement the Continuation interface for the third parameter
+            @NotNull
+            @Override
+            public CoroutineContext getContext() {
+                // Returning an empty coroutine context as no specific context is required here.
+                return EmptyCoroutineContext.INSTANCE;
+            }
+
+            @Override
+            public void resumeWith(@NotNull Object result) {
+                // This method is called when the suspend function completes.
+                // The 'result' parameter can contain either the success result or an exception:
+                // - If successful, result will be of type Unit.
+                // - If an exception occurred, result will be an instance of Result.Failure.
+                // For simplicity, you can leave this method empty since you don't need to handle the outcome.
+            }
+        }
+    );
+    ```
+  </Tab>
+  <Tab title="Kotlin">
+    ```kotlin
+    import org.json.JSONObject
+
+    // Creating a JSONObject for the mobile.
+    val mobileJson = JSONObject().apply {
+        put("isd", "91")
+        put("number", "9988774455")
+    }
+
+    // Creating a JSONObject for the user.
+    val userJson = JSONObject().apply {
+        put("email", "[email protected]")
+        put("mobile", mobileJson)
+    }
+
+    // Creating a JSONObject for the theme.
+    val themeJson = JSONObject().apply {
+        put("mode", "dark")
+        put("seed", "#2962FF")
+    }
+
+    // Creating the root JSONObject which will include user and theme.
+    val optionsJson = JSONObject().apply {
+        put("intent", "connect")
+        put("module", "com.quicko.it.file")
+        put("user", userJson)
+        put("theme", themeJson)
+    }
+
+    // Triggering the FILE module with the constructed JSON options.
+    QuickoSDK.INSTANCE.open(context, optionsJson)
+    ```
+  </Tab>
+  <Tab title="Swift">
+    ```swift
+    import Foundation
+    import income_tax_sdk
+
+    // Creating a dictionary for the mobile.
+    let mobileJson: [String: Any] = [
+        "isd": "91",
+        "number": "9988774455"
+    ]
+
+    // Creating a dictionary for the user.
+    let userJson: [String: Any] = [
+        "email": "[email protected]",
+        "mobile": mobileJson
+    ]
+
+    // Creating a dictionary for the theme.
+    let themeJson: [String: Any] = [
+        "mode": "dark",
+        "seed": "#2962FF"
+    ]
+
+    // Creating the root dictionary which will include user and theme.
+    let optionsJson: [String: Any] = [
+        "intent": "connect",
+        "module": "com.quicko.it.file",
+        "user": userJson,
+        "theme": themeJson
+    ]
+
+    // Triggering the FILE module with the constructed JSON options.
+    QuickoSDK.open(context: context, options: optionsJson)
+    ```
+  </Tab>
+</Tabs>
+
+<AccordionGroup>
+  <Accordion title="Error Handling" icon="triangle-alert" defaultOpen>
+    <Card
+      title="IllegalArgumentException"
+      icon="alert-circle"
+    >
+      This exception is thrown when the API key has not been set before invoking the `open` method, and if your intent is `connect`.
+    </Card>
+
+    **Example:**
+
+    <Tabs>
+      <Tab title="Java">
+        ```java
+        try {
+            QuickoSDK.open(myContext, myModule);
+        } catch (IllegalArgumentException iEA) {
+            System.out.println("Error: API Key has not been set.");
+        }
+        ```
+      </Tab>
+      <Tab title="Kotlin">
+        ```kotlin
+        try {
+            QuickoSDK.open(myContext, myOptions)
+        } catch (e: IllegalArgumentException) {
+            println("Error: API Key has not been set.")
+        }
+        ```
+      </Tab>
+      <Tab title="Swift">
+        ```swift
+        do {
+            try QuickoSDK.open(controller: myController, options: myOptions)
+        } catch let error as IllegalArgumentException {
+            print("Error: API Key has not been set.")
+        } catch {
+            // Handle other potential errors if any.
+        }
+        ```
+      </Tab>
+    </Tabs>
+
+    In the above example, if the API key hasn't been set before calling the `open` method, the `IllegalArgumentException` will be thrown, and the error message "Error: API Key has not been set." will be printed.
+  </Accordion>
+
+  <Accordion title="Recommendations" icon="star">
+    <Card
+      title="Best Practices"
+      icon="check-circle"
+    >
+      - Always ensure that the API key has been set using the `setAPIKey` method before invoking the `open` method.
+      - It's a good practice to wrap the `open` method call inside a try-catch block to handle the `IllegalArgumentException` and provide feedback to the user or log the error for debugging purposes.
+    </Card>
+  </Accordion>
+</AccordionGroup>
+
