@@ -99,13 +99,11 @@
               {
                 "group": "Open APIs",
                 "icon": "square-terminal",
-                "expanded": true,
                 "pages": [
                   "projects/connect/api-reference/open-apis/user-details",
                   "projects/connect/api-reference/open-apis/tax-payer",
                   {
                     "group": "File",
-                    "expanded": true,
                     "pages": [
                       "projects/connect/api-reference/open-apis/file/itr-details",
                       "projects/connect/api-reference/open-apis/file/tax-computation"
@@ -113,7 +111,6 @@
                   },
                   {
                     "group": "Advisory",
-                    "expanded": true,
                     "pages": [
                       "projects/connect/api-reference/open-apis/advisory/order",
                       "projects/connect/api-reference/open-apis/advisory/orders"
@@ -129,49 +126,94 @@
         "product": "Integrations",
         "description": "Quicko Integration Docs",
         "icon": "chart-bar",
-        "href": "/project/analytics",
-        "tabs": [
+        "href": "/project/integration",
+        "groups": [
           {
-            "tab": "Guides",
-            "groups": [
+            "group": "Getting started",
+            "icon": "rocket",
+            "pages": [
+              "projects/integration/index"
+            ]
+          },
+          {
+            "group": "OAuth",
+            "icon": "book-open",
+            "pages": [
               {
-                "group": "Getting started",
-                "icon": "rocket",
+                "group": "Redirection Based",
                 "pages": [
-                  "projects/analytics/guides/getting-started/index",
-                  "projects/analytics/guides/getting-started/authentication"
+                  "projects/integration/oauth/redirection_based/redirection_based",
+                  "projects/integration/oauth/redirection_based/authorize"
                 ]
               },
               {
-                "group": "Integrations",
-                "icon": "workflow",
-                "href": "api-reference/overview",
+                "group": "API Based",
                 "pages": [
-                  "projects/analytics/guides/integrations/index",
-                  {
-                    "group": "iOS / Android Integration",
-                    "pages": [
-                      "projects/analytics/guides/integrations/iosandroid-integration/index"
-                    ]
-                  }
+                  "projects/integration/oauth/api_based/api_based",
+                  "projects/integration/oauth/api_based/generate_otp",
+                  "projects/integration/oauth/api_based/verify_otp"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Profile",
+            "icon": "user",
+            "pages": [
+              {
+                "group": "User Details",
+                "pages": [
+                  "projects/integration/profile/user_details",
+                  "projects/integration/profile/user_details_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Broker Integration API",
+            "icon": "file-text",
+            "pages": [
+              {
+                "group": "Trade Book",
+                "pages": [
+                  "projects/integration/broker_integration/tradebook/index",
+                  "projects/integration/broker_integration/tradebook/domestic_securities"
                 ]
               },
               {
-                "group": "Customization",
-                "icon": "palette",
+                "group": "Tradewise P&L",
                 "pages": [
-                  "essentials/settings",
-                  "essentials/navigation"
+                  "projects/integration/oauth/redirection_based/redirection_based"
                 ]
               },
               {
-                "group": "Writing content",
-                "icon": "pen",
+                "group": "Financial Instruments",
                 "pages": [
-                  "essentials/markdown",
-                  "essentials/code",
-                  "essentials/images",
-                  "essentials/reusable-snippets"
+                  "projects/integration/oauth/redirection_based/redirection_based"
+                ]
+              },
+              {
+                "group": "Holdings",
+                "pages": [
+                  "projects/integration/oauth/redirection_based/redirection_based"
+                ]
+              },
+              {
+                "group": "Open Positions",
+                "pages": [
+                  "projects/integration/oauth/redirection_based/redirection_based"
+                ]
+              },
+              {
+                "group": "Balance",
+                "pages": [
+                  "projects/integration/oauth/redirection_based/redirection_based"
+                ]
+              },
+              {
+                "group": "Orders",
+                "pages": [
+                  "projects/integration/oauth/redirection_based/redirection_based"
                 ]
               }
             ]
@@ -273,5 +315,8 @@
   ],
   "interaction": {
     "drilldown": true
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
   }
 }

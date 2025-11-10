@@ -1,0 +1,40 @@
+---
+title: "Introduction to Redirection Based OAuth"
+description: "OAuth is a standard that apps can use to provide client applications with secure delegated access"
+---
+
+OAuth is a standard that apps can use to provide client applications with "secure delegated access". OAuth works over HTTPS and authorizes devices, APIs, servers, and applications with access tokens rather than credentials.
+
+Quicko uses redirection based OAuth journeys to get secure access to apps, just like any modern app may use Google OAuth to get access to your google profile, contacts, calendar, emails etc. Following diagram explains a standard OAuth journey.
+
+<Steps>
+  <Step title="User navigates to your OAuth Login Page">
+    User navigates to your OAuth Login Page
+  </Step>
+  <Step title="Upon successful login control is passed back with a request_token">
+    Upon successful login control is passed back with a `request_token` to the registered redirect URL
+  </Step>
+  <Step title="Quicko exchanges short lived request_token with a long lived access_token">
+    Quicko exchanges short lived `request_token` with a long lived `access_token`
+  </Step>
+  <Step title="Quicko can now import data using APIs">
+    Quicko can now import data using APIs provided by you using `access_token`
+  </Step>
+</Steps>
+
+<Info>
+  **Note**
+  
+  An optional redirect_url param should be supported by your OAuth login endpoint, which will be used to navigate the user after a successful login attempt. Redirect URL request parameter must be Base64 encoded, eg: `https://quicko.com` will be used like:
+  
+  ```
+  {{your_oauth_app_url}}/login?api_key={api_key}&redirect_url=aHR0cHM6Ly9xdWlja28uY29t
+  ```
+</Info>
+
+## API Reference
+
+| HTTP Method | Resource                                           | Description            |
+| ----------- | -------------------------------------------------- | ---------------------- |
+| GET         | `/oauth/authorize?request_token={{request_token}}` | Requires Request Token |
+
