@@ -1,0 +1,21 @@
+---
+title: "Bank Account Details"
+description: "Bank Account details enable tracking of the inflow and outflow in the user's account"
+---
+
+Bank Account details enable tracking of the inflow and outflow in the user's account
+
+Bank Account details help identify the sender or receiver of the user and further provide account type and account number information
+
+## Bank Account Details
+
+| Param           | Type   | Required | Description                                                                        |
+| --------------- | ------ | -------- | ---------------------------------------------------------------------------------- |
+| account_type   | String | Yes      | The type of account the user is holding i.e 'Current Account' or 'Savings Account' |
+| account_number | Number | Yes      | Account number of the user                                                         |
+| ifsc            | String | Yes      | IFSC of the particular Branch                                                      |
+| upi_id         | String | No       | UPI address for the bank account                                                   |
+| swift_code     | String | No       | Code for International Interbank Transactions                                      |
+| micr            | String | No       | Magnetic Ink Character recognition                                                 |
+| MMID            | String | No       | Mobile money identifier                                                            |
+

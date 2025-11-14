@@ -1,0 +1,125 @@
+---
+title: "Foreign Securities Tradewise P&L"
+description: "Tradewise P&L helps calculate profit and loss on a trade-level basis"
+---
+
+Tradewise P&L helps calculate profit and loss on a trade-level basis
+
+## Stock Tradewise Settlement Sheet
+
+### Stock Tradewise Settlement Table
+
+| Param                  | Type   | Description                                                                                                               |
+| ---------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| isin                   | string | ISIN is the international security identification number                                                                  |
+| symbol                 | string | Symbol or description of equity share                                                                                     |
+| quantity               | number | Trading quantity                                                                                                          |
+| buy_trade_id         | string | Transaction ID of the buy transaction                                                                                     |
+| buy_date              | number | The date on which the equity stock was bought                                                                             |
+| buy_price             | number | Price at which a unit was bought                                                                                          |
+| sell_trade_id        | string | Transaction ID of the sell transaction                                                                                    |
+| sell_date             | number | The date on which the equity stock was sold                                                                               |
+| sell_price            | number | Price at which a unit was sold                                                                                            |
+| currency               | string | The 3 letter currency code for the price based on ISO 421                                                                 |
+| transfer_expenses     | number | expense relating to the transfer of stocks                                                                                |
+| nature_of_settlement | string | The [nature of the settlement](/reference/foreign-securities-tradewise-pl#annexure-2-nature-of-settlement) of transaction |
+| product_type          | string | Indicates whether the order is :delivery , intraday                                                                       |
+
+### Stock Tradewise Open Sell Table
+
+| Param               | Type   | Description                                                                                        |
+| ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| isin                | string | ISIN is the international security identification number                                           |
+| symbol              | string | Symbol or description of equity share                                                              |
+| quantity            | number | Trading quantity                                                                                   |
+| sell_trade_id       | string | Transaction ID of the sell transaction                                                             |
+| sell_date           | number | The date on which the equity stock was sold                                                        |
+| sell_price          | number | Price at which a unit was sold                                                                     |
+| currency            | string | The 3 letter currency code for the price based on ISO 4217                                         |
+| transaction_type    | string | Indicates whether the order is :buy, sell, trade, send, receive                                     |
+| label               | string | Indicates the category of transaction type. Possible values: interest, staking, staking_reward, lost, mining_reward, airdrop, donation, fork, gift, payment, other_income |
+| last_traded_price   | number | Last traded price of the security                                                                  |
+
+### Stock Tradewise Transfer Table
+
+| Param                  | Type   | Description                                                                                                               |
+| ---------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------- |
+| isin                   | string | ISIN is the international security identification number                                                                  |
+| symbol                 | string | Symbol or description of equity share                                                                                     |
+| quantity               | number | Trading quantity                                                                                                          |
+| transfer_date          | number | The date on which the transfer was made                                                                                    |
+| price                  | number | Price at which a unit was transferred                                                                                     |
+| currency               | string | The 3 letter currency code for the price based on ISO 4217                                                                |
+| transfer_type          | string | Indicates whether the transfer is :transfer_in, transfer_out                                                              |
+| nature_of_settlement   | string | The [nature of the settlement](/reference/foreign-securities-tradewise-pl#annexure-2-nature-of-settlement) of transaction |
+| transfer_value         | number | total value of transfers made                                                                                             |
+| transfer_expense       | number | expenses incurred while transferring the asset.                                                                           |
+
+### Dividend Table
+
+| Param            | Type   | Required | Description                                                |
+| ---------------- | ------ | -------- | ---------------------------------------------------------- |
+| isin             | string | No       | ISIN is the international security identification number   |
+| scheme_name     | string | Yes      | Symbol or description of the fund                          |
+| quantity         | number | Yes      | Trading quantity                                           |
+| date             | number | Yes      | Transaction epoch timestamp                                |
+| dividend_amount | number | Yes      | Dividend amount received                                   |
+| currency         | string | Yes      | The 3 letter currency code for the price based on ISO 4217 |
+| tax_withheld    | number | Yes      | TDS amount deducted on the dividend                        |
+
+## Interest Income Sheet
+
+### Interest Table
+
+| Param         | Type   | Required | Description                                                |
+| ------------- | ------ | -------- | ---------------------------------------------------------- |
+| description   | string | No       | Description of interest credit                             |
+| date          | number | Yes      | Transaction ID of the particular entry                     |
+| amount        | number | Yes      | Interest amount received                                   |
+| currency      | string | Yes      | The 3 letter currency code for the price based on ISO 4217 |
+| tax_withheld | number | Yes      | TDS amount deducted on the interest                        |
+
+## Annexures
+
+### Annexure-1 Labels
+
+The enumeration is explained below:
+
+| Corporate Action                       | ENUM                            |
+| -------------------------------------- | ------------------------------- |
+| Amalgamation                           | amalgamation                    |
+| Bonus Issue                            | bonus_issue                    |
+| Buy Back of Shares                     | buy_back                       |
+| Consolidation of Shares                | consolidation                   |
+| Dividend                               | dividend                        |
+| Dividend on Preference Shares          | dividend                        |
+| Income Distribution (InvIT)            | income_distribution_invit     |
+| Income Distribution RITES              | income_distribution_rites     |
+| InvIT - Return of Capital              | return_of_capital_invit      |
+| Preferential Issue of shares           | preferential_issue             |
+| Reduction of Capital                   | reduction_of_capital          |
+| Right Issue of Equity Shares           | right_issue                    |
+| Scheme of Arrangement                  | scheme_of_arrangement         |
+| Spin Off                               | spin_off                       |
+| Stock Split                            | stock_split                    |
+| Voluntary Delisting of Shares          | voluntary_delisting_of_share |
+| Donation of security                   | donation                        |
+| Transfer of securities in form of gift | gift                            |
+| Loss of security                       | lost                            |
+| Transfer of securities                 | transfer                        |
+| Other                                  | other                           |
+
+### Annexure-2 Nature of Settlement
+
+| Nature of Settlement      | ENUM          |
+| ------------------------- | ------------- |
+| Trade type settlement     | trade         |
+| Interest on security      | interest      |
+| Asset transferred in      | transfer_in  |
+| Asset transferred out     | transfer_out |
+| Asset sent as Gift        | gift_send    |
+| Asset received as Gift    | gift_receive |
+| Asset donated             | donation      |
+| Buy back for the security | buy_back     |
+| Other                     | other         |
+

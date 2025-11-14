@@ -176,44 +176,141 @@
               {
                 "group": "Trade Book",
                 "pages": [
-                  "projects/integration/broker_integration/tradebook/index",
-                  "projects/integration/broker_integration/tradebook/domestic_securities"
+                  "projects/integration/broker-integration/tradebook/index",
+                  {
+                    "group": "Domestic Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities",
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities_api"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook",
+                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook_api"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Tradewise P&L",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  {
+                    "group": "Domestic Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl",
+                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl",
+                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl_api"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Financial Instruments",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  {
+                    "group": "Domestic",
+                    "pages": [
+                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments",
+                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign",
+                    "pages": [
+                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments",
+                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_finanical_instruments_api"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Holdings",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  {
+                    "group": "Domestic",
+                    "pages": [
+                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings",
+                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign",
+                    "pages": [
+                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings",
+                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings_api"
+                    ]
+                  }
                 ]
               },
               {
                 "group": "Open Positions",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  "projects/integration/broker-integration/open_positions/open_positions",
+                  "projects/integration/broker-integration/open_positions/open_positions_api"
                 ]
               },
               {
                 "group": "Balance",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  "projects/integration/broker-integration/balance/balance",
+                  "projects/integration/broker-integration/balance/balance_api"
                 ]
               },
               {
                 "group": "Orders",
                 "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"
+                  "projects/integration/broker-integration/orders/orders",
+                  "projects/integration/broker-integration/orders/place_order_api",
+                  "projects/integration/broker-integration/orders/track_order_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "HRMS Integration",
+            "icon": "user",
+            "pages": [
+              "projects/integration/hrms-integration/index",
+              {
+                "group": "Salary Details",
+                "pages": [
+                  "projects/integration/hrms-integration/salary-details/salary_details",
+                  "projects/integration/hrms-integration/salary-details/salary_details_api"
+                ]
+              },
+              {
+                "group": "Employer Details",
+                "pages": [
+                  "projects/integration/hrms-integration/employer-details/employer_details",
+                  "projects/integration/hrms-integration/employer-details/employer_details_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Bank Integration",
+            "icon": "credit-card",
+            "pages": [
+              {
+                "group": "Account Statement",
+                "pages": [
+                  "projects/integration/bank-integration/account-statement/bank_account_statement",
+                  "projects/integration/bank-integration/account-statement/bank_statement_api"
+                ]
+              },
+              {
+                "group": "Account Details",
+                "pages": [
+                  "projects/integration/bank-integration/account-details/bank_account_details",
+                  "projects/integration/bank-integration/account-details/bank_account_details_api"
                 ]
               }
             ]

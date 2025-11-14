@@ -1,0 +1,15 @@
+---
+title: "Balance"
+description: "Balance information for trading accounts"
+---
+
+## Headers of Balance API
+
+| Param             | Type   | Required | Description                                                                                                                                                  |
+| ----------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| acc_type         | String | No       | Type of account, i.e., commodity or security                                                                                                                 |
+| opening_balance  | Number | No       | The opening balance of the trader                                                                                                                            |
+| used_margin      | Number | Yes      | The margin used by the trader. Positive values denote the amount blocked into an open order or position. A Negative value denotes the amount being released. |
+| available_margin | Number | Yes      | Total margin available for trading                                                                                                                           |
+| closing_balance  | Number | Yes      | The closing balance of the trader                                                                                                                            |
+

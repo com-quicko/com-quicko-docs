@@ -1,0 +1,65 @@
+---
+title: "Crypto Trade Book"
+description: "Tradebook provides you with all the trades that have been executed by an investor or trader. Brokers/Exchanges can share Tradebook to Report and calculate the Taxes"
+---
+
+Tradebook provides you with all the trades that have been executed by an investor or trader. Brokers/Exchanges can share Tradebook to Report and calculate the Taxes
+
+## Virtual Digital Asset
+
+The headers are explained below:
+
+| Param              | Type   | Required | Description                                                                                                                                                                   |
+| ------------------ | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id                 | Number | Optional | Transaction ID of the particular trade                                                                                                                                        |
+| date               | Number | Yes      | Trade Timestamp in epoch milliseconds                                                                                                                                         |
+| transaction_type  | String | Yes      | Indicates whether the order is :buy, sell, trade, send, receive                                                                                                               |
+| label              | String | Optional | Indicates the category of transaction type.Possible values :- interest, staking, staking_reward, lost, mining_reward, airdrop, donation, fork, gift, payment, other_income |
+| received_currency | String | Yes      | Symbol of the cryptocurrency received(If transaction_type = send/sellpass null)                                                                                             |
+| received_quantity | Number | Yes      | Quantity received by executing the transaction.(Required when received_currency ≠ null)                                                                                      |
+| price              | Number | Yes      | Price at which unit is traded.(If transaction_type = send/receivepass null)                                                                                                 |
+| price_currency    | Number | Yes      | Currency in which price is considered.Possible values: INR, USD, BTC etc.(Required when price ≠ null)                                                                         |
+| price_in_inr     | Number | Yes      | Per unit value of the crypto in INR(Required when price_currency ≠INR or = null)                                                                                             |
+| sent_currency     | String | Yes      | Symbol/Name of the crypto sent(If transaction_type =recieve/buy pass null).                                                                                                 |
+| sent_quantity     | Number | Yes      | Quantity sent by executing the transaction(Required if sent_currency ≠ null).                                                                                                |
+| fee_currency      | String | No       | Currency in which transaction fees or any other expense was made while executing the transaction                                                                              |
+| fee_amount        | Number | No       | Amount/quantity spent as fees or other expenses while executing transactions                                                                                                  |
+| fee_in_inr       | Number | No       | INR value of the fee paid for the transaction.(Required if fee_currency ≠ INR)                                                                                               |
+
+<Info>
+**Note**
+
+Whenever a field is blank pass `null`
+</Info>
+
+<Info>
+**Important**
+
+All the Transactions should be passed in the request since inception of the account.
+</Info>
+
+## Definition of Transaction Type
+
+| Transaction Type | Definition                                   |
+| ---------------- | -------------------------------------------- |
+| buy              | OTC buy transaction on an exchange           |
+| sell             | OTC sell transaction on an exchange          |
+| trade            | Crypto to Crypto transaction on the Exchange |
+| send             | Crypto sent out of the wallet                |
+| receive          | Crypto received in the wallet                |
+
+## Label
+
+| Label           | Definition                                                                                |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| airdrop         | An unsolicited distribution of a cryptocurrency token or coin, usually for free           |
+| interest        | Cryptocurrency received in the form of Interest on the coins kept as a deposit            |
+| staking         | Lock crypto assets for a set period of time to help support the operation of a blockchain |
+| staking_reward | The reward received for locked crypto assets for a set period of time                     |
+| fork            | Crypto received due to hard fork                                                          |
+| gift            | Crypto received as a gift in the wallet                                                   |
+| lost            | Irrecoverable cryptocurrency from wallets                                                 |
+| mining_reward  | The crypto reward received on mining the coin                                             |
+| donation        | Defines a transaction that was donated to a charity                                       |
+| payment         | A transaction that was received as a payment for a good or service                        |
+| other income    | Defines any other type of reward received                                                 |

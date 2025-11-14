@@ -1,0 +1,20 @@
+---
+title: "Bank Account Statement"
+description: "Bank Account Statement is an official document that summarizes taxpayers' account activity"
+---
+
+Bank Account Statement is an official document that summarizes taxpayers' account activity
+
+Bank Account Statement helps understand the type of transaction an individual has incurred which would help Quicko to identify business transactions activity.
+
+## Headers of Bank Statement API
+
+| Param             | Type   | Required | Description                                               |
+| ----------------- | ------ | -------- | --------------------------------------------------------- |
+| transaction_id   | String | Yes      | Unique transaction id for each transaction                |
+| transaction_type | String | Yes      | A transaction to be classified as a Withdrawal or Deposit |
+| transaction_date | Number | Yes      | Date of the transaction                                   |
+| amount            | Number | Yes      | Amount of the transaction                                 |
+| description       | String | Yes      | The narration of the transaction.                         |
+| closing_balance  | Number | No       | Closing balance of the account                            |
+
