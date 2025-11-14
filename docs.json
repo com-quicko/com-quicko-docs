@@ -333,59 +333,6 @@
             ]
           }
         ]
-      },
-      {
-        "product": "GSP",
-        "description": "GSP gateway for GST data & filings.",
-        "icon": "globe",
-        "href": "/project/analytics",
-        "tabs": [
-          {
-            "tab": "Guides",
-            "groups": [
-              {
-                "group": "Getting started",
-                "icon": "rocket",
-                "pages": [
-                  "projects/analytics/guides/getting-started/index",
-                  "projects/analytics/guides/getting-started/authentication"
-                ]
-              },
-              {
-                "group": "Integrations",
-                "icon": "workflow",
-                "href": "api-reference/overview",
-                "pages": [
-                  "projects/analytics/guides/integrations/index",
-                  {
-                    "group": "iOS / Android Integration",
-                    "pages": [
-                      "projects/analytics/guides/integrations/iosandroid-integration/index"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Customization",
-                "icon": "palette",
-                "pages": [
-                  "essentials/settings",
-                  "essentials/navigation"
-                ]
-              },
-              {
-                "group": "Writing content",
-                "icon": "pen",
-                "pages": [
-                  "essentials/markdown",
-                  "essentials/code",
-                  "essentials/images",
-                  "essentials/reusable-snippets"
-                ]
-              }
-            ]
-          }
-        ]
       }
     ]
   },
