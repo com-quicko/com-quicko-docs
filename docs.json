@@ -44,7 +44,7 @@
                 "pages": [
                   "projects/connect/guides/integrations/index",
                   {
-                    "group": "iOS / Android Integration",
+                    "group": "Mobile Integration",
                     "pages": [
                       "projects/connect/guides/integrations/iosandroid-integration/index",
                       "projects/connect/guides/integrations/iosandroid-integration/integrating",
