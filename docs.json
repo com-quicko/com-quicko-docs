@@ -90,6 +90,14 @@
             "tab": "API Reference",
             "groups": [
               {
+                "group": "Authentication",
+                "icon": "key",
+                "pages": [
+                  "projects/connect/api-reference/authentication/authentication",
+                  "projects/connect/api-reference/authentication/authorization"
+                ]
+              },
+              {
                 "group": "OAuth",
                 "icon": "book-open",
                 "pages": [
@@ -100,13 +108,18 @@
                 "group": "Open APIs",
                 "icon": "square-terminal",
                 "pages": [
-                  "projects/connect/api-reference/open-apis/user-details",
-                  "projects/connect/api-reference/open-apis/tax-payer",
                   {
-                    "group": "File",
+                    "group": "Entitlements",
                     "pages": [
-                      "projects/connect/api-reference/open-apis/file/itr-details",
-                      "projects/connect/api-reference/open-apis/file/tax-computation"
+                      "projects/connect/api-reference/open-apis/entitlements/user-details"
+                    ]
+                  },
+                  {
+                    "group": "Income Tax",
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/income-tax/tax-payer",
+                      "projects/connect/api-reference/open-apis/income-tax/file/itr-details",
+                      "projects/connect/api-reference/open-apis/income-tax/file/tax-computation"
                     ]
                   },
                   {

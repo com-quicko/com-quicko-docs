@@ -18,7 +18,7 @@
                 "parameters": [
                     {
                         "name": "x-api-key",
-                            "in": "header",
+                        "in": "header",
                         "required": false,
                         "description": "API User Key",
                         "example": "{{api_key}}",
@@ -585,23 +585,18 @@
                                     }
                                 },
                                 "example": {
-                                    "code": 200,
-                                    "transaction_id": "784ebaf1-d421-4926-98db-08d2b6bfb6b3",
-                                    "timestamp": 1699345819455,
+                                    "transaction_id": "feb3fa38-bcd7-4413-a201-56145b1d1661",
+                                    "timestamp": 1763117019162,
                                     "data": {
-                                        "@entity": "com.quicko.user",
-                                        "id": "0D6B076A2D0B192CE063020015ACC47F",
-                                        "email": "user@mail.com",
-                                        "created_at": 1682797023000,
+                                        "@entity": "com.quicko.account.user.user_details",
+                                        "email": "john.doe@mail.com",
+                                        "credential_status": "inactive",
+                                        "id": "239A89834AXXXXXX00007F8DCD",
+                                        "updated_at": 1731218159000,
                                         "first_name": "John",
-                                        "last_name": "Doe",
-                                        "mobile": {
-                                            "@entity": "com.quicko.mobile",
-                                            "number": "9988776655",
-                                            "isd_code": "91"
-                                        },
-                                        "status": "active"
-                                    }
+                                        "last_name": "Doe"
+                                    },
+                                    "code": 200
                                 }
                             }
                         }
@@ -742,21 +737,18 @@
                                     }
                                 },
                                 "example": {
-                                    "code": 200,
-                                    "transaction_id": "ace45336-cc41-4cb0-8eae-2675cfd6e709",
-                                    "timestamp": 1699357297679,
+                                    "transaction_id": "8766150f-f2e7-4ce4-a22e-ea29cae0fa33",
+                                    "timestamp": 1763117113796,
                                     "data": {
                                         "@entity": "com.quicko.tax_payer",
+                                        "id": "239A89834AXXXXXX00007F8DCD",
+                                        "updated_at": 1756492869606,
+                                        "full_name": "John Doe",
                                         "pan": "ATOPC1234B",
                                         "pan_holder_type": "individual",
-                                        "filing_category": "general",
-                                        "residential_status": "resident",
-                                        "id": "0D6B076A2D0B192CE063020015ACC47F",
-                                        "full_name": "John Jason Doe",
                                         "address": {
                                             "@entity": "com.quicko.address",
-                                            "id": "f7f71017-6107-482e-870a-58143fff10c9",
-                                            "street": "7, Atop Apartments ",
+                                            "street": "7, Atom Apartments",
                                             "area": "Vastrapur",
                                             "city": "Ahmedabad",
                                             "state": "Gujarat",
@@ -765,12 +757,14 @@
                                         },
                                         "contact": {
                                             "@entity": "com.quicko.contact",
-                                            "id": "f7f71017-6107-482e-870a-58143fff10c9",
-                                            "email": "john.d@mail.com",
+                                            "email": "john.doe@mail.com",
                                             "country_code": "91",
-                                            "mobile": "9876543210"
-                                        }
-                                    }
+                                            "mobile": "9988776655"
+                                        },
+                                        "filing_category": "general",
+                                        "residential_status": "resident"
+                                    },
+                                    "code": 200
                                 }
                             }
                         }
@@ -878,19 +872,24 @@
                                 "example": {
                                     "code": 200,
                                     "data": {
-                                        "@entity": "com.quicko.itr",
-                                        "filed_under_section": "on_or_before_the_due_date_us_139_1",
-                                        "filing_type": "original",
+                                        "@entity": "com.quicko.it.itr",
                                         "id": "8555b943-c3a9-4c95-9663-625b347b00da",
+                                        "assessment_year": "AY 2024-25",
                                         "form": "itr_1",
-                                        "status": "in_progress",
-                                        "assessment_year": "AY 2023-24",
+                                        "filing_type": "original",
+                                        "status": "filed",
+                                        "filed_on": 1722450599000,
                                         "due_date": 1722450599000,
-                                        "opt_audit": null,
-                                        "audit_under_section": null,
-                                        "filed_on": null,
-                                        "e_verified_on": null,
-                                        "acknowledgement_number": null
+                                        "acknowledgement_number": "123456789012345",
+                                        "original_return_filed_on": null,
+                                        "original_acknowledgement_number": null,
+                                        "date_of_notice": null,
+                                        "notice_number": null,
+                                        "filedUnderSection": "on_or_before_the_due_date_us_139_1",
+                                        "opt_audit": false,
+                                        "e_verified_on": 1722537000000,
+                                        "efiled_by": "John Doe",
+                                        "everified_by": "John Doe"
                                     },
                                     "transaction_id": "738a0cfb-ae0d-427b-b80b-d3aace5a8778",
                                     "timestamp": 1699351274048
@@ -1005,198 +1004,174 @@
                                 "example": {
                                     "code": 200,
                                     "data": {
-                                        "name": "tax_computation_workbook",
-                                        "@entity": "workbook",
-                                        "sheets": [
-                                            {
-                                                "name": "tax_computation_sheet",
-                                                "@entity": "sheet",
-                                                "blocks": [
-                                                    {
-                                                        "name": "tax_computation_list",
-                                                        "@entity": "list",
-                                                        "items": [
-                                                            [
-                                                                "total_taxable_salary",
-                                                                0
+                                        "transaction_id": "79b47187-acd7-4049-9b7d-2e4c76137791",
+                                        "timestamp": 1763118109858,
+                                        "data": {
+                                            "sheets": [
+                                                {
+                                                    "blocks": [
+                                                        {
+                                                            "items": [
+                                                                {
+                                                                    "total_taxable_salary": 0
+                                                                },
+                                                                {
+                                                                    "total_taxable_house_property": 8602
+                                                                },
+                                                                {
+                                                                    "total_taxable_capital_gains": 58480
+                                                                },
+                                                                {
+                                                                    "total_taxable_other": 0
+                                                                },
+                                                                {
+                                                                    "total_taxable_business_profession": 0
+                                                                },
+                                                                {
+                                                                    "total_headwise_income": 67082
+                                                                },
+                                                                {
+                                                                    "current_year_loss_adjusted": 0
+                                                                },
+                                                                {
+                                                                    "brought_forward_loss_adjusted": 0
+                                                                },
+                                                                {
+                                                                    "losses_adjusted": 0
+                                                                },
+                                                                {
+                                                                    "carry_forward_loss": 4783885
+                                                                },
+                                                                {
+                                                                    "gross_normal_income": 8602
+                                                                },
+                                                                {
+                                                                    "gross_special_income": 58480
+                                                                },
+                                                                {
+                                                                    "gross_total_income": 67082
+                                                                },
+                                                                {
+                                                                    "total_chapter_vi_a_deduction": 0
+                                                                },
+                                                                {
+                                                                    "total_normal_income": 8600
+                                                                },
+                                                                {
+                                                                    "total_special_income": 58480
+                                                                },
+                                                                {
+                                                                    "aggregate_income": 0
+                                                                },
+                                                                {
+                                                                    "total_income": 67080
+                                                                },
+                                                                {
+                                                                    "total_exempt_income": 0
+                                                                },
+                                                                {
+                                                                    "exempt_ltcg_under_112a": 0
+                                                                },
+                                                                {
+                                                                    "tax_payable_on_normal_rate_income": 0
+                                                                },
+                                                                {
+                                                                    "tax_payable_on_special_rate_income": 0
+                                                                },
+                                                                {
+                                                                    "tax_payable_on_total_income": 0
+                                                                },
+                                                                {
+                                                                    "rebate": 0
+                                                                },
+                                                                {
+                                                                    "tax_after_rebate": 0
+                                                                },
+                                                                {
+                                                                    "surcharge_before_marginal_relief": 0
+                                                                },
+                                                                {
+                                                                    "surcharge": 0
+                                                                },
+                                                                {
+                                                                    "cess": 0
+                                                                },
+                                                                {
+                                                                    "surcharge_and_cess": 0
+                                                                },
+                                                                {
+                                                                    "gross_tax_payable": 0
+                                                                },
+                                                                {
+                                                                    "relief_us_89": 0
+                                                                },
+                                                                {
+                                                                    "relief_us_90_and_90a": 0
+                                                                },
+                                                                {
+                                                                    "relief_us_91": 0
+                                                                },
+                                                                {
+                                                                    "total_relief": 0
+                                                                },
+                                                                {
+                                                                    "effective_tax_rate": 0
+                                                                },
+                                                                {
+                                                                    "interest_234_a": 0
+                                                                },
+                                                                {
+                                                                    "interest_234_b": 0
+                                                                },
+                                                                {
+                                                                    "interest_234_c": 0
+                                                                },
+                                                                {
+                                                                    "fees_234_f": 0
+                                                                },
+                                                                {
+                                                                    "total_interest_and_penalty": 0
+                                                                },
+                                                                {
+                                                                    "net_tax_payable": 0
+                                                                },
+                                                                {
+                                                                    "total_advance_tax_paid": 0
+                                                                },
+                                                                {
+                                                                    "total_self_assessment_tax": 0
+                                                                },
+                                                                {
+                                                                    "total_tax_deducted_at_source": 0
+                                                                },
+                                                                {
+                                                                    "total_tax_collected_at_source": 0
+                                                                },
+                                                                {
+                                                                    "total_tax_withheld_outside_india": 0
+                                                                },
+                                                                {
+                                                                    "total_taxes_paid": 0
+                                                                },
+                                                                {
+                                                                    "refund": 0
+                                                                },
+                                                                {
+                                                                    "due": 0
+                                                                }
                                                             ],
-                                                            [
-                                                                "total_taxable_house_property",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_taxable_capital_gains",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "total_taxable_other",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_taxable_business_profession",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_headwise_income",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "current_year_loss_adjusted",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "brought_forward_loss_adjusted",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "losses_adjusted",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "carry_forward_loss",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "gross_normal_income",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "gross_special_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "gross_total_income",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "total_chapter_vi_a_deduction",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_normal_income",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "total_special_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "aggregate_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_income",
-                                                                3400
-                                                            ],
-                                                            [
-                                                                "total_exempt_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "exempt_ltcg_under_112a",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "tax_payable_on_normal_rate_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "tax_payable_on_special_rate_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "tax_payable_on_total_income",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "rebate",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "tax_after_rebate",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "surcharge_before_marginal_relief",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "surcharge",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "cess",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "surcharge_and_cess",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "gross_tax_payable",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "relief",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "effective_tax_rate",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "interest_234_a",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "interest_234_b",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "interest_234_c",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "fees_234_f",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_interest_and_penalty",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "net_tax_payable",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_self_assessment_tax",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_tax_deducted_at_source",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_tax_collected_at_source",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "total_taxes_paid",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "refund",
-                                                                0
-                                                            ],
-                                                            [
-                                                                "due",
-                                                                0
-                                                            ]
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                                            "name": "tax_computation_list",
+                                                            "@entity": "list"
+                                                        }
+                                                    ],
+                                                    "name": "tax_computation_sheet",
+                                                    "@entity": "sheet"
+                                                }
+                                            ],
+                                            "name": "tax_computation_workbook",
+                                            "@entity": "workbook"
+                                        },
+                                        "code": 200
                                     },
                                     "transaction_id": "738a0cfb-ae0d-427b-b80b-d3aace5a8778",
                                     "timestamp": 1699351274048
