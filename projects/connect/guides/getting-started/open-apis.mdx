@@ -1,0 +1,326 @@
+---
+title: 'Open APIs'
+description: 'Access tax-related data and user insights with consent-based Open APIs'
+---
+
+Open APIs are simple, easy to understand collection of REST-like APIs designed for **"Connect" partners** to enhance their understanding about their customers. Open APIs provide a secure, consent-based mechanism to gain insights into users' demographics, income situations and tax deductions, enabling data-driven and personalized investment & financial planning products.
+
+<Card title="Try Quicko Connect in Postman" icon="paper-plane" href="https://postman.com/com-quicko/quicko-connect">
+  <img src="/projects/connect/assets/getting-started/open-apis.png" alt="Quicko Connect Workspace" style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }} />
+</Card>
+
+## Overview
+
+Open APIs allow "Connect" partners to access a variety of tax-related data through secure, consent-based endpoints.
+
+<CardGroup cols={2}>
+  <Card title="User Details" icon="id-card" href="/connect/api-reference/open-apis/entitlements/user-details">
+    Retrieve verified identity of the user, such as name, email, and mobile number.
+  </Card>
+  <Card title="Tax Payer" icon="contact-round" href="/connect/api-reference/open-apis/income-tax/tax-payer">
+    Access high-level details about user demographics, including PAN, name, DOB, age as per PAN, category, residential status.
+  </Card>
+  <Card title="ITR Details" icon="scroll-text" href="/connect/api-reference/open-apis/income-tax/file/itr-details">
+    Get metadata about Income Tax Returns, such as filing status, type of ITR filed, due dates, and acknowledgment number.
+  </Card>
+  <Card title="Tax Computation" icon="calculator" href="/connect/api-reference/open-apis/income-tax/file/tax-computation">
+    Fetch computation of income and tax including income by heads, demat accounts, bank accounts, personal assets and liabilities.
+  </Card>
+  <Card title="Advisory Orders" icon="receipt" href="/connect/api-reference/open-apis/advisory/orders">
+    Access user's advisory service orders and their status.
+  </Card>
+</CardGroup>
+
+## Available Endpoints
+
+<AccordionGroup>
+  <Accordion title="Get User Details" icon="id-card" defaultOpen>
+    **Endpoint:** `GET /entitlements/user`
+    
+    Retrieve verified identity information of the user.
+    
+    **Returns:**
+    - Name (first name, last name)
+    - Email address
+    - Mobile number
+    - User ID
+    - Account status
+    - Creation date
+    
+    **Use Cases:**
+    - Verify user identity
+    - Pre-fill application forms
+    - Personalize user experience
+  </Accordion>
+
+  <Accordion title="Get Taxpayer" icon="contact-round">
+    **Endpoint:** `GET /income-tax/tax-payer`
+    
+    Access comprehensive demographic and tax-related information.
+    
+    **Returns:**
+    - PAN number
+    - Full name as per PAN
+    - Date of birth
+    - PAN holder type (individual, HUF, etc.)
+    - Filing category (general, senior citizen, etc.)
+    - Residential status (resident, non-resident, etc.)
+    - Contact details (address, email, mobile)
+    
+    **Use Cases:**
+    - KYC verification
+    - Age-based product recommendations
+    - Residential status-based tax planning
+  </Accordion>
+
+  <Accordion title="Get ITR Details" icon="scroll-text">
+    **Endpoint:** `GET /income-tax/tax-payer/itr`
+    
+    Get metadata about the user's Income Tax Returns.
+    
+    **Returns:**
+    - Assessment year
+    - ITR form type (ITR-1, ITR-2, etc.)
+    - Tax regime (old/new)
+    - Filing status (filed, in_progress, etc.)
+    - Filing type (original, revised, belated)
+    - Due date and filed date
+    - Acknowledgement number
+    - E-verification details
+    
+    **Use Cases:**
+    - Check tax filing compliance
+    - Identify tax regime preference
+    - Verify ITR filing status
+  </Accordion>
+
+  <Accordion title="Get Tax Computation" icon="calculator">
+    **Endpoint:** `GET /income-tax/tax-payer/itr/computation-of-tax`
+    
+    Fetch computation of income and tax liability.
+    
+    **Returns:**
+    - Income by heads:
+      - Salary income
+      - House property income
+      - Capital gains (STCG, LTCG)
+      - Business & profession income
+      - Other sources
+    - Chapter VI-A deductions
+    - Total taxable income
+    - Tax payable/refundable
+    - Interest and penalties (234A, 234B, 234C, 234F)
+    - TDS and advance tax paid
+    
+    **Use Cases:**
+    - Tax liability assessment
+    - Investment planning recommendations
+    - Tax saving opportunities identification
+  </Accordion>
+
+  <Accordion title="Get Advisory Orders" icon="receipt">
+    **Endpoint:** `GET /advisory/contacts/{contact_id}/orders`
+    
+    Access user's advisory service orders.
+    
+    **Returns:**
+    - Order ID and status
+    - Order creation and update timestamps
+    - Order pricing details
+    - GST amount
+    - Order resolution details
+    
+    **Use Cases:**
+    - Track advisory service usage
+    - Service billing and reconciliation
+  </Accordion>
+</AccordionGroup>
+
+## Authorization
+
+<Info>
+  Open APIs require an `Authorization` header with the JWT access token obtained through the OAuth flow.
+</Info>
+
+All Open API requests must include two headers:
+
+| Header | Description | Required |
+|--------|-------------|----------|
+| `Authorization` | Resource Owner's JWT access token (obtained via OAuth) | Yes |
+| `x-api-key` | Your API User Key (provided during onboarding) | Yes |
+
+### Example Request
+
+```bash cURL
+curl https://api.quicko.com/income-tax/tax-payer \
+  -H "Authorization: Bearer eyJhbGciOiJIUzUxMi..." \
+  -H "x-api-key: key_live_xxxxxxxxxxxxx"
+```
+
+```javascript Node.js
+const axios = require('axios');
+
+const response = await axios.get('https://api.quicko.com/income-tax/tax-payer', {
+  headers: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzUxMi...',
+    'x-api-key': 'key_live_xxxxxxxxxxxxx'
+  }
+});
+
+console.log(response.data);
+```
+
+```python Python
+import requests
+
+headers = {
+    'Authorization': 'Bearer eyJhbGciOiJIUzUxMi...',
+    'x-api-key': 'key_live_xxxxxxxxxxxxx'
+}
+
+response = requests.get(
+    'https://api.quicko.com/income-tax/tax-payer',
+    headers=headers
+)
+
+print(response.json())
+```
+
+## Getting Started
+
+<Steps>
+  <Step title="Get Onboarded">
+    Contact Quicko to get your API credentials (API Key and Secret).
+  </Step>
+  
+  <Step title="Authenticate Your Application">
+    Use the [Authenticate API](/connect/api-reference/authentication/authenticate) to get your application's access token.
+  </Step>
+  
+  <Step title="Implement OAuth Flow">
+    Follow the [OAuth guide](/connect/guides/getting-started/oauth) to get user consent and obtain Resource Owner tokens.
+  </Step>
+  
+  <Step title="Call Open APIs">
+    Use the Resource Owner's access token to call Open APIs and retrieve user data.
+  </Step>
+</Steps>
+
+<Card title="Try it with Postman" icon="paper-plane" href="#">
+  Download our Postman collection to test the APIs quickly
+  
+  **Quicko Connect Postman Collection** →
+</Card>
+
+## Recommendations
+
+<CardGroup cols={2}>
+  <Card title="Understand the Endpoints" icon="book-open">
+    Familiarize yourself with each API endpoint, its purpose, and how it fits into the services you offer.
+  </Card>
+  
+  <Card title="Know Request & Response Structures" icon="code">
+    Each API has specific request parameters and response data formats. Understanding these ensures seamless integration.
+  </Card>
+  
+  <Card title="Handle Data with Care" icon="shield-halved">
+    Handle and store user information securely and in compliance with data privacy and protection guidelines (GDPR, DPDPA, etc.).
+  </Card>
+  
+  <Card title="Maintain User Consent" icon="handshake">
+    Ensure ongoing consent from users to access their data. Provide clear options to revoke access if desired.
+  </Card>
+</CardGroup>
+
+## Data Privacy & Security
+
+<Warning>
+  **Important:** User data obtained through Open APIs is sensitive personal and financial information. You must:
+</Warning>
+
+<Steps>
+  <Step title="Obtain Explicit Consent">
+    Always obtain explicit user consent before accessing their data through the OAuth flow.
+  </Step>
+  
+  <Step title="Encrypt Data at Rest and in Transit">
+    Use industry-standard encryption (AES-256, TLS 1.2+) for storing and transmitting data.
+  </Step>
+  
+  <Step title="Implement Access Controls">
+    Restrict data access to only authorized personnel and systems. Use role-based access control (RBAC).
+  </Step>
+  
+  <Step title="Comply with Regulations">
+    Ensure compliance with:
+    - Digital Personal Data Protection Act (DPDPA), 2023
+    - GDPR (for EU users)
+    - Other applicable data protection laws
+  </Step>
+  
+  <Step title="Provide User Rights">
+    Allow users to:
+    - View what data you've accessed
+    - Revoke access at any time
+    - Request data deletion
+  </Step>
+  
+  <Step title="Regular Security Audits">
+    Conduct regular security assessments and penetration testing of your integration.
+  </Step>
+</Steps>
+
+## Rate Limiting
+
+<Note>
+  API rate limits ensure fair usage and system stability. Current limits are subject to your service agreement.
+</Note>
+
+If you exceed rate limits, you'll receive a `429 Too Many Requests` response. Implement exponential backoff and retry logic in your application.
+
+## Error Handling
+
+Open APIs return standard HTTP status codes and error responses:
+
+| Status Code | Meaning |
+|-------------|---------|
+| `200` | Success |
+| `400` | Bad Request - Invalid parameters |
+| `401` | Unauthorized - Invalid or expired token |
+| `403` | Forbidden - Insufficient permissions |
+| `404` | Not Found - Resource doesn't exist |
+| `429` | Too Many Requests - Rate limit exceeded |
+| `500` | Internal Server Error |
+
+### Example Error Response
+
+```json
+{
+  "code": 401,
+  "transaction_id": "abc123-def456-ghi789",
+  "timestamp": 1699351274048,
+  "error": {
+    "message": "Invalid or expired access token",
+    "type": "authentication_error"
+  }
+}
+```
+
+<Tip>
+  Always check the `transaction_id` in responses. This helps Quicko support team debug issues quickly if you encounter problems.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Authentication Guide" icon="key" href="/connect/guides/getting-started/authentication">
+    Learn about API authentication
+  </Card>
+  <Card title="OAuth Flow" icon="shield-check" href="/connect/guides/getting-started/oauth">
+    Implement OAuth for user consent
+  </Card>
+  <Card title="API Reference" icon="book" href="/connect/api-reference">
+    Explore detailed API documentation
+  </Card>
+</CardGroup>
+

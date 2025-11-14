@@ -23,7 +23,7 @@
     "products": [
       {
         "product": "Connect",
-        "description": "Connect description",
+        "description": "Integrate seamless tax solutions.",
         "icon": "cable",
         "tabs": [
           {
@@ -34,7 +34,9 @@
                 "icon": "rocket",
                 "pages": [
                   "projects/connect/guides/getting-started/index",
-                  "projects/connect/guides/getting-started/authentication"
+                  "projects/connect/guides/getting-started/authentication",
+                  "projects/connect/guides/getting-started/oauth",
+                  "projects/connect/guides/getting-started/open-apis"
                 ]
               },
               {
@@ -73,6 +75,7 @@
               },
               {
                 "group": "Events",
+                "icon": "zap",
                 "pages": [
                   "projects/connect/guides/events/index",
                   "projects/connect/guides/events/directory"
@@ -80,6 +83,7 @@
               },
               {
                 "group": "Others",
+                "icon": "rectangle-ellipsis",
                 "pages": [
                   "projects/connect/guides/notifications"
                 ]
@@ -137,8 +141,8 @@
       },
       {
         "product": "Integrations",
-        "description": "Quicko Integration Docs",
-        "icon": "chart-bar",
+        "description": "Set up workflows with Quicko APIs.",
+        "icon": "puzzle",
         "href": "/project/integration",
         "groups": [
           {
@@ -332,8 +336,8 @@
       },
       {
         "product": "GSP",
-        "description": "Quicko GSP Api Docs",
-        "icon": "smartphone",
+        "description": "GSP gateway for GST data & filings.",
+        "icon": "globe",
         "href": "/project/analytics",
         "tabs": [
           {
