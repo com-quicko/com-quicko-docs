@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
-  "name": "Quicko Connect | Docs",
+  "name": "Quicko | Docs",
   "description": "Provide an intuitive tax filing experience that imports client data and offers both do-it-yourself and expert assisted options.",
   "logo": {
     "light": "static/logo/light.svg",
@@ -20,6 +20,9 @@
     "dark": "static/favicon/favicon.svg"
   },
   "navigation": {
+    "pages": [
+      "index"
+    ],
     "products": [
       {
         "product": "Connect",
@@ -375,16 +378,13 @@
       "linkedin": "https://linkedin.com/company/mintlify"
     }
   },
-  "redirects": [
-    {
-      "source": "",
-      "destination": "/projects/connect/guides/getting-started/index"
-    }
-  ],
   "interaction": {
     "drilldown": true
   },
   "styling": {
     "eyebrows": "breadcrumbs"
+  },
+  "background": {
+    "decoration": "windows"
   }
 }
