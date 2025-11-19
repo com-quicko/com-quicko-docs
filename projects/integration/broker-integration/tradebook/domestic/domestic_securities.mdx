@@ -1,0 +1,256 @@
+---
+title: "Domestic Securities Tradebook"
+description: "A comprehensive trade book for domestic securities including equity, mutual funds, F&O, and foreign securities"
+---
+
+A trade book provides a detailed record of all trades executed by an investor or trader. Brokers/Exchanges can share trade book data to help calculate taxes and maintain compliance with tax regulations.
+
+<Info>
+**Important**
+
+All the transactions should be passed in the request since inception of the account to ensure accurate tax calculations and compliance.
+</Info>
+
+## Trade Types
+
+<CardGroup cols={2}>
+  <Card title="Equity Trades" icon="chart-line" href="#equity-trades">
+    Domestic equity share transactions with tax expense breakdowns
+  </Card>
+  <Card title="Mutual Funds" icon="building-columns" href="#mutual-fund-trades">
+    Mutual fund purchase and redemption transactions
+  </Card>
+  <Card title="Futures & Options" icon="chart-candlestick" href="#futures-and-options-trades">
+    Derivative contracts including futures and options trading
+  </Card>
+  <Card title="Foreign Securities" icon="globe" href="#foreign-equity-trades">
+    International equity, mutual funds, and derivative trades
+  </Card>
+</CardGroup>
+
+## Equity Trades
+
+Domestic equity share transactions with comprehensive tax expense breakdowns.
+
+<AccordionGroup>
+  <Accordion title="Required Fields" icon="asterisk" defaultOpen>
+    | Param              | Type   | Description                                             |
+    | ------------------ | ------ | ------------------------------------------------------- |
+    | transaction_id    | string | Transaction Id to uniquely identify the transaction     |
+    | symbol             | string | Symbol or description of equity share                   |
+    | quantity           | number | Trading quantity                                        |
+    | date               | number | Transaction epoch timestamp                             |
+    | price              | number | Transaction price                                       |
+    | transaction_type  | string | Transaction type from possible values of 'BUY' or 'SELL' |
+  </Accordion>
+
+  <Accordion title="Optional Fields - Tax & Expenses" icon="receipt">
+    | Param                          | Type   | Description                                          |
+    | ------------------------------ | ------ | ---------------------------------------------------- |
+    | isin                           | string | ISIN is the international security identification number |
+    | fmv                            | number | High stock price on 31/01/2018                       |
+    | brokerage                      | number | Brokerage expense                                    |
+    | clearing_charges              | number | Charges charged by clearing house                    |
+    | exchange_transaction_charges | number | Transaction charges by exchange                      |
+    | sebi_turnover_fees           | number | Turnover fees by SEBI                                |
+    | stt                            | number | Security Transaction Tax                             |
+    | stamp_duty                    | number | Stamp duty paid on transfer of shares                |
+    | sgst                           | number | State GST                                            |
+    | cgst                           | number | Central GST                                          |
+    | igst                           | number | Integrated GST                                       |
+    | interest                       | number | Interest paid on margins eg Margin Trading Facility  |
+    | depository_charges            | number | Depository charges paid on delivery of shares        |
+    | other_transfer_expenses      | number | Any other expense relating to the transfer of shares |
+    | corporate_action              | string | Corporate Action. Possible values: BUY_BACK, DIVIDEND |
+  </Accordion>
+</AccordionGroup>
+
+## Mutual Fund Trades
+
+Mutual fund purchase and redemption transactions with scheme classification.
+
+<AccordionGroup>
+  <Accordion title="Required Fields" icon="asterisk" defaultOpen>
+    | Param              | Type   | Description                                                 |
+    | ------------------ | ------ | ----------------------------------------------------------- |
+    | transaction_id    | string | Transaction Identifier to uniquely identify the transaction |
+    | type               | string | Scheme type, possible values: Equity, Debt, Other           |
+    | symbol             | string | Symbol or description of mutual fund scheme                 |
+    | quantity           | number | Trading quantity (units)                                    |
+    | date               | number | Transaction epoch timestamp                                 |
+    | price              | number | NAV (Net Asset Value) at transaction                        |
+    | transaction_type  | string | Transaction type possible values: 'BUY', 'SELL'             |
+  </Accordion>
+
+  <Accordion title="Optional Fields - Tax & Expenses" icon="receipt">
+    | Param                          | Type   | Description                                          |
+    | ------------------------------ | ------ | ---------------------------------------------------- |
+    | isin                           | string | ISIN is the international security identification number |
+    | fmv                            | number | High stock price on 31/01/2018                       |
+    | brokerage                      | number | Brokerage expense                                    |
+    | clearing_charges              | number | Charges charged by clearing house                    |
+    | exchange_transaction_charges | number | Transaction charges by exchange                      |
+    | sebi_turnover_fees           | number | Turnover fees by SEBI                                |
+    | stt                            | number | Security Transaction Tax                             |
+    | stamp_duty                    | number | Stamp duty paid on transfer of shares                |
+    | sgst                           | number | State GST                                            |
+    | cgst                           | number | Central GST                                          |
+    | igst                           | number | Integrated GST                                       |
+    | other_transfer_expenses      | number | Any other expense relating to the transfer of units  |
+  </Accordion>
+</AccordionGroup>
+
+## Futures and Options Trades
+
+Derivative contracts including futures and options trading with comprehensive expense tracking.
+
+<AccordionGroup>
+  <Accordion title="Required Fields" icon="asterisk" defaultOpen>
+    | Param              | Type   | Description                                                 |
+    | ------------------ | ------ | ----------------------------------------------------------- |
+    | transaction_id    | string | Transaction identifier to uniquely identify the transaction |
+    | symbol             | string | Symbol or description of the derivative contract            |
+    | type               | string | Type, possible values: Futures, Options                     |
+    | quantity           | number | Trading quantity (lot size)                                 |
+    | date               | number | Transaction epoch timestamp                                 |
+    | price              | number | Transaction price                                           |
+    | transaction_type  | string | Transaction type possible values: 'BUY', 'SELL'             |
+  </Accordion>
+
+  <Accordion title="Optional Fields - Tax & Expenses" icon="receipt">
+    | Param                          | Type   | Description                                          |
+    | ------------------------------ | ------ | ---------------------------------------------------- |
+    | brokerage                      | number | Brokerage expense                                    |
+    | clearing_charges              | number | Charges charged by clearing house                    |
+    | exchange_transaction_charges | number | Transaction charges by exchange                      |
+    | sebi_turnover_fees           | number | Turnover fees by SEBI                                |
+    | stt                            | number | Security Transaction Tax                             |
+    | stamp_duty                    | number | Stamp duty paid on transfer                          |
+    | sgst                           | number | State GST                                            |
+    | cgst                           | number | Central GST                                          |
+    | igst                           | number | Integrated GST                                       |
+    | interest                       | number | Interest paid on margins eg Margin Trading Facility  |
+    | other_transfer_expenses      | number | Any other expense relating to the transfer           |
+  </Accordion>
+</AccordionGroup>
+
+## Foreign Securities
+
+<Tabs>
+  <Tab title="Foreign Equity">
+    International equity share transactions.
+
+| Param              | Type   | Required | Description                                                 |
+| ------------------ | ------ | -------- | ----------------------------------------------------------- |
+| transaction_id    | string | Yes      | Transaction Identifier to uniquely identify the transaction |
+| isin               | string | No       | ISIN is the international security identification number    |
+| symbol             | string | Yes      | Symbol or description of equity share                       |
+| quantity           | number | Yes      | Trading quantity                                            |
+| date               | number | Yes      | Transaction epoch timestamp                                 |
+| price              | number | Yes      | Transaction price                                           |
+| transaction_type  | string | Yes      | Transaction type from possible values of 'BUY' or 'SELL'    |
+| transfer_expenses | number | Yes      | Transfer expense                                            |
+| corporate_action  | string | No       | Corporate Action. Possible values: BUY_BACK, DIVIDEND       |
+  </Tab>
+
+  <Tab title="ADR">
+    American Depositary Receipt transactions.
+
+| Param              | Type   | Required | Description                                                 |
+| ------------------ | ------ | -------- | ----------------------------------------------------------- |
+| transaction_id    | string | No       | Transaction Identifier to uniquely identify the transaction |
+| isin               | string | No       | ISIN is the international security identification number    |
+| symbol             | string | Yes      | Symbol or description of ADR                                |
+| quantity           | number | Yes      | Trading quantity                                            |
+| date               | number | Yes      | Transaction epoch timestamp                                 |
+| price              | number | Yes      | Transaction price                                           |
+| transaction_type  | string | Yes      | Transaction type from possible values of 'BUY' or 'SELL'    |
+| transfer_expenses | number | Yes      | Transfer expense                                            |
+| corporate_action  | string | No       | Corporate Action. Possible values: BUY_BACK, DIVIDEND       |
+  </Tab>
+
+  <Tab title="Mutual Funds">
+    Foreign mutual fund transactions.
+
+| Param              | Type   | Required | Description                                                 |
+| ------------------ | ------ | -------- | ----------------------------------------------------------- |
+| transaction_id    | string | Yes      | Transaction Identifier to uniquely identify the transaction |
+| isin               | string | No       | ISIN is the international security identification number    |
+| type               | string | Yes      | Scheme type, possible values: Equity, Debt, Other           |
+| symbol             | string | Yes      | Symbol or description of mutual fund scheme                 |
+| quantity           | number | Yes      | Trading quantity (units)                                    |
+| date               | number | Yes      | Transaction epoch timestamp                                 |
+| price              | number | Yes      | NAV (Net Asset Value) at transaction                        |
+| transaction_type  | string | Yes      | Transaction type from possible values of 'BUY' or 'SELL'    |
+| transfer_expenses | number | Yes      | Transfer expense                                            |
+  </Tab>
+
+  <Tab title="F&O">
+    Foreign futures and options trading.
+
+| Param              | Type   | Required | Description                                                 |
+| ------------------ | ------ | -------- | ----------------------------------------------------------- |
+| transaction_id    | string | Yes      | Transaction Identifier to uniquely identify the transaction |
+| symbol             | string | Yes      | Symbol or description of the derivative contract            |
+| type               | string | Yes      | Type, possible values: Futures, Options                     |
+| quantity           | number | Yes      | Trading quantity (lot size)                                 |
+| date               | number | Yes      | Transaction epoch timestamp                                 |
+| price              | number | Yes      | Transaction price                                           |
+| transaction_type  | string | Yes      | Transaction type possible values: 'BUY', 'SELL'             |
+| transfer_expenses | number | Yes      | Transfer expenses                                           |
+  </Tab>
+</Tabs>
+
+<Note>
+For foreign securities, transfer expenses typically include foreign exchange fees, wire transfer charges, and custodian fees.
+</Note>
+
+## Corporate Actions
+
+Use these standard enumeration values when reporting corporate actions in trade data.
+
+<Warning>
+Corporate actions can significantly impact capital gains calculations. Ensure you use the correct enum value for accurate tax reporting.
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="Share Structure Changes" icon="arrows-split-up-and-left" defaultOpen>
+    | Corporate Action              | ENUM Value                      | Description                            |
+    | ----------------------------- | ------------------------------- | -------------------------------------- |
+    | Bonus Issue                   | **BONUS_ISSUE**                 | Free additional shares to shareholders |
+    | Stock Split                   | **STOCK_SPLIT**                | Subdivision of existing shares         |
+    | Consolidation of Shares       | **CONSOLIDATION**               | Reverse stock split                    |
+    | Right Issue of Equity Shares  | **RIGHT_ISSUE**                | Additional shares offered to existing shareholders |
+  </Accordion>
+
+  <Accordion title="Income Distributions" icon="money-bill-transfer">
+    | Corporate Action              | ENUM Value                      | Description                            |
+    | ----------------------------- | ------------------------------- | -------------------------------------- |
+    | Dividend                      | **DIVIDEND**                    | Cash or stock dividend payment         |
+    | Income Distribution (InvIT)   | **INCOME_DISTRIBUTION_INVIT** | InvIT income distribution              |
+    | Income Distribution RITES     | **RITES**                       | RITES income distribution              |
+    | InvIT - Return of Capital     | **RETURN_OF_CAPITAL_INVIT**  | Return of capital from InvIT           |
+  </Accordion>
+
+  <Accordion title="Corporate Restructuring" icon="building">
+    | Corporate Action              | ENUM Value                      | Description                            |
+    | ----------------------------- | ------------------------------- | -------------------------------------- |
+    | Amalgamation                  | **AMALGAMATION**                | Merger of two or more companies        |
+    | Scheme of Arrangement         | **SCHEME_OF_ARRANGEMENT**     | Corporate restructuring scheme         |
+    | Spin Off                      | **SPIN_OFF**                   | Separation of business division        |
+  </Accordion>
+
+  <Accordion title="Capital Changes" icon="circle-dollar-to-slot">
+    | Corporate Action              | ENUM Value                      | Description                            |
+    | ----------------------------- | ------------------------------- | -------------------------------------- |
+    | Buy Back of Shares            | **BUY_BACK**                   | Company repurchasing its own shares    |
+    | Reduction of Capital          | **REDUCTION_OF_CAPITAL**      | Reduction in company's share capital   |
+    | Preferential Issue of shares  | **PREFERENTIAL_ISSUE**         | Private placement of shares            |
+    | Voluntary Delisting of Shares | **DELISTING**                   | Removal from stock exchange listing    |
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+When processing corporate actions, ensure you maintain the continuity of cost basis and holding period for accurate capital gains tax calculations.
+</Tip>
+

@@ -24,10 +24,10 @@ Quicko uses redirection based OAuth journeys to get secure access to apps, just 
 <Info>
   **Note**
   
-  An optional redirect_url param should be supported by your OAuth login endpoint, which will be used to navigate the user after a successful login attempt. Redirect URL request parameter must be Base64 encoded, eg: `https://quicko.com` will be used like:
+  An optional redirect param should be supported by your OAuth login endpoint, which will be used to navigate the user after a successful login attempt. Redirect URL request parameter must be Base64 encoded, eg: `https://quicko.com` will be used like:
   
   ```
-  {{your_oauth_app_url}}/login?api_key={api_key}&redirect_url=aHR0cHM6Ly9xdWlja28uY29t
+  {{your_oauth_app_url}}/login?api_key={api_key}&redirect=aHR0cHM6Ly9xdWlja28uY29t
   ```
 </Info>
 

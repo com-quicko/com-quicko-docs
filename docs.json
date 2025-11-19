@@ -34,19 +34,31 @@
                 "icon": "rocket",
                 "pages": [
                   "projects/connect/guides/getting-started/index",
-                  "projects/connect/guides/getting-started/authentication",
-                  "projects/connect/guides/getting-started/oauth",
-                  "projects/connect/guides/getting-started/open-apis"
+                  "projects/connect/guides/getting-started/authentication"
                 ]
               },
               {
-                "group": "Integrations",
+                "group": "OAuth",
+                "icon": "book-open",
+                "pages": [
+                  "projects/connect/guides/oauth/oauth"
+                ]
+              },
+              {
+                "group": "Open APIs",
+                "icon": "square-terminal",
+                "pages": [
+                  "projects/connect/guides/open-apis/open-apis"
+                ]
+              },
+              {
+                "group": "Integration",
                 "icon": "workflow",
                 "href": "api-reference/overview",
                 "pages": [
                   "projects/connect/guides/integrations/index",
                   {
-                    "group": "Mobile Integration",
+                    "group": "Mobile",
                     "pages": [
                       "projects/connect/guides/integrations/iosandroid-integration/index",
                       "projects/connect/guides/integrations/iosandroid-integration/integrating",
@@ -64,7 +76,7 @@
                     ]
                   },
                   {
-                    "group": "Web Integration",
+                    "group": "Web",
                     "pages": [
                       "projects/connect/guides/integrations/web-integration/index",
                       "projects/connect/guides/integrations/web-integration/refer",
@@ -82,10 +94,10 @@
                 ]
               },
               {
-                "group": "Others",
+                "group": "Notifications",
                 "icon": "rectangle-ellipsis",
                 "pages": [
-                  "projects/connect/guides/notifications"
+                  "projects/connect/guides/notifications/types-of-notifications"
                 ]
               }
             ]
@@ -140,7 +152,7 @@
         ]
       },
       {
-        "product": "Integrations",
+        "product": "Integration",
         "description": "Set up workflows with Quicko APIs.",
         "icon": "puzzle",
         "href": "/project/integration",
@@ -198,7 +210,7 @@
                     "group": "Domestic Securities",
                     "pages": [
                       "projects/integration/broker-integration/tradebook/domestic/domestic_securities",
-                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities_api"
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities_tradebook_api"
                     ]
                   },
                   {

@@ -158,7 +158,7 @@ There are various types of tokens that serve different purposes within the OAuth
 
 The diagram above illustrates the complete OAuth flow:
 
-1. **Redirect** - Host App redirects user to Quicko OAuth with `api_key` and `redirect_url`
+1. **Redirect** - Host App redirects user to Quicko OAuth with `api_key` and `redirect`
 2. **Redirect** - After user consent, Quicko redirects back to Host App with `request_token`
 3. **Authorize** - Host App calls Quicko API Server with `request_token`
 4. **Response** - Quicko API Server returns `access_token` and `refresh_token`

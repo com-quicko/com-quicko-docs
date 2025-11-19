@@ -44,7 +44,7 @@ This requires a more hands-on approach from the channel partner's development te
 
 ### 1. Redirect to Quicko OAuth
 
-Construct a redirect URL to Quicko's OAuth endpoint. Include your `api_key` and the `redirect_url` (the URL to which Quicko will send the user after authorization) and an `options` query parameter, which is a base64-encoded JSON object containing user details and theme preferences.
+Construct a redirect URL to Quicko's OAuth endpoint. Include your `api_key` and the `redirect` (the URL to which Quicko will send the user after authorization) and an `options` query parameter, which is a base64-encoded JSON object containing user details and theme preferences.
 
 #### Options Object
 
@@ -84,13 +84,13 @@ https://oauth.quicko.com/?api_key={{your_api_key}}&redirect_uri={{host_redirect}
 
 ### 2. User Consent
 
-When the user is redirected to Quicko's OAuth endpoint, they will be presented with the consent screen. Upon granting consent, Quicko will redirect the user back to your `redirect_url`.
+When the user is redirected to Quicko's OAuth endpoint, they will be presented with the consent screen. Upon granting consent, Quicko will redirect the user back to your `redirect`.
 
 ### 3. Handle the Redirect
 
-Upon user consent, Quicko redirects the user to your `redirect_url` with a `request_token`. If the user denies consent, they will be redirected back with a query parameter `status` set to `cancelled`.
+Upon user consent, Quicko redirects the user to your `redirect` with a `request_token`. If the user denies consent, they will be redirected back with a query parameter `status` set to `cancelled`.
 
-For example, if the host's `redirect_url` is `host-app.com/incoming`, the user will be redirected to:
+For example, if the host's `redirect` is `host-app.com/incoming`, the user will be redirected to:
 
 <Columns cols={2}>
   <Card
