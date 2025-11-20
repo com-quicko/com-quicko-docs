@@ -1,0 +1,41 @@
+---
+title: "Domestic Financial Instruments"
+description: "Financial instruments reference data for domestic securities"
+---
+
+## Headers of Domestic Financial Instruments API
+
+### Equity
+
+| Param               | Type   | Required | Description                                              |
+| ------------------- | ------ | -------- | -------------------------------------------------------- |
+| isin                | String | No       | ISIN is the international security identification number |
+| symbol              | String | Yes      | Symbol or description of the instrument                  |
+| name                | String | No       | Name of the scrip                                        |
+| fmv                 | Number | No       | The High Price of the stock on 31 Jan 2018               |
+| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+
+### Mutual Funds
+
+| Param               | Type   | Required | Description                                              |
+| ------------------- | ------ | -------- | -------------------------------------------------------- |
+| isin                | String | No       | ISIN is the international security identification number |
+| symbol              | String | Yes      | Symbol/Scheme code or description of the instrument      |
+| name                | String | No       | Name of the scheme                                       |
+| fund_type          | String | Yes      | ​Type of fund: Equity, Debt or Hybrid                    |
+| fmv                 | Number | No       | High NAV of the Mutual Fund on 31 Jan 2018               |
+| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+
+### Derivatives
+
+| Param               | Type   | Required | Description                                              |
+| ------------------- | ------ | -------- | -------------------------------------------------------- |
+| isin                | String | No       | ISIN is the international security identification number |
+| symbol_underlying  | String | Yes      | Symbol or description of the underlying security         |
+| name                | String | No       | Name of the scrip                                        |
+| instrument_type    | String | Yes      | Indicates whether the instrument was Future or Option    |
+| category            | String | Yes      | ​Type of F&O: Equity, Commodity or Currency              |
+| expiry              | String | Yes      | Expiry Date (for Derivatives)                            |
+| strike              | Number | Yes      | The Strike price (for Options)                           |
+| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+

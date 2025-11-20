@@ -1,0 +1,1726 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Broker Integration API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.broker.com"
+        }
+    ],
+    "components": {
+        "securitySchemes": {}
+    },
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/user/details": {
+            "get": {
+                "summary": "User Details API",
+                "description": "",
+                "operationId": "user-details-1",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API Key to uniquely identify API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n  \"id\": \"12345678972D0889E0530100007F0123\",\n  \"pan\": \"XXXPX1234X\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"mobile\": \"9999999999\",\n  \"email\": \"john@doe.com\",\n  \"aadhaar\" : \"000011112222\",\n  \"dob\": \"02/02/2002\",\n  \"gender\" : \"Male\"\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "12345678972D0889E0530100007F0123"
+                                        },
+                                        "pan": {
+                                            "type": "string",
+                                            "example": "XXXPX1234X"
+                                        },
+                                        "first_name": {
+                                            "type": "string",
+                                            "example": "John"
+                                        },
+                                        "last_name": {
+                                            "type": "string",
+                                            "example": "Doe"
+                                        },
+                                        "mobile": {
+                                            "type": "string",
+                                            "example": "9999999999"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "john@doe.com"
+                                        },
+                                        "aadhaar": {
+                                            "type": "string",
+                                            "example": "000011112222"
+                                        },
+                                        "dob": {
+                                            "type": "string",
+                                            "example": "02/02/2002"
+                                        },
+                                        "gender": {
+                                            "type": "string",
+                                            "example": "Male"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/domestic/tradewise-pnl": {
+            "get": {
+                "summary": "Domestic Securities Tradewise P&L API",
+                "description": "GET API to read Tradewise Profit and Loss",
+                "operationId": "domestic-securities-tradewise-pl-api",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "The start date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "The end date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n  \"sheets\": [\n        {\n            \"name\": \"Equity\",\n            \"blocks\": [\n                {\n                    \"name\": \"Equity\",\n                    \"@entity\" : \"table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"sell_date\",\n                        \"sell_average\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\",\n                        \"corporate_action\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE428A01015\",\n                            \"Allahabad Bank\",\n                            100,\n                            1666867967000,\n                            11.75,\n                            1666867965000,\n                            15.25,\n                            null,\n                            0,\n                            0,\n                            1.5,\n                            0.75,\n                            2.25,\n                            0.5,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"INE428A01015\",\n                            \"Allahabad Bank\",\n                            10,\n                            1666867967000,\n                            11.5,\n                            1666867967000,\n                            16,\n                            null,\n                            0,\n                            0,\n                            0.25,\n                            0.35,\n                            0.25,\n                            0.15,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Mutual Funds\",\n            \"blocks\": [\n                {\n                    \"name\": \"Mutual Funds\",\n                    \"@entity\": \"table\",\n                    \"header\": [\n                        \"isin\",\n                        \"scheme_type\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"sell_date\",\n                        \"sell_average\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_charges\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\",\n                        \"corporate_actions\"\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Futures & Options\",\n            \"@entity\": \"table\",\n            \"blocks\": [\n                {\n                    \"name\": \"Futures & Options\",\n                    \"header\": [\n                        \"symbol\",\n                        \"type\",\n                        \"quantity\",\n                        \"buy_average\",\n                        \"sell_average\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\"\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Equity"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Equity"
+                                                                },
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "INE428A01015"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/domestic-securities-trade-book": {
+            "get": {
+                "summary": "Trade Book API",
+                "description": "",
+                "operationId": "trade-book-api",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "The start date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "The end date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n   \"sheets\": [\n        {\n            \"name\": \"Equity\",\n            \"blocks\": [\n                {\n                    \"name\": \"Tradebook\",\n                    \"@entity\": \"table\",\n                    \"header\": [\n                        \"transaction_id\",\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                      \t\"interest\",\n                      \t\"depository_charges\",\n                        \"other_transfer_expenses\",\n                        \"corporate_action\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"88fb3b2b-8a84-4873-9204-3c5225de4776\",\n                            \"BPCL\",\n                            1,\n                            1643380439478,\n                            2.59,\n                            \"SELL\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"02ba76af-d5a9-40a3-a3ea-60b8aada5817\",\n                            \"AMBUJACEM\",\n                            0.7644,\n                            1643380387229,\n                            164.29,\n                            \"SELL\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be75\",\n                            \"AMBUJACEM\",\n                            0.1,\n                            1634751623480,\n                            148.5,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be76\",\n                            \"AMBUJACEM\",\n                            0.6644,\n                            1634147917942,\n                            143.29,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be77\",\n                            \"BPCL\",\n                            1,\n                            1630598986512,\n                            9.63,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be77\",\n                            \"SCHAEFFLER\",\n                            0.4347826,\n                            1628536115398,\n                            9.2,\n                            \"SELL\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be79\",\n                            \"ASIANPAINT\",\n                            0.00149749,\n                            1628536054329,\n                            3338.92,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be80\",\n                            \"BERGEPAINT\",\n                            2.55754475,\n                            1628189423570,\n                            15.77,\n                            \"SELL\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be81\",\n                            \"BERGEPAINT\",\n                            2.55754475,\n                            1628189293460,\n                            15.64,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be85\",\n                            \"SCHAEFFLER\",\n                            1.10987791,\n                            1628017687633,\n                            9.01,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be87\",\n                            \"COALINDIA\",\n                            0.2,\n                            1626457655107,\n                            9.75,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                          \t0,\n                            0,\n                            0,\n                            null\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Mutual Funds\",\n            \"blocks\": [\n                {\n                    \"name\": \"Tradebook\",\n                    \"@entity\": \"table\",\n                    \"header\": [\n                        \"transaction_id\",\n                        \"isin\",\n                        \"type\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\",\n                        \"corporate_action\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be98\",\n                            null,\n                            \"Equity\",\n                            \"HDFCNIFETF\",\n                            50.0,\n                            1599589800001,\n                            6.0,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be97\",\n                            null,\n                            \"Equity\",\n                            \"HDFCNIFETF\",\n                            35.0,\n                            1643804395000,\n                            8.5,\n                            \"SELL\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be96\",\n                            null,\n                            \"Debt\",\n                            \"GOLDBEES\",\n                            35.0,\n                            1599589800001,\n                            6,\n                            \"BUY\",\n                            0,\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Futures and Options\",\n            \"blocks\": [\n                {\n                    \"name\": \"Tradebook\",\n                    \"@entity\": \"table\",\n                    \"header\": [\n                        \"transaction_id\",\n                        \"isin\",\n                        \"type\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                      \t\"interest\",\n                        \"other_transfer_expenses\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be94\",\n                            null,\n                            \"Futures\",\n                            \"BANKNIFTY OCT FUT\",\n                            50.0,\n                            1599589800001,\n                            6.0,\n                            \"BUY\",\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                            0\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be93\",\n                            null,\n                            \"Futures\",\n                            \"BANKNIFTY OCT FUT\",\n                            35.0,\n                            1643804395000,\n                            8.5,\n                            \"SELL\",\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                            0\n                        ],\n                        [\n                            \"58c3d492-3222-45bf-b316-33db0036be92\",\n                            null,\n                            \"Options\",\n                            \"BHARTIARTL OCT 630 CE\",\n                            35.0,\n                            1599589800001,\n                            6,\n                            \"BUY\",\n                            1,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                            0,\n                          \t0,\n                            0,\n                            0\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Equity"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Tradebook"
+                                                                },
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "transaction_id"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "88fb3b2b-8a84-4873-9204-3c5225de4776"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/domestic/financial-instruments": {
+            "get": {
+                "summary": "Domestic Financial Instruments API",
+                "description": "",
+                "operationId": "domestic-securities-financial-instruments-api",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Api Key to uniquely identify API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access token to authorize user for accessing the resource",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"equity\": [\n        [\n            \"isin\",\n            \"symbol\",\n            \"name\",\n            \"fmv\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INE190B01019\",\n            \"INFY\",\n            \"INFOSYS LTD\",\n            186.4,\n            235.1,\n        ]\n    ],\n    \"mutual_fund\": [\n        [\n            \"isin\",\n            \"symbol\",\n            \"name\",\n            \"fund_type\",\n            \"fmv\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INF846K01CX4\",\n            \"120389\",\n            \"Axis Liquid Fund - Direct Plan\",\n            \"Debt\",\n            1948.9817,\n            2127.2655,\n        ]\n    ],\n\n    \"derivatives\": [\n        [\n            \"isin\",\n            \"symbol_underlying\",\n            \"name\",\n            \"instrument_type\",\n            \"category\",\n            \"expiry\"\n            \"strike\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INE123456789\",\n            \"SBIN\",\n            \"FUTSTK-SBIN\",\n            \"Futures\",\n            \"Equity\",\n            \"29-Jul-2021\",\n            \"428.70\",\n            \"428.40\"      \n\n        ]\n    ],\n\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/domestic/holdings": {
+            "get": {
+                "summary": "Domestic Securities Holdings API",
+                "description": "",
+                "operationId": "domestic-securities-holdings-api",
+                "parameters": [
+                    {
+                        "name": "as_on_date",
+                        "in": "query",
+                        "description": "Holdings as on date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"sheets\": [\n        {\n            \"name\": \"Holdings\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Equity Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE618L01018\",\n                            \"5PAISA\",\n                            1.0,\n                            1668494060000,\n                            335.6,\n                            null,\n                            null,\n                            314.4,\n                            -21.2,\n                            1\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Mutual Fund Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"scheme_type\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INF204KB17I5\",\n                            \"NIPPON INDIA ETF GOLD BEES\",\n                            \"Debt\",\n                            1.0,\n                            1668494060000,\n                            43.62,\n                            null,\n                            null,\n                            45.12,\n                            1\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"ETF Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"scheme_type\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INF204KB17I5\",\n                            \"NIPPON INDIA ETF GOLD BEES\",\n                            \"Debt\",\n                            1.0,\n                            1668494060000,\n                            43.62,\n                            null,\n                            null,\n                            45.12,\n                            1\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Holdings"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Equity Holdings"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "INE618L01018"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/balance": {
+            "get": {
+                "summary": "Balance API",
+                "description": "",
+                "operationId": "balance-api",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Balances as on date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Api Key to uniquely identify API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access token to authorize user for accessing the resource",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"balance\": [\n            \"security\": [\n            \"opening_balance:,\n            \"used_margin\",\n            \"available_margin\",\n            \"closing_balance\"\n            ],            \n            [\n            10,\n            2,\n            100,\n            120\n            ],\n            \n            [\n            \"commodity\": [\n            \"opening_balance:,\n            \"used_margin\",\n            \"available_margin\",\n            \"closing_balance\"\n            ],            \n            [\n            10,\n            2,\n            100,\n            120\n            ]      \n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/mutual-funds/orders": {
+            "post": {
+                "summary": "Place Order API",
+                "description": "",
+                "operationId": "place-order-api",
+                "parameters": [
+                    {
+                        "name": "isin",
+                        "in": "query",
+                        "description": "The unique identifier for the mutual fund",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "purchase_amount",
+                        "in": "query",
+                        "description": "The purchase amount of mutual fund",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API Key to identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"message\": \"Order Placed Successfully\",\n    \"order_id\": 1234,\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/mutual-funds/orders/{order_id}": {
+            "get": {
+                "summary": "Track Order API",
+                "description": "",
+                "operationId": "track-order-api",
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "path",
+                        "description": "Order Identifier",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to identify the user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"message\":\"Order Executed!\"\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Order Executed!"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/open-positions": {
+            "get": {
+                "summary": "Open Positions API",
+                "description": "GET API to fetch Open Positions from Brokers",
+                "operationId": "open-positions-api",
+                "parameters": [
+                    {
+                        "name": "as_on_date",
+                        "in": "query",
+                        "description": "Holdings as on date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"sheets\": [\n        {\n            \"name\": \"Open Positions\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Equity Derivatives Open Positions\",\n                    \"header\": [\n                        \"symbol\",\n                        \"instrument_type\",\n                        \"strike_price\",\n                        \"expiry_date\",\n                        \"buy_date\",\n                        \"exchange\",\n                        \"open_quantity\",\n                        \"average_price\",\n                        \"previous_closing_price\",\n                        \"unrealized_profit_or_loss\"                      \n                    ],\n                    \"rows\": [\n                        [\n                            \"RELIANCE 25-05-2023 - ce - 2500\",\n                            \"OPT\",\n                            \"2500\",\n                            \"1685028600000\",\n                            \"1682436600000\",\n                            \"NSE\",\n                            250,\n                            3.5800,\n                            3.20,\n                            -95\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Currency Derivatives Open Positions\",\n                    \"header\": [ \n                       \"symbol\",\n                        \"instrument_type\",\n                        \"strike_price\",\n                        \"expiry_date\",\n                        \"buy_date\",\n                        \"exchange\",\n                        \"open_quantity\",\n                        \"average_price\",\n                        \"previous_closing_price\",\n                        \"unrealized_profit_or_loss\"                      \n                    ],\n                    \"rows\": [\n                        [\n                            \"USDINR22APRFUT\",\n                            \"FUT\",\n                            \"83.0542\",\n                            \"1682849176000\",\n                            \"1680170776000\",\n                            \"NSE\",\n                            -60000,\n                            82.0000,\n                            82.4500,\n                            -27000\n                        ]\n                    ]\n                }\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Commodity Derivatives Open Positions\",\n                    \"header\": [ \n                       \"symbol\",\n                        \"instrument_type\",\n                        \"strike_price\",\n                        \"expiry_date\",\n                        \"buy_date\",\n                        \"exchange\",\n                        \"open_quantity\",\n                        \"average_price\",\n                        \"previous_closing_price\",\n                        \"unrealized_profit_or_loss\"                      \n                    ],\n                    \"rows\": [\n                        [\n                            \"COPPER23APRFUT\",\n                            \"FUT\",\n                            \"9000.0000\",\n                            \"1682849176000\",\n                            \"1680170776000\",\n                            \"MCX\",\n                            -2500,\n                            815.05,\n                            821.45,\n                            -16000  \n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/foreign/tradewise-settlements": {
+            "get": {
+                "summary": "Tradewise Settlements Endpoint",
+                "description": "Calculating tax P&L with Tradewise API's as an input",
+                "operationId": "submit-tax-pl-job-1",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "From date in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "To date, in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWT Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Public key required to authorize API access.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"@entity\": \"workbook\",\n    \"name\": \"tradewise_settlements_workbook\",\n    \"sheets\": [\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"stock_tradewise_settlements_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"stock_tradewise_settlements_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_trade_id\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"sell_trade_id\",\n                        \"sell_date\",\n                        \"sell_price\",\n                        \"currency\",\n                        \"transfer_expenses\",\n                        \"nature_of_settlement\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"APPLE\",\n                            10,\n                            \"trade_1\",\n                            1648824040000,\n                            100,\n                            \"trade_2\",\n                            1649083240000,\n                            120,\n                            \"USD\",\n                            50,\n                            \"trade\",\n                            \"Delivery\"\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"adr_tradewise_settlements_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"adr_tradewise_settlements_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_trade_id\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"sell_trade_id\",\n                        \"sell_date\",\n                        \"sell_price\",\n                        \"currency\",\n                        \"transfer_expenses\",\n                        \"nature_of_settlement\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"Tata Steel\",\n                            10,\n                            \"trade_2\",\n                            1648824040000,\n                            100,\n                            \"trade_9\",\n                            1649083240000,\n                            120,\n                            \"USD\",\n                            50,\n                            \"trade\",\n                            \"Delivery\"\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"mutual_fund_tradewise_settlements_\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"mutual_fund_tradewise_settlements_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"scheme_name\",\n                        \"asset_class\",\n                        \"quantity\",\n                        \"buy_trade_id\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"sell_trade_id\",\n                        \"sell_date\",\n                        \"sell_price\",\n                        \"currency\",\n                        \"transfer_expenses\",\n                        \"nature_of_settlements\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"Fidelity 500 Index Fund\",\n                            \"Equity\",\n                            5,\n                            \"trade_3\",\n                            1649342440000,\n                            700,\n                            \"trade_8\",\n                            1649601640000,\n                            1000,\n                            \"USD\",\n                            60,\n                            \"Trade\"\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"etf_tradewise_settlements_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"etf_tradewise_settlements_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_trade_id\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"sell_trade_id\",\n                        \"sell_date\",\n                        \"sell_price\",\n                        \"currency\",\n                        \"transfer_expenses\",\n                        \"nature_of_settlement\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US78462F1030\",\n                            \"SPDR S&P 500 ETF Trust\",\n                            15,\n                            \"trade_4\",\n                            1648824040000,\n                            100,\n                            \"trade_5\",\n                            1648910440000,\n                            120,\n                            \"USD\",\n                            50,\n                            \"trade\",\n                            \"Delivery\"\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "@entity": {
+                                            "type": "string",
+                                            "example": "workbook"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "tradewise_settlements_workbook"
+                                        },
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "example": "sheet"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "stock_tradewise_settlements_sheet"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "stock_tradewise_settlements_table"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "US0378331005"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/foreign/holdings": {
+            "get": {
+                "summary": "Holdings",
+                "description": "",
+                "operationId": "holdings-1",
+                "parameters": [
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "To date, in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "Authorization",
+                                    "x-api-key"
+                                ],
+                                "properties": {
+                                    "Authorization": {
+                                        "type": "string",
+                                        "description": "JWT Authorization token"
+                                    },
+                                    "x-api-key": {
+                                        "type": "string",
+                                        "description": "Public key required to authorize API access."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"@entity\": \"workbook\",\n    \"name\": \"holdings_workbook\",\n    \"sheets\": [\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"stock_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"stock_tradewise_holdings_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"currency\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"Apple\",\n                            1,\n                            1649601640000,\n                            90,\n                            \"USD\",\n                            \"buy\",\n                             NULL\n                            100\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"Apple\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            130,\n                            100\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"adr_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"adr_tradewise_holdings_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"currency\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"Tata Steel\",\n                            1,\n                            1649601640000,\n                            90,\n                            \"INR\",\n                            \"buy\",\n                             NULL\n                            100\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"Tata Steel\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            130,\n                            100\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"mutual_fund_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"mutual_fund_tradewise_holdings_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"scheme_name\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"currency\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"Fidelity 500 index fund\",\n                            10,\n                            1649601640000,\n                            1050,\n                            \"USD\",\n                            \"buy\",\n                             NULL\n                             1100\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"Fidelity 500 index fund\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            1300,\n                            1100\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"etf_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"etf_holdings_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_price\",\n                        \"currency\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US9219378356\",\n                            \"Vanguard Total Bond Market Index Fund ETF\",\n                            1,\n                            1649601640000,\n                            90,\n                            \"USD\",\n                            \"buy\",\n                             NULL\n                            100\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US9219378356\",\n                            \"Vanguard Total Bond Market Index Fund ETF\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            130,\n                            100\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/foreign/other-incomes": {
+            "get": {
+                "summary": "Other Incomes",
+                "description": "",
+                "operationId": "other-incomes",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "from Date in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "to date in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWT Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Public key required to authorize API access.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"@entity\": \"workbook\",\n    \"name\": \"other_incomes_workbook\",\n    \"sheets\": [\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"dividends_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"sotck_dividends_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"dividend_amount\",\n                        \"currency\",\n                        \"tax_withheld\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"Apple\",\n                            5,\n                            1649601640000,\n                            400,\n                            \"USD\",\n                            50\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"adr_dividends_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"dividend_amount\",\n                        \"currency\",\n                        \"tax_withheld\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"Tata Steel\",\n                            5,\n                            1649601640000,\n                            400,\n                            \"USD\",\n                            50\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"mutual_fund_dividends_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"scheme_name\",\n                        \"quantity\",\n                        \"date\",\n                        \"dividend_amount\",\n                        \"currency\",\n                        \"tax_withheld\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"Fidelity 500 Index Fund\",\n                            5,\n                            1649601640000,\n                            400,\n                            \"USD\",\n                            50\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"etf_dividends_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"dividend_amount\",\n                        \"currency\",\n                        \"tax_withheld\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US9219378356\",\n                            \"Vanguard Total Bond Market Index Fund ETF\",\n                            5,\n                            1649601640000,\n                            400,\n                            \"USD\",\n                            50\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"interest_income_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"interest_table\",\n                    \"header\": [\n                        \"description\",\n                        \"date\",\n                        \"amount\",\n                        \"currency\",\n                        \"tax_withheld\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"Interest\",\n                            1649601640000,\n                            70,\n                            \"USD\",\n                            10\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "@entity": {
+                                            "type": "string",
+                                            "example": "workbook"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "other_incomes_workbook"
+                                        },
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "example": "sheet"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "dividends_sheet"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "sotck_dividends_table"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "US0378331005"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/foreign/tradebook": {
+            "get": {
+                "summary": "Tradebook Endpoint",
+                "description": "",
+                "operationId": "tradebook-endpoint",
+                "parameters": [
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "to date in Epoch milliseconds",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWT Authorization token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Public key required to authorize API access.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"@entity\": \"workbook\",\n    \"name\": \"tradebook_workbook\",\n    \"metadata\": {\n        \"currency\": \"USD\"\n    },\n    \"sheets\": [\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"stock_tradebook_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"stock_tradebook_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"trade_id\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"transfer_expenses\",\n                        \"label\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"trade_1\",\n                            \"Apple\",\n                            5,\n                            1649601640000,\n                            79,\n                            \"buy\",\n                            10,\n                            NULL,\n                            \"Delivery\"\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US0378331005\",\n                            \"Apple\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90002,\n                            100,\n                            90\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"adr_tradebook_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"adr_tradebook_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"trade_id\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"transfer_expenses\",\n                        \"label\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"trade_3\",\n                            \"Tata Steel\",\n                            5,\n                            1649601640000,\n                            79,\n                            \"buy\",\n                            10,\n                            NULL,\n                            \"Delivery\"\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE081A01012\",\n                            \"Tata Steel\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90002,\n                            100,\n                            90\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"mutual_fund_tradebook_\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"mutual_fund_tradebook_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"trade_id\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"transfer_expenses\",\n                        \"label\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"trade_7\",\n                            \"Fidelity 500 Index Fund\",\n                            4,\n                            1649601640000,\n                            800,\n                            \"Buy\",\n                            5,\n                            NULL,\n                            \"Delivery\"\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US3159117502\",\n                            \"Fidelity 500 Index Fund\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            900,\n                            850\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"@entity\": \"sheet\",\n            \"name\": \"etf_tradebook_sheet\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"etf_tradebook_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"trade_id\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"date\",\n                        \"price\",\n                        \"transaction_type\",\n                        \"transfer_expenses\",\n                        \"label\",\n                        \"product_type\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US9219378356\",\n                            \"trade_5\",\n                            \"Vanguard Total Bond Market Index Fund\",\n                            5,\n                            1649601640000,\n                            790,\n                            \"buy\",\n                            10,\n                            NULL,\n                            \"Delivery\"\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"reference_data_table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"address\",\n                        \"country\",\n                        \"zip_code\",\n                        \"52_week_high\",\n                        \"closing_value\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"US9219378356\",\n                            \"Vanguard Total Bond Market Index Fund\",\n                            \"36 baker street\",\n                            \"USA\",\n                            90005,\n                            900,\n                            850\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/elss-statement": {
+            "get": {
+                "summary": "ELSS Statement API",
+                "description": "",
+                "operationId": "elss-statement-api",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "The start date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "The end date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n  \"sheets\": [\n        {\n            \"name\": \"ELSS\",\n            \"blocks\": [\n                {\n                    \"name\": \"Elss\",\n                    \"@entity\" : \"table\",\n                    \"header\": [\n                        \"scheme_name\",\n                        \"folio_number\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                    ],\n                    \"rows\": [\n                        [\n                            \"Zerodha ELSS Tax Saver Nifty Large Midcap 250 Index Fund Direct Growth\",\n                            \"1108356959\",\n                            100,\n                            1666867967000,\n                            1000,\n                        ],\n                        [\n                            \"Tata India Tax Savings Fund Direct Growth\",\n                            \"7882303/42\",\n                            10,\n                            1666867967000,\n                            105,\n                        ]\n                    ]\n                }\n            ]\n        }"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/foreign/tradewise-pnl": {
+            "get": {
+                "summary": "Foreign Securities Tradewise P&L API",
+                "description": "GET API to read Tradewise Profit and Loss",
+                "operationId": "foreign-securities-tradewise-pl-api",
+                "parameters": [
+                    {
+                        "name": "from",
+                        "in": "query",
+                        "description": "The start date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "The end date for fetching the trades",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n  \"sheets\": [\n        {\n            \"name\": \"Equity\",\n            \"blocks\": [\n                {\n                    \"name\": \"Equity\",\n                    \"@entity\" : \"table\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"sell_date\",\n                        \"sell_average\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\",\n                        \"corporate_action\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE428A01015\",\n                            \"Allahabad Bank\",\n                            100,\n                            1666867967000,\n                            11.75,\n                            1666867965000,\n                            15.25,\n                            null,\n                            0,\n                            0,\n                            1.5,\n                            0.75,\n                            2.25,\n                            0.5,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ],\n                        [\n                            \"INE428A01015\",\n                            \"Allahabad Bank\",\n                            10,\n                            1666867967000,\n                            11.5,\n                            1666867967000,\n                            16,\n                            null,\n                            0,\n                            0,\n                            0.25,\n                            0.35,\n                            0.25,\n                            0.15,\n                            0,\n                            0,\n                            0,\n                            0,\n                            null\n                        ]\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Mutual Funds\",\n            \"blocks\": [\n                {\n                    \"name\": \"Mutual Funds\",\n                    \"@entity\": \"table\",\n                    \"header\": [\n                        \"isin\",\n                        \"scheme_type\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"sell_date\",\n                        \"sell_average\",\n                        \"fmv\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_charges\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\",\n                        \"corporate_actions\"\n                    ]\n                }\n            ]\n        },\n        {\n            \"name\": \"Futures & Options\",\n            \"@entity\": \"table\",\n            \"blocks\": [\n                {\n                    \"name\": \"Futures & Options\",\n                    \"header\": [\n                        \"symbol\",\n                        \"type\",\n                        \"quantity\",\n                        \"buy_average\",\n                        \"sell_average\",\n                        \"brokerage\",\n                        \"clearing_charges\",\n                        \"exchange_transaction_charges\",\n                        \"sebi_turnover_fees\",\n                        \"stt\",\n                        \"stamp_duty\",\n                        \"sgst\",\n                        \"cgst\",\n                        \"igst\",\n                        \"other_transfer_expenses\"\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Equity"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Equity"
+                                                                },
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "INE428A01015"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/foreign/holdings": {
+            "get": {
+                "summary": "Foreign Securities Holdings API",
+                "description": "",
+                "operationId": "foreign-securities-holdings-api",
+                "parameters": [
+                    {
+                        "name": "as_on_date",
+                        "in": "query",
+                        "description": "Holdings as on date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key to uniquely identify the API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authentication token to authorize the request",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"sheets\": [\n        {\n            \"name\": \"Holdings\",\n            \"blocks\": [\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Equity Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INE618L01018\",\n                            \"5PAISA\",\n                            1.0,\n                            1668494060000,\n                            335.6,\n                            null,\n                            null,\n                            314.4,\n                            -21.2,\n                            1\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"Mutual Fund Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"scheme_type\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INF204KB17I5\",\n                            \"NIPPON INDIA ETF GOLD BEES\",\n                            \"Debt\",\n                            1.0,\n                            1668494060000,\n                            43.62,\n                            null,\n                            null,\n                            45.12,\n                            1\n                        ]\n                    ]\n                },\n                {\n                    \"@entity\": \"table\",\n                    \"name\": \"ETF Holdings\",\n                    \"header\": [\n                        \"isin\",\n                        \"symbol\",\n                        \"scheme_type\",\n                        \"quantity\",\n                        \"buy_date\",\n                        \"buy_average\",\n                        \"transaction_type\",\n                        \"label\",\n                        \"last_traded_price\",\n                        \"unrealized_pnl\"\n                    ],\n                    \"rows\": [\n                        [\n                            \"INF204KB17I5\",\n                            \"NIPPON INDIA ETF GOLD BEES\",\n                            \"Debt\",\n                            1.0,\n                            1668494060000,\n                            43.62,\n                            null,\n                            null,\n                            45.12,\n                            1\n                        ]\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "sheets": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Holdings"
+                                                    },
+                                                    "blocks": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "table"
+                                                                },
+                                                                "name": {
+                                                                    "type": "string",
+                                                                    "example": "Equity Holdings"
+                                                                },
+                                                                "header": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string",
+                                                                        "example": "isin"
+                                                                    }
+                                                                },
+                                                                "rows": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "type": "string",
+                                                                            "example": "INE618L01018"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/securities/foreign/financial-instruments": {
+            "get": {
+                "summary": "Foreign Financial Instruments API",
+                "description": "",
+                "operationId": "foreign-securities-financial-instruments-api",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "Api Key to uniquely identify API user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Access token to authorize user for accessing the resource",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n    \"equity\": [\n        [\n            \"isin\",\n            \"symbol\",\n            \"name\",\n            \"fmv\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INE190B01019\",\n            \"INFY\",\n            \"INFOSYS LTD\",\n            186.4,\n            235.1,\n        ]\n    ],\n    \"mutual_fund\": [\n        [\n            \"isin\",\n            \"symbol\",\n            \"name\",\n            \"fund_type\",\n            \"fmv\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INF846K01CX4\",\n            \"120389\",\n            \"Axis Liquid Fund - Direct Plan\",\n            \"Debt\",\n            1948.9817,\n            2127.2655,\n        ]\n    ],\n\n    \"derivatives\": [\n        [\n            \"isin\",\n            \"symbol_underlying\",\n            \"name\",\n            \"instrument_type\",\n            \"category\",\n            \"expiry\"\n            \"strike\",\n            \"last_traded_price\"\n        ],\n        [\n            \"INE123456789\",\n            \"SBIN\",\n            \"FUTSTK-SBIN\",\n            \"Futures\",\n            \"Equity\",\n            \"29-Jul-2021\",\n            \"428.70\",\n            \"428.40\"      \n\n        ]\n    ],\n\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    }
+}

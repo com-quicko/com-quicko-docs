@@ -1,0 +1,121 @@
+---
+title: "Setting up the SDK"
+description: "Configure and set up the Quicko SDK in your application"
+---
+
+Quicko SDK is a library designed to provide seamless integration with Quicko's services. With just a few lines of code, developers can set up the SDK and leverage its functionality.
+
+Before utilizing the SDK, you need to ensure that you have integrated it into your project. Once that is complete, setting up is simple.
+
+## Configuration and Setup
+
+<Steps>
+  <Step title="Accessing the SDK Instance">
+    For developers seeking to integrate Quicko Connect into their platforms, the primary point of interaction is through the QuickoSDK class. This class acts as the gateway to the plethora of features and functionalities that Quicko Connect offers.
+
+    The class is designed as a singleton. This ensures that there's only one instance of the class throughout the application's lifecycle, maintaining data consistency and preventing potential issues that could arise from having multiple instances.
+
+    Here are the ways you can access the SDK on different platforms:
+
+    <Tabs>
+      <Tab title="Java">
+        ```java
+        final QuickoSDK sdk = QuickoSDK.INSTANCE;
+        ```
+      </Tab>
+      <Tab title="Kotlin">
+        ```kotlin
+        val sdk = QuickoSDK
+        ```
+      </Tab>
+      <Tab title="Swift">
+        ```swift
+        let sdk = QuickoSDK.instance
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+
+  <Step title="Configuring the API Key (in case of intent `connect`)">
+    <Card
+      title="Overview"
+      icon="key"
+    >
+      To ensure proper initialization and functioning of the SDK, it's imperative to configure the API key using the `setAPIKey` method. This step must be completed prior to invoking any other operations.
+    </Card>
+
+    **Code Examples:**
+
+    <Tabs>
+      <Tab title="Java">
+        ```java
+        QuickoSDK.INSTANCE.setAPIKey("YOUR_API_KEY");
+        ```
+      </Tab>
+      <Tab title="Kotlin">
+        ```kotlin
+        QuickoSDK.setAPIKey("YOUR_API_KEY")
+        ```
+      </Tab>
+      <Tab title="Swift">
+        ```swift
+        QuickoSDK.instance.setAPIKey("YOUR_API_KEY")
+        ```
+      </Tab>
+    </Tabs>
+
+    **Parameters:**
+
+    - **`apiKey`**: A string parameter that represents the API key you've been provided with.
+
+    <AccordionGroup>
+      <Accordion title="Handling Exceptions" icon="triangle-alert" defaultOpen>
+        <Card
+          title="IllegalArgumentException"
+          icon="alert-circle"
+        >
+          An exception will be raised if the API key supplied to the SDK is invalid or does not adhere to the expected format.
+        </Card>
+
+        **Sample:**
+
+        <Tabs>
+          <Tab title="Java">
+            ```java
+            try {
+                QuickoSDK.INSTANCE.setAPIKey("invalidKey");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error encountered: Invalid API Key.");
+            }
+            ```
+          </Tab>
+          <Tab title="Kotlin">
+            ```kotlin
+            try {
+                QuickoSDK.setAPIKey("invalidKey")
+            } catch (IllegalArgumentException e) {
+                println("Error encountered: Invalid API Key.")
+            }
+            ```
+          </Tab>
+          <Tab title="Swift">
+            ```swift
+            do {
+                try QuickoSDK.instance.setAPIKey("invalidKey")
+            } catch let error as IllegalArgumentException {
+                print("Error encountered: Invalid API Key.")
+            }
+            ```
+          </Tab>
+        </Tabs>
+
+        In this sample, an invalid API key ("invalidKey") is purposely used. Consequently, `IllegalArgumentException` is triggered, and the error message "Error encountered: Invalid API Key." gets displayed.
+      </Accordion>
+
+      <Accordion title="Best Practices" icon="star">
+        Implementing a try-catch mechanism around the `setAPIKey` function is advisable. This allows for efficient exception handling, ensuring users receive pertinent feedback or assisting developers during the debugging process.
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+</Steps>
+

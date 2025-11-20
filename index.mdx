@@ -1,0 +1,74 @@
+---
+mode: "wide"
+---
+import { HeroCard } from "/snippets/HeroCard.jsx"
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "20vh",
+    textAlign: "center",
+  }}
+>
+  <h1 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "0rem" }}>
+    Documentation
+  </h1>
+  <p style={{ maxWidth: "600px", fontSize: "1.1rem" }}>
+    Explore our references, guides and recipes to integrate Quicko APIs and SDKs.
+  </p>
+</div>
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/projects/connect/guides/getting-started/index" cta="Get Started">
+    Make your first Quicko API call by following our step-by-step guide.
+  </Card>
+
+  <Card title="API Reference" icon="code" href="/projects/connect/api-reference/authentication/authentication" cta="View Reference">
+    Explore our API contracts, reusable code samples, and test scenarios.
+  </Card>
+</CardGroup>
+
+---
+
+## Products
+
+<CardGroup cols={2}>
+  <Card title="Quicko Connect" icon="cable" href="/projects/connect/guides/getting-started/index" >
+    Embed complete tax workflows into your app with Quicko Connect’s modular APIs and SDKs.
+  </Card>
+  <Card title="Integration" icon="plug" href="/projects/integration/index">
+    Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations
+  </Card>
+  {/* <HeroCard
+    filename="/static/logo/light.svg"
+    darkFilename="/static/logo/dark.svg"
+    title="Quicko Connect"
+    description="Embed complete tax workflows into your app with Quicko Connect’s modular APIs and SDKs."
+    href="/projects/connect/guides/getting-started/index"
+  />
+
+  <HeroCard
+    filename="/static/logo/light.svg"
+    darkFilename="/static/logo/dark.svg"
+    title="Integration"
+    description="Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations"
+    href="/projects/integration/index"
+  /> */}
+</CardGroup>
+
+---
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card title="Collections" icon="book-marked" href="https://postman.com/com-quicko/quicko-connect" arrow="true">
+    Test Quicko APIs with public Postman collections.
+  </Card>
+
+  <Card title="Help Centre" icon="book-open-text" href="https://help.quicko.com" arrow="true">
+    Support for integration, billing, accounts, and more.
+  </Card>
+</CardGroup>

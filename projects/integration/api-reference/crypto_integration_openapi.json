@@ -1,0 +1,58 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Quicko Cypto API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.crypto.wallet"
+        }
+    ],
+    "components": {
+        "securitySchemes": {}
+    },
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/tradebook": {
+            "get": {
+                "summary": "Trade Book/ Ledger : Crypto Trades",
+                "description": "",
+                "operationId": "trade-book-ledger-crypto-trades-1",
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{\n      \"name\": \"tradebook_sheet\",\n      \"metadata\": {},\n      \"blocks\": [\n        {\n          \"name\": \"tradebook_table\",\n          \"@entity\": \"table\",\n          \"header\": [\n            \"id\",\n            \"date\",\n            \"transaction_type\",\n            \"label\",\n            \"received_currency\",\n            \"received_quantity\",\n            \"price\",\n            \"price_currency\",\n            \"price_in_inr\",\n            \"sent_currency\",\n            \"sent_quantity\",\n            \"fees_currency\",\n            \"fees_amount\",\n            \"fee_in_inr\"\n          ],\n          \"rows\": [\n            [\n              \"111\",\n              1617235200000,\n              \"buy\",\n              null,\n              \"BUSD\",\n              49.4698,\n              75,\n              \"INR\",\n              null,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"222\",\n              1617321600000,\n              \"buy\",\n              null,\n              \"ETH\",\n              0.25,\n              1000,\n              \"INR\",\n              null,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"333\",\n              1620604800000,\n              \"sell\",\n              null,\n              null,\n              null,\n              90,\n              \"INR\",\n              null,\n              \"BUSD\",\n              24.7349,\n              null,\n              null,\n              null\n            ],\n            [\n              \"444\",\n              1623369600000,\n              \"trade\",\n              null,\n              \"LUNA\",\n              0.31,\n              79.79,\n              \"BUSD\",\n              6562.7275,\n              \"BUSD\",\n              24.7349,\n              null,\n              null,\n              null\n            ],\n            [\n              \"555\",\n              1624147200000,\n              \"trade\",\n              null,\n              \"BUSD\",\n              15.009,\n              100.06,\n              \"BUSD\",\n              8229.935,\n              \"LUNA\",\n              0.15,\n              null,\n              null,\n              null\n            ],\n            [\n              \"666\",\n              1624233600000,\n              \"trade\",\n              null,\n              \"BUSD\",\n              15.5856,\n              100.06,\n              \"BUSD\",\n              8229.935,\n              \"LUNA\",\n              0.16,\n              null,\n              null,\n              null\n            ],\n            [\n              \"777\",\n              1625097600000,\n              \"receive\",\n              \"airdrop\",\n              \"BUSD\",\n              1,\n              null,\n              null,\n              85,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"888\",\n              1625875200000,\n              \"receive\",\n              \"interest\",\n              \"LUNA\",\n              0.31,\n              null,\n              null,\n              9000,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"999\",\n              1628121600000,\n              \"receive\",\n              \"staking_reward\",\n              \"MATIC\",\n              10,\n              null,\n              null,\n              240,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"101010\",\n              1628553600000,\n              \"send\",\n              \"lost\",\n              null,\n              null,\n              null,\n              null,\n              2000,\n              \"ETH\",\n              0.15,\n              null,\n              null,\n              null\n            ],\n            [\n              \"111111\",\n              1636588800000,\n              \"receive\",\n              \"mining_reward\",\n              \"ETH\",\n              0.25,\n              null,\n              null,\n              1800,\n              null,\n              null,\n              null,\n              null,\n              null\n            ],\n            [\n              \"121212\",\n              1637366400000,\n              \"sell\",\n              null,\n              null,\n              null,\n              1200,\n              \"INR\",\n              null,\n              \"ETH\",\n              0.3,\n              null,\n              null,\n              null\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Result": {
+                                        "value": "{}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    }
+}

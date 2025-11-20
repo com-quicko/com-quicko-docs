@@ -1,0 +1,98 @@
+---
+title: "Installing the SDK"
+description: "Install the Quicko Income Tax SDK for Android and iOS platforms"
+---
+
+## Android
+
+To integrate the `com.quicko.income-tax-sdk` library in your Android project, follow these steps:
+
+<Card
+  title="Prerequisites"
+  icon="check-circle"
+>
+  Ensure you have Android Studio installed and your project is set up with a minimum SDK version of 26 or higher.
+</Card>
+
+<Steps>
+  <Step title="Add Maven Repository">
+    Add the following to your project-level `settings.gradle` file inside the `allprojects` block:
+
+    ```groovy
+    pluginManagement {
+        repositories {
+            google()
+            mavenCentral()
+            gradlePluginPortal()
+        }
+    }
+    ```
+  </Step>
+
+  <Step title="Add Dependency">
+    Include the SDK in your app-level `build.gradle` file under `dependencies`:
+
+    ```groovy
+    dependencies {
+        implementation 'com.quicko:income-tax-sdk:1.0.1-RC'
+    }
+    ```
+  </Step>
+
+  <Step title="Sync and run">
+    Sync your project with Gradle files and build the project to complete the integration.
+  </Step>
+</Steps>
+
+## iOS
+
+To integrate the `IncomeTaxSDK` in your iOS project using CocoaPods, follow these instructions:
+
+<Card
+  title="Prerequisites"
+  icon="check"
+>
+  Ensure you have CocoaPods installed. If not, install it using the following command:
+  ```bash
+  sudo gem install cocoapods
+  ```
+</Card>
+
+<Steps>
+  <Step title="Create/Update Podfile">
+    Navigate to your project directory in the terminal and run:
+
+    ```bash
+    pod init
+    ```
+
+    Edit the `Podfile` to include:
+
+    ```ruby
+    platform :ios, '12.0'
+    target ':target' do
+      use_frameworks!
+      pod 'IncomeTaxSDK', '~> :version'
+    end
+    ```
+
+    Replace `':target'` with the actual target name of your project and `':version'` with the latest version.
+  </Step>
+
+  <Step title="Install Pods">
+    Install the pod by running:
+
+    ```bash
+    pod install --repo-update
+    ```
+  </Step>
+
+  <Step title="Import SDK">
+    In your Swift files where you want to use the SDK, add:
+
+    ```swift
+    import income_tax_sdk
+    ```
+  </Step>
+</Steps>
+

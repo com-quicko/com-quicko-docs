@@ -1,0 +1,81 @@
+---
+title: "Foreign Securities Holdings"
+description: "Holdings data for foreign securities including Stocks, Depository Receipts, Mutual Funds, and ETF"
+---
+
+## Client Details Sheet
+
+### Client Details List
+
+| Param      | Type   | Required | Description                                          |
+| ---------- | ------ | -------- | ---------------------------------------------------- |
+| name       | string | Yes      | Name of the client                                   |
+| pan        | string | Yes      | PAN of the client                                    |
+| client_id | string | Yes      | Unique identifier of the Client's investment account |
+| country    | string | Yes      | Country where investments were made                  |
+| tin        | string | Yes      | TIN for the country or passport number               |
+
+## Stock Holdings Sheet
+
+### Stock Tradewise Holdings Table
+
+| Param               | Type   | Description                                                                                        |
+| ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| isin                | string | ISIN is the international security identification number                                           |
+| symbol              | string | Symbol or description of equity stock                                                              |
+| quantity            | number | Trading quantity                                                                                   |
+| buy_date           | number | The date on which the equity stock was bought                                                      |
+| buy_price          | number | Price at which a unit was bought                                                                   |
+| currency            | number | The 3 letter currency code for the price based on ISO 4217                                         |
+| transaction_type   | string | Indicates whether the order is :buy , sell, send, receive Or trade,                                |
+| label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
+| last_traded_price | string | Last traded market price of the equity stock.                                                      |
+
+## Depository Receipt Holdings Sheet
+
+### Depository Receipt Tradewise Holdings Table
+
+| Param               | Type   | Description                                                                                        |
+| ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| isin                | string | ISIN is the international security identification number                                           |
+| symbol              | string | Symbol or description of depositary receipt.                                                       |
+| quantity            | number | Trading quantity                                                                                   |
+| buy_date           | number | The date on which the receipt was bought                                                           |
+| buy_price          | number | Price at which a unit was bought                                                                   |
+| currency            | number | The 3 letter currency code for the price based on ISO 4217                                         |
+| transaction_type   | string | Indicates whether the order is :buy , sell, send, receive Or trade,                                |
+| label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
+| last_traded_price | string | Last traded market price of the receipt..                                                          |
+
+## Mutual Fund Holdings Sheet
+
+### Mutual Fund Tradewise Holdings Table
+
+| Param               | Type   | Description                                                                                        |
+| ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| isin                | string | ISIN is the international security identification number                                           |
+| scheme_name        | string | Symbol or description of fund                                                                      |
+| quantity            | number | Trading quantity                                                                                   |
+| buy_date           | number | The date on which the fund was bought                                                              |
+| buy_price          | number | Price at which a unit was bought                                                                   |
+| currency            | number | The 3 letter currency code for the price based on ISO 4217                                         |
+| transaction_type   | string | Indicates whether the order is :buy , sell, send, receive Or trade,                                |
+| label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
+| last_traded_price | string | Last traded market price of the fund.                                                              |
+
+## ETF Holdings Sheet
+
+### ETF Tradewise Holdings Table
+
+| Param               | Type   | Description                                                                                        |
+| ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| isin                | string | ISIN is the international security identification number                                           |
+| scheme_name        | string | Symbol or description of fund                                                                      |
+| quantity            | number | Trading quantity                                                                                   |
+| buy_date           | number | The date on which the fund was bought                                                              |
+| buy_price          | number | Price at which a unit was bought                                                                   |
+| currency            | number | The 3 letter currency code for the price based on ISO 4217                                         |
+| transaction_type   | string | Indicates whether the order is :buy , sell, send, receive Or trade,                                |
+| label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
+| last_traded_price | string | Last traded market price of the fund.                                                              |
+

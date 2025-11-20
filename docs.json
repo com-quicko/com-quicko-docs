@@ -1,0 +1,390 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "willow",
+  "name": "Quicko | Docs",
+  "description": "Provide an intuitive tax filing experience that imports client data and offers both do-it-yourself and expert assisted options.",
+  "logo": {
+    "light": "static/logo/light.svg",
+    "dark": "static/logo/dark.svg"
+  },
+  "colors": {
+    "primary": "#006AD4",
+    "light": "#007FFF",
+    "dark": "#006AD4"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "favicon": {
+    "light": "static/favicon/favicon.svg",
+    "dark": "static/favicon/favicon.svg"
+  },
+  "navigation": {
+    "pages": [
+      "index"
+    ],
+    "products": [
+      {
+        "product": "Connect",
+        "description": "Integrate seamless tax solutions.",
+        "icon": "cable",
+        "tabs": [
+          {
+            "tab": "Guides",
+            "groups": [
+              {
+                "group": "Getting started",
+                "icon": "rocket",
+                "pages": [
+                  "projects/connect/guides/getting-started/index",
+                  "projects/connect/guides/getting-started/authentication"
+                ]
+              },
+              {
+                "group": "OAuth",
+                "icon": "book-open",
+                "pages": [
+                  "projects/connect/guides/oauth/oauth"
+                ]
+              },
+              {
+                "group": "Open APIs",
+                "icon": "square-terminal",
+                "pages": [
+                  "projects/connect/guides/open-apis/open-apis"
+                ]
+              },
+              {
+                "group": "Integration",
+                "icon": "workflow",
+                "href": "api-reference/overview",
+                "pages": [
+                  "projects/connect/guides/integrations/index",
+                  {
+                    "group": "Mobile",
+                    "pages": [
+                      "projects/connect/guides/integrations/iosandroid-integration/index",
+                      "projects/connect/guides/integrations/iosandroid-integration/integrating",
+                      "projects/connect/guides/integrations/iosandroid-integration/installing",
+                      {
+                        "group": "Options",
+                        "pages": [
+                          "projects/connect/guides/integrations/iosandroid-integration/options/index",
+                          "projects/connect/guides/integrations/iosandroid-integration/options/config"
+                        ]
+                      },
+                      "projects/connect/guides/integrations/iosandroid-integration/setting_up",
+                      "projects/connect/guides/integrations/iosandroid-integration/triggering",
+                      "projects/connect/guides/integrations/iosandroid-integration/resetting"
+                    ]
+                  },
+                  {
+                    "group": "Web",
+                    "pages": [
+                      "projects/connect/guides/integrations/web-integration/index",
+                      "projects/connect/guides/integrations/web-integration/refer",
+                      "projects/connect/guides/integrations/web-integration/connect"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Events",
+                "icon": "zap",
+                "pages": [
+                  "projects/connect/guides/events/index",
+                  "projects/connect/guides/events/directory"
+                ]
+              },
+              {
+                "group": "Notifications",
+                "icon": "rectangle-ellipsis",
+                "pages": [
+                  "projects/connect/guides/notifications/types-of-notifications"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Authentication",
+                "icon": "key",
+                "pages": [
+                  "projects/connect/api-reference/authentication/authentication",
+                  "projects/connect/api-reference/authentication/authorization"
+                ]
+              },
+              {
+                "group": "OAuth",
+                "icon": "book-open",
+                "pages": [
+                  "projects/connect/api-reference/oauth/authorize"
+                ]
+              },
+              {
+                "group": "Open APIs",
+                "icon": "square-terminal",
+                "pages": [
+                  {
+                    "group": "Entitlements",
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/entitlements/user-details"
+                    ]
+                  },
+                  {
+                    "group": "Income Tax",
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/income-tax/tax-payer",
+                      "projects/connect/api-reference/open-apis/income-tax/file/itr-details",
+                      "projects/connect/api-reference/open-apis/income-tax/file/tax-computation"
+                    ]
+                  },
+                  {
+                    "group": "Advisory",
+                    "pages": [
+                      "projects/connect/api-reference/open-apis/advisory/order",
+                      "projects/connect/api-reference/open-apis/advisory/orders"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Integration",
+        "description": "Set up workflows with Quicko APIs.",
+        "icon": "puzzle",
+        "href": "/project/integration",
+        "groups": [
+          {
+            "group": "Getting started",
+            "icon": "rocket",
+            "pages": [
+              "projects/integration/index"
+            ]
+          },
+          {
+            "group": "OAuth",
+            "icon": "book-open",
+            "pages": [
+              {
+                "group": "Redirection Based",
+                "pages": [
+                  "projects/integration/oauth/redirection_based/redirection_based",
+                  "projects/integration/oauth/redirection_based/authorize"
+                ]
+              },
+              {
+                "group": "API Based",
+                "pages": [
+                  "projects/integration/oauth/api_based/api_based",
+                  "projects/integration/oauth/api_based/generate_otp",
+                  "projects/integration/oauth/api_based/verify_otp"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Profile",
+            "icon": "user",
+            "pages": [
+              {
+                "group": "User Details",
+                "pages": [
+                  "projects/integration/profile/user_details",
+                  "projects/integration/profile/user_details_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Broker Integration API",
+            "icon": "file-text",
+            "pages": [
+              {
+                "group": "Trade Book",
+                "pages": [
+                  "projects/integration/broker-integration/tradebook/index",
+                  {
+                    "group": "Domestic Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities",
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities_tradebook_api"
+                    ]
+                  },
+                  {
+                    "group": "Crypto",
+                    "pages": [
+                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook",
+                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook_api"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Tradewise P&L",
+                "pages": [
+                  {
+                    "group": "Domestic Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl",
+                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign Securities",
+                    "pages": [
+                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl",
+                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl_api"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Financial Instruments",
+                "pages": [
+                  {
+                    "group": "Domestic",
+                    "pages": [
+                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments",
+                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign",
+                    "pages": [
+                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments",
+                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_finanical_instruments_api"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Holdings",
+                "pages": [
+                  {
+                    "group": "Domestic",
+                    "pages": [
+                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings",
+                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings_api"
+                    ]
+                  },
+                  {
+                    "group": "Foreign",
+                    "pages": [
+                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings",
+                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings_api"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Open Positions",
+                "pages": [
+                  "projects/integration/broker-integration/open_positions/open_positions",
+                  "projects/integration/broker-integration/open_positions/open_positions_api"
+                ]
+              },
+              {
+                "group": "Balance",
+                "pages": [
+                  "projects/integration/broker-integration/balance/balance",
+                  "projects/integration/broker-integration/balance/balance_api"
+                ]
+              },
+              {
+                "group": "Orders",
+                "pages": [
+                  "projects/integration/broker-integration/orders/orders",
+                  "projects/integration/broker-integration/orders/place_order_api",
+                  "projects/integration/broker-integration/orders/track_order_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "HRMS Integration",
+            "icon": "user",
+            "pages": [
+              "projects/integration/hrms-integration/index",
+              {
+                "group": "Salary Details",
+                "pages": [
+                  "projects/integration/hrms-integration/salary-details/salary_details",
+                  "projects/integration/hrms-integration/salary-details/salary_details_api"
+                ]
+              },
+              {
+                "group": "Employer Details",
+                "pages": [
+                  "projects/integration/hrms-integration/employer-details/employer_details",
+                  "projects/integration/hrms-integration/employer-details/employer_details_api"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Bank Integration",
+            "icon": "credit-card",
+            "pages": [
+              {
+                "group": "Account Statement",
+                "pages": [
+                  "projects/integration/bank-integration/account-statement/bank_account_statement",
+                  "projects/integration/bank-integration/account-statement/bank_statement_api"
+                ]
+              },
+              {
+                "group": "Account Details",
+                "pages": [
+                  "projects/integration/bank-integration/account-details/bank_account_details",
+                  "projects/integration/bank-integration/account-details/bank_account_details_api"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "https://help.quicko.com"
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  },
+  "interaction": {
+    "drilldown": true
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "background": {
+    "decoration": "windows"
+  }
+}

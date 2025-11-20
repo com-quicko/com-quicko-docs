@@ -1,0 +1,147 @@
+---
+title: "Event Directory"
+description: "Catalog of event types emitted by Quicko Connect"
+---
+
+Here's a catalog of event types we presently emit. We may introduce others, so in your code upkeep, don't consider this list exhaustive.
+
+## ITR Lifecycle Events
+
+| Event                          | Client | Postback |
+| ------------------------------ | ------ | -------- |
+| `com.quicko.it.itr.in_progress` | ✅      | ✅        |
+| `com.quicko.it.itr.e_filed`     | ✅      | ✅        |
+| `com.quicko.it.itr.e_verified`  | ✅      | ✅        |
+
+### Payload
+
+The payload for each event will be an object that describes that state of their Income Tax Return.
+
+```json
+{
+  "filed_under_section": "on_or_before_the_due_date_us_139_1",
+  "filing_type": "original",
+  "id": "8555b943-c3a9-4c95-9663-625b347b00da",
+  "form": "itr_1",
+  "status": "in_progress",
+  "assessment_year": "AY 2023-24",
+  "due_date": 1722450599000,    
+  "opt_audit": null,
+  "audit_under_section": null,
+  "filed_on": null,  
+  "e_verified_on": null,
+  "acknowledgement_number": null
+}
+```
+
+| Param                   | Type          | Description                                                                                                                                             |
+| ----------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| @entity                 | string        | Describes the type of the JSON object.                                                                                                                  |
+| filed_under_section     | string        | Indicates the section under which the user is trying to file their tax return. Values: `on_or_before_the_due_date_us_139_1` \| `revised_return_us_139_5` \| `in_response_to_a_notice_us_139_9_defactive_return` \| `in_response_to_notice_us_142_1` |
+| filing_type             | string (Enum) | Type of the income tax return. Values: `original` \| `revised`                                                                                           |
+| id                      | string        | UUID for this specific ITR                                                                                                                              |
+| form                    | string (Enum) | Type of the ITR form that is derived based on user input. Values: `itr_1` \| `itr_2` \| `itr_3` \| `itr_4`                                               |
+| status                  | string        | State of the ITR on Quicko. Values: `not_started` \| `in_progress` \| `e_filed` \| `e_verified` \| `revised` \| `cancelled` \| `prepared`                |
+| assessment_year         | string        | Assessment year that the tax return is being prepared for                                                                                               |
+| due_date                | number        | Due date for filing ITR                                                                                                                                 |
+| filed_on                | number        | Date at which the ITR was filed                                                                                                                         |
+| acknowledgement_number   | string        | Populated once the tax return is filed, the field indicates the acknowledgement number of the ITR                                                       |
+| opt_audit                | boolean       | Indicates if the user has opted for tax audit                                                                                                           |
+| audit_under_section      | string        | Section under which audit is opted                                                                                                                       |
+| e_verified_on            | number        | Date at which the ITR was e-verified                                                                                                                     |
+
+## User Events
+
+| Event                         | Client | Postback |
+| ----------------------------- | ------ | -------- |
+| `com.quicko.user.authenticated` | ✅      | 🚫       |
+| `com.quicko.user.deleted`       | ✅      | ✅        |
+
+**Payload Example:**
+
+```json
+{
+  "id": "0D6B076A2D0B192CE063020015ACC47F",
+  "email": "[email protected]",
+  "created_at": 1682797023000,
+  "status": "active",
+  "request_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpbnRlbnQiOiJSRVFVRVNUX1RPS0VOIiwiYXBpX2tleSI6ImtleV90ZXN0X3RFc1RERU1PdE9rM25CVHpTNFI1b09VaHBjb3UzWmdHIiwiaWF0IjoxNzA5Mjc3MjcyLCJleHAiOjE3MDkyNzc4NzIsImF1ZCI6Im9hdXRoLnF1aWNrby5jb20iLCJpc3MiOiJvYXV0aC5xdWlja28uY29tIiwic3ViIjoiMEQ2QjA3NkEyRDBCMTkyQ0UwNjMwMjAwMTVBQ0M0N0YifQ.V5V_C1aBE5Jqr99rzPRNqwoAcDT0qUQky1iHYNBqSQULykXhO19hA9iV893hJzAR78D-P8bR3cASVOMuLFSSAw"
+}
+```
+
+| Param          | Type          | Description                                                                                                                                                             |
+| -------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status         | string (Enum) | Indicates the status of the user's account. Values: `active` \| `inactive` \| `pending`                                                                                  |
+| id             | string        | Hex UUID for the user                                                                                                                                                   |
+| request_token  | string        | Resource Owner's request token that need to be exchanged for an access token using the /oauth/authorize endpoint. Relevant only for `com.quicko.user.authenticated` event |
+| created_at     | number        | Timestamp of when user signed up.                                                                                                                                       |
+| email          | string        | Email Id associated with the account                                                                                                                                    |
+
+## Advisory Events
+
+### User Events
+
+| Event                                     | Client | Postback |
+| ----------------------------------------- | ------ | -------- |
+| `com.quicko.advisory.contact.authenticated` | ✅      | ✅        |
+
+**Payload Example:**
+
+```json
+{
+  "id": "3a0b279d-1ea5-48cd-926c-4a05d8348c05",
+  "created_at": 1682797023000
+}
+```
+
+| Param       | Type   | Description                    |
+| ----------- | ------ | ------------------------------ |
+| id          | string | Hex UUID for the user          |
+| created_at  | number | Timestamp of when was created. |
+
+### Order Lifecycle Events
+
+| Event                               | Client | Postback |
+| ----------------------------------- | ------ | -------- |
+| `com.quicko.advisory.order.confirmed` | ✅      | ✅        |
+| `com.quicko.advisory.order.completed` | 🚫     | ✅        |
+| `com.quicko.advisory.order.cancelled` | ✅      | ✅        |
+
+**Payload Example:**
+
+```json
+{
+  "@entity": "com.quicko.advisory.order",
+  "id": "0225636CE4",
+  "status": "confirmed",
+  "created_at": 1717480715227,
+  "order_time": 1717480715227,
+  "updated_at": 1717480729031,
+  "total_price": 5308.82,
+  "discount": 0,
+  "sub_total": 4499,
+  "gst_amount": 809.82,
+  "price_including_gst": false
+}
+```
+
+| Param                 | Type          | Description                                                                         |
+| --------------------- | ------------- | ----------------------------------------------------------------------------------- |
+| id                    | string        | A unique identifier for the order.                                                  |
+| created_at           | long          | Timestamp indicating when the order was created (in milliseconds since epoch).      |
+| updated_at           | long          | Timestamp indicating when the order was last updated (in milliseconds since epoch). |
+| @entity               | string        | The entity type, indicating this is an order.                                       |
+| status                | string (Enum) | The current status of the order. Values: `CONFIRMED` \| `COMPLETED` \| `CANCELLED`   |
+| order_time           | long          | Timestamp indicating the time of the order (in milliseconds since epoch).           |
+| total_price          | float         | The total price of the order including GST.                                         |
+| sub_total            | float         | The price of the order excluding GST.                                               |
+| gst_amount           | float         | The amount of GST applied to the order.                                             |
+| price_including_gst | boolean       | A boolean flag indicating whether the price includes GST.                           |
+
+<Card
+  title="Note"
+  icon="info"
+>
+  This list is not exhaustive. We may introduce additional event types in the future. Keep your code flexible to handle new events.
+</Card>
+

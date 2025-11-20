@@ -1,0 +1,69 @@
+---
+title: "Integration Steps"
+description: "Step by step understanding of the workflow and interactions between different systems involved"
+---
+
+The following page will give you step by step understanding of the workflow and interactions between different systems involved.
+
+![Quicko Mobile SDK Integrating Workflow](/projects/connect/assets/integrations/mobile/integrating.png)
+
+<Steps>
+  <Step title="Initialization">
+    The host application serves as the primary point of integration for the Quicko SDK. As part of this initiation, an optional `options` object can be passed to the SDK. This object typically contains user's data, identifying information and theme configuration.
+
+    **Sample `options` object**
+
+    ```json
+    {
+        "user": {
+            "email": "[email protected]",
+            "mobile": {
+                "isd": "91",
+                "number": "XXXXXXXXXX"
+            }
+        },
+        "theme": {
+            "mode": "dark",
+            "seed": "#3962FF"
+        }
+    }
+    ```
+
+    **`options` object breakdown**
+
+    - **`user`**: Contains identifying information about the user. Values provided here will help streamline auth on the SDK.
+    - **`theme`**: Contains visual customization options to modify the appearance of the SDK interface for a more personalized user experience.
+      - **`mode`**: Specifies the display mode, which can be either "light" or "dark". In the provided example, it's set to "dark", meaning the SDK will use a dark-themed interface.
+      - **`seed`**: Represents the accent color used for highlights and other UI elements in the SDK. This is generally your brand's primary theme color.
+  </Step>
+
+  <Step title="Authorization">
+    The authorization step in the SDK is designed to verify the user's identity. This process ensures that only authenticated users can access specific resources or functionalities. If a user is already authenticated (i.e., has a valid session), they can proceed to the next step. If not, the SDK will initiate the identity setup process.
+
+    <Card
+      title="Access Token"
+      icon="key"
+    >
+      When the user authentication process is successfully completed within the SDK, an event named `com.quicko.user.authenticated` will be emitted. This event carries with it an request token.
+
+      It is essential for the host platform to exchange it for an access token. The access token serves as the necessary authorization to access user data via the Open APIs. Always ensure that this token is safely handled and stored to maintain the privacy and security of user data.
+    </Card>
+  </Step>
+
+  <Step title="Tax Return Preparation">
+    Users can delve into preparing their tax returns right within the host application's interface. The SDK provides an intuitive UI and all the necessary tools for users to input, validate, and ensure that their tax information is correct and complete. Once satisfied, users can proceed to submit their tax returns through the SDK without needing to jump to a different platform or tool.
+  </Step>
+
+  <Step title="Submission">
+    Behind the scenes, once the user submits their tax information, Quicko's system takes charge. The entered data undergoes a transformation to align with the standards and format set by the Income Tax Department. Quicko ensures that this process is seamless and transparent to the user. After this transformation, the SDK utilizes the ERI (E-Return Intermediary) API to forward and officially submit the user's tax return to the Income Tax Department.
+  </Step>
+
+  <Step title="Event Emission on User Actions">
+    The SDK is designed not just to act but also to inform. The SDK emits specific events like when users submit their tax return or exit without finishing the filing process. The host application can be configured to listen to these events. By capturing these events, the host application can provide feedback, notifications, or even guide the user to the next steps in the process.
+  </Step>
+
+  <Step title="Accessing User's Tax Return">
+    One of the advantages of integrating with the SDK is the ability to retrieve tax return details without cumbersome processes. Using the read-only access token provided during the initialization, the host app can send requests to Quicko's API. This lets the host application fetch and display the user's tax return details. Whether for verification, record-keeping, or any other purpose, this feature ensures that the host app remains the central hub for all user tax-related activities.
+  </Step>
+</Steps>
+
