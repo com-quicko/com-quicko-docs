@@ -1,74 +1,72 @@
 ---
-mode: "wide"
+mode: "custom"
 ---
-import { HeroCard } from "/snippets/HeroCard.jsx"
 
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "20vh",
-    textAlign: "center",
-  }}
->
-  <h1 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "0rem" }}>
-    Documentation
-  </h1>
-  <p style={{ maxWidth: "600px", fontSize: "1.1rem" }}>
-    Explore our references, guides and recipes to integrate Quicko APIs and SDKs.
-  </p>
+import { HeroCard } from "/snippets/HeroCard.jsx";
+
+<div className="relative">
+  <div className="absolute top-0 left-0 right-0">
+    <img 
+      src="https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=82cf18f9db68a6bbd99c38964acafd86" 
+      className="block dark:hidden pointer-events-none" 
+      alt="Decorative background image." 
+      data-og-width="2304" width="2304" 
+      data-og-height="682" height="682"
+      data-path="images/hero/background-light.png" 
+      data-optimize="true" data-opv="3" 
+      srcset="
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=280&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=ef698866e70d4b74299e21694c171a63 280w, 
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=560&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=157a310f604bad6049aac3c19fed5b50 560w, 
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=840&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=df2b30333ebe622981ad85a922e32c8b 840w, 
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=1100&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=efa193f129abe90d070c7a8a5740e0dd 1100w, 
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=1650&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=4ff2f60e32f25b666910b7a033654d90 1650w, 
+        https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-light.png?w=2500&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=e55741f00a5b8d5e2bbb93368da658e8 2500w
+      " 
+     />
+
+    <img src="https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=6f10314274fa914f283a7dcf72ce0e49" className="hidden dark:block pointer-events-none" alt="Decorative background image." data-og-width="2304" width="2304" data-og-height="682" height="682" data-path="images/hero/background-dark.png" data-optimize="true" data-opv="3" srcset="https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=280&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=6acf978ad21e1f178f77017c99be308b 280w, https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=560&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=eb1549c355b7bc8c0282c284d0f5cb09 560w, https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=840&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=10b26bada91c5fc3fbe221cf764099c9 840w, https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=1100&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=2a13e59d93ce3eae401d2d6a6f008070 1100w, https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=1650&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=da7d0af10de69bbea14cde7cb5a310c8 1650w, https://mintcdn.com/mintlify/XV_SyGkZAfstDtOP/images/hero/background-dark.png?w=2500&fit=max&auto=format&n=XV_SyGkZAfstDtOP&q=85&s=3c09eabb789e005086fcb80b6d223958 2500w" />
+
+  </div>
+
+  <div className="relative z-10 px-4 py-16 lg:py-48 lg:pb-24 max-w-4xl mx-auto">
+    <h1 className="block text-4xl font-medium text-center text-gray-900 dark:text-zinc-50 tracking-tight">
+      Documentation
+    </h1>
+
+    <div className="max-w-xl mx-auto px-4 mt-4 text-lg text-center text-gray-500 dark:text-zinc-500">
+      Explore our references, guides and recipes to integrate Quicko APIs and SDKs.
+    </div>
+
+    <div className="px-6 lg:px-0 gap-x-2 gap-y-4 my-12 grid sm:grid-cols-2">
+      <Card title="Quickstart" icon="rocket" href="/projects/connect/guides/getting-started/index" cta="Get Started">
+        Make your first Quicko API call by following our step-by-step guide.
+      </Card>
+
+      <Card title="API Reference" icon="code" href="/projects/connect/api-reference/authentication/authentication" cta="View Reference">
+        Explore our API contracts, reusable code samples, and test scenarios.
+      </Card>
+    </div>
+
+    <h2 className="text-xl font-medium text-gray-900 dark:text-zinc-50 mb-2">Products</h2>
+    <div className="px-6 lg:px-0 gap-x-2 gap-y-4 grid sm:grid-cols-2 mb-12">
+        <Card title="Quicko Connect" icon="cable" href="/projects/connect/guides/getting-started/index" >
+          Embed complete tax workflows into your app with Quicko Connect’s modular APIs and SDKs.
+        </Card>
+        <Card title="Integration" icon="puzzle" href="/projects/integration/index">
+          Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations
+        </Card>
+    </div>
+
+  
+    <h2 className="text-xl font-medium text-gray-900 dark:text-zinc-50 mb-4">Resources</h2>
+    <div className="px-6 lg:px-0 gap-x-6 gap-y-4">
+        <Card horizontal title="Collections" icon="book-marked" href="https://postman.com/com-quicko/quicko-connect" arrow="true">
+          Test Quicko APIs with public Postman collections.
+        </Card>
+        <Card horizontal title="Help Centre" icon="book-open-text" href="https://help.quicko.com" arrow="true">
+          Support for integration, billing, accounts, and more.
+        </Card>
+    </div>
+
+  </div>
 </div>
-
-<CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/projects/connect/guides/getting-started/index" cta="Get Started">
-    Make your first Quicko API call by following our step-by-step guide.
-  </Card>
-
-  <Card title="API Reference" icon="code" href="/projects/connect/api-reference/authentication/authentication" cta="View Reference">
-    Explore our API contracts, reusable code samples, and test scenarios.
-  </Card>
-</CardGroup>
-
----
-
-## Products
-
-<CardGroup cols={2}>
-  <Card title="Quicko Connect" icon="cable" href="/projects/connect/guides/getting-started/index" >
-    Embed complete tax workflows into your app with Quicko Connect’s modular APIs and SDKs.
-  </Card>
-  <Card title="Integration" icon="plug" href="/projects/integration/index">
-    Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations
-  </Card>
-  {/* <HeroCard
-    filename="/static/logo/light.svg"
-    darkFilename="/static/logo/dark.svg"
-    title="Quicko Connect"
-    description="Embed complete tax workflows into your app with Quicko Connect’s modular APIs and SDKs."
-    href="/projects/connect/guides/getting-started/index"
-  />
-
-  <HeroCard
-    filename="/static/logo/light.svg"
-    darkFilename="/static/logo/dark.svg"
-    title="Integration"
-    description="Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations"
-    href="/projects/integration/index"
-  /> */}
-</CardGroup>
-
----
-
-## Resources
-
-<CardGroup cols={2}>
-  <Card title="Collections" icon="book-marked" href="https://postman.com/com-quicko/quicko-connect" arrow="true">
-    Test Quicko APIs with public Postman collections.
-  </Card>
-
-  <Card title="Help Centre" icon="book-open-text" href="https://help.quicko.com" arrow="true">
-    Support for integration, billing, accounts, and more.
-  </Card>
-</CardGroup>

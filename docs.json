@@ -20,9 +20,6 @@
     "dark": "static/favicon/favicon.svg"
   },
   "navigation": {
-    "pages": [
-      "index"
-    ],
     "products": [
       {
         "product": "Connect",
@@ -354,7 +351,7 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
+        "label": "Help Center",
         "href": "https://help.quicko.com"
       }
     ]
@@ -373,9 +370,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/Quicko_official",
+      "linkedin": "https://in.linkedin.com/company/quicko-official",
+      "website": "https://quicko.com"
     }
   },
   "interaction": {
@@ -385,6 +382,6 @@
     "eyebrows": "breadcrumbs"
   },
   "background": {
-    "decoration": "windows"
+    "decoration": "gradient"
   }
 }
