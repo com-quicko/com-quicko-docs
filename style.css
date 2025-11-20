@@ -1,3 +1,7 @@
 #sidebar-content {
     overflow-x: hidden !important;
 }
+
+.sidebar-group-icon {
+  color: #006AD4;
+}
