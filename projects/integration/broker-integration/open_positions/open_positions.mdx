@@ -1,0 +1,52 @@
+---
+title: "Open Positions"
+description: "Open Positions for Derivatives Trades"
+---
+
+Open Positions for Derivatives Trades
+
+## Headers of Equity Derivatives
+
+| Param                        | Type   | Required | Description                                                 |
+| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
+| symbol                       | string | Yes      | Symbol or description of the instrument                     |
+| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
+| strike_price                | number | No       | strike price of the contract                                |
+| expiry_date                 | number | No       | contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | buy date epoch                                              |
+| exchange                     | string | No       | Exchange where trade is made                                |
+| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
+| average_price               | number | Yes      | Average buy price across all trades                         |
+| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
+| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+
+## Headers of Currency Derivatives
+
+| Param                        | Type   | Required | Description                                                 |
+| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
+| symbol                       | string | Yes      | Symbol or description of the instrument                     |
+| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
+| strike_price                | number | No       | strike price of the contract                                |
+| expiry_date                 | number | No       | contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | buy date epoch                                              |
+| exchange                     | string | No       | Exchange where trade is made                                |
+| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
+| average_price               | number | Yes      | Average buy price across all trades                         |
+| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
+| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+
+## Headers of Commodity Derivatives
+
+| Param                        | Type   | Required | Description                                                 |
+| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
+| symbol                       | string | Yes      | Symbol or description of the instrument                     |
+| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
+| strike_price                | number | No       | strike price of the contract                                |
+| expiry_date                 | number | No       | contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | buy date epoch                                              |
+| exchange                     | string | No       | Exchange where trade is made                                |
+| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
+| average_price               | number | Yes      | Average buy price across all trades                         |
+| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
+| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+

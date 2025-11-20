@@ -1,0 +1,194 @@
+---
+title: 'OAuth'
+description: 'Learn how to integrate OAuth authentication workflow for third-party applications'
+---
+
+## Overview
+
+This guide outlines the steps necessary for integrating the OAuth authentication workflow between an **Actor** (end user), a **Host** (client application), and **Quicko**.
+
+<CardGroup cols={3}>
+  <Card title="Actor" icon="user">
+    The end user who initiates the OAuth flow
+  </Card>
+  <Card title="Host" icon="panels-top-left">
+    Your client application requesting access to Open APIs
+  </Card>
+  <Card title="OAuth App" icon="shield-check">
+    Quicko's OAuth application that manages authentication
+  </Card>
+</CardGroup>
+
+## OAuth Flow
+
+![OAuth Authentication Flow](/projects/connect/assets/getting-started/oauth_journey.png)
+
+The OAuth flow involves four main steps:
+
+## Workflow Steps
+
+<Steps>
+  <Step title="Initialization from Host">
+    The Host sends an intent along with options to the OAuth App.
+    
+    **Options include:**
+    - API Key (provided during onboarding)
+    - Redirect URI (where the user returns after consent)
+    
+    <Info>
+      The Host application initiates the flow by redirecting the Actor to Quicko's OAuth application.
+    </Info>
+  </Step>
+
+  <Step title="Actor Consent on OAuth">
+    The OAuth App authenticates and obtains consent from the Actor.
+    
+    **Authentication Process:**
+    1. OAuth App sends an OTP to the Actor to establish their identity
+    2. Actor enters the OTP to verify their identity
+    3. Actor is presented with a consent screen
+    4. Actor reviews and approves the Host's access request
+    
+    <Warning>
+      The Actor must be a registered Quicko user to complete this step.
+    </Warning>
+    
+    Once consent is given, the OAuth App generates a `request_token` for the Host.
+  </Step>
+
+  <Step title="Redirection Back to Host">
+    Upon the Actor's consent, the OAuth App redirects back to the Host.
+    
+    **Redirect Details:**
+    - Issues HTTP 302 status code
+    - Redirects to the URI provided by the Host
+    - Appends the Resource Owner's `request_token` as a query parameter
+    
+    ```
+    https://your-app.com/callback?request_token=eyJhbGciOiJIUzUxMi...
+    ```
+  </Step>
+
+  <Step title="Acquiring Access and Refresh Tokens">
+    The Host exchanges the `request_token` for long-lived tokens.
+    
+    The Host calls the [OAuth Authorize API](/projects/connect/api-reference/authentication/authorization) with:
+    - `request_token` (from the redirect)
+    - `x-api-key` (your API key)
+    - API User's `access_token` (from authenticate endpoint)
+    
+    **Response includes:**
+    - Resource Owner's `access_token` - to access Open APIs
+    - Resource Owner's `refresh_token` - to get new access tokens
+    
+    <Tip>
+      Securely store both tokens in your database associated with the Actor's account.
+    </Tip>
+  </Step>
+</Steps>
+
+## Understanding Different Tokens
+
+<Note>
+  All of the tokens mentioned below belong to the **Actor (Resource Owner)**, not your application.
+</Note>
+
+There are various types of tokens that serve different purposes within the OAuth 2.0 framework. This section explains the different tokens involved in the interaction between your app and Quicko.
+
+<AccordionGroup>
+  <Accordion title="Request Token" icon="clock">
+    **Description:** A short-lived token which the Host must exchange to receive the Resource Owner's access token.
+    
+    | Property | Value |
+    |----------|-------|
+    | **Lifetime** | 10 minutes |
+    | **Purpose** | Initiate token exchange |
+    | **Source** | Returned after Actor grants consent |
+    | **Usage** | Exchange for access token via OAuth Authorize API |
+    
+    <Warning>
+      The request token expires after 10 minutes. Exchange it immediately for access and refresh tokens.
+    </Warning>
+  </Accordion>
+
+  <Accordion title="Access Token" icon="key">
+    **Description:** Used by the Host to access Quicko's Open APIs on behalf of the Resource Owner.
+    
+    | Property | Value |
+    |----------|-------|
+    | **Lifetime** | 24 hours |
+    | **Purpose** | Access Open APIs |
+    | **Source** | Received via OAuth Authorize API |
+    | **Usage** | Include in `Authorization` header when calling Open APIs |
+    
+    **Example:**
+    ```bash
+    curl https://api.quicko.com/income-tax/tax-payer \
+      -H "Authorization: Bearer eyJhbGciOiJIUzUxMi..." \
+      -H "x-api-key: your_api_key"
+    ```
+    
+    <Info>
+      When the access token expires, use the refresh token to obtain a new one without requiring the Actor to re-authenticate.
+    </Info>
+  </Accordion>
+
+  <Accordion title="Refresh Token" icon="rotate">
+    **Description:** Long-lived token for obtaining new access tokens without user interaction.
+    
+    | Property | Value |
+    |----------|-------|
+    | **Lifetime** | 1 year |
+    | **Purpose** | Obtain new access tokens |
+    | **Source** | Received via OAuth Authorize API |
+    | **Usage** | Exchange for new access token via Authorize API |
+    
+    **When to use:**
+    - Access token has expired (after 24 hours)
+    - You receive 401 Unauthorized response from Open APIs
+    - Proactively refresh before expiry
+    
+    <Tip>
+      Securely store the refresh token and implement automatic token refresh logic in your application to ensure uninterrupted API access.
+    </Tip>
+  </Accordion>
+</AccordionGroup>
+
+## Complete OAuth Journey
+
+The diagram above illustrates the complete OAuth flow:
+
+1. **Redirect** - Host App redirects user to Quicko OAuth with `api_key` and `redirect`
+2. **Redirect** - After user consent, Quicko redirects back to Host App with `request_token`
+3. **Authorize** - Host App calls Quicko API Server with `request_token`
+4. **Response** - Quicko API Server returns `access_token` and `refresh_token`
+5. **End** - Host App can now access Open APIs on behalf of the user
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Secure Storage" icon="lock">
+    Store tokens securely in your database with encryption. Never expose them in client-side code or logs.
+  </Card>
+  <Card title="Token Refresh" icon="rotate-ccw">
+    Implement automatic token refresh logic before the access token expires to ensure seamless API access.
+  </Card>
+  <Card title="Error Handling" icon="bug">
+    Handle token expiration gracefully. Catch 401 errors and automatically refresh the access token.
+  </Card>
+  <Card title="User Consent" icon="handshake">
+    Respect user consent. Provide clear options for users to revoke access to their data.
+  </Card>
+</CardGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="OAuth Authorize API" icon="code" href="/projects/connect/api-reference/oauth/authorize">
+    Learn how to exchange request tokens for access tokens
+  </Card>
+  <Card title="Open APIs" icon="book" href="/projects/connect/guides/getting-started/open-apis">
+    Explore the available Open APIs you can access
+  </Card>
+</CardGroup>
+

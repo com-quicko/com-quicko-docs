@@ -1,0 +1,56 @@
+---
+title: "Resetting"
+description: "Clear persisted user session data from the SDK"
+---
+
+The SDK has been designed to provide a seamless and unified experience for the end users. After a user has been authenticated successfully, the SDK will persist the user session information. This ensures that users won't need to reauthenticate during subsequent interactions, making the experience smoother.
+
+However, there could be scenarios where it's necessary to remove or clear the persisted user session data from the client side. For instance, if a user logs out or if there's a need to start a fresh session.
+
+## `reset()` Method
+
+To facilitate this, the SDK provides the `reset()` method.
+
+<Tabs>
+  <Tab title="Java">
+    ```java
+    QuickoSDK.INSTANCE.reset();
+    ```
+  </Tab>
+  <Tab title="Kotlin">
+    ```kotlin
+    QuickoSDK.reset()
+    ```
+  </Tab>
+  <Tab title="Swift">
+    ```swift
+    QuickoSDK.instance.reset()
+    ```
+  </Tab>
+</Tabs>
+
+By invoking this method, developers can effectively clear all the data that the SDK persisted on the client end. This includes user session information, any cached data, and other related parameters.
+
+## Sample Use Cases
+
+<Card
+  title="User Logout"
+  icon="log-out"
+>
+  When a user logs out of your application, you can call the `reset()` method to ensure that their session and related data are wiped clean.
+</Card>
+
+<Card
+  title="Privacy Mode"
+  icon="shield"
+>
+  If your platform has a privacy mode or similar feature, where data persistence isn't desired, you can use the `reset()` method to clear session data whenever needed.
+</Card>
+
+<Card
+  title="Error Recovery"
+  icon="refresh-cw"
+>
+  In rare cases, if there are session-related issues or anomalies, invoking the `reset()` method can serve as a first step in troubleshooting, ensuring a clean slate.
+</Card>
+

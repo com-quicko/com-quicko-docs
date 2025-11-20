@@ -1,0 +1,137 @@
+---
+title: "The Event Object"
+description: "Understanding Quicko Connect events and how to handle them"
+---
+
+Events are pivotal markers that signal significant occurrences linked to user activities. Using the CloudEvents specification, Quicko standardizes how these events are presented, ensuring consistency and interoperability. An example event is when a taxpayer e-files their tax return, generating a `com.quicko.it.itr.e_filed` event.
+
+These events don't merely signify the occurrence but also capture the exact state of the associated API resource when the event was created. For instance, the `com.quicko.it.itr.e_filed` event contains details like the user's acknowledgment number, refund amount, and status.
+
+Events are divided into two main categories: **Postback Events** and **Client Events**. These events can be consumed to enrich your system's understanding of the user journey.
+
+## The Event Object
+
+Events are represented using the CloudEvents format:
+
+```json
+{
+  "specversion" : "1.0",
+  "type": "com.quicko.it.itr.e_filed",
+  "source": "/tax-payers/9c0d1fef-8dfb-4aa8-ad8a-08cf38ce3b6a/file/itrs/ca96c1a5-9348-4c0b-951f-5cdae4549461/e-file", 
+  "id": "d2dfe831-2b5c-445c-b952-8385a514bbb3",
+  "time": "2023-10-31T12:00:00Z",
+  "datacontenttype": "application/json",
+  "subject": "9c0d1fef-8dfb-4aa8-ad8a-08cf38ce3b6a",
+  "data": {
+    // Additional event details go here
+  }
+}
+```
+
+### Parameters
+
+| Param           | Type   | Description                                                |
+| --------------- | ------ | ---------------------------------------------------------- |
+| type            | string | Describes the type of the CloudEvent.                      |
+| source          | URI    | URI representing the source context of the event.          |
+| id              | string | A unique identifier for the event.                         |
+| time            | string | ISO8601 timestamp indicating when the event was triggered. |
+| specversion     | string | The version of the CloudEvents specification.              |
+| datacontenttype | string | The content type of the data.                              |
+| subject         | string | Unique ID of the user for whom the event triggered.        |
+| data            | object | Data associated with the event.                            |
+
+## 1. Postback Events
+
+<Card
+  title="Postback Events"
+  icon="server"
+>
+  You can configure these events are relayed directly to a specified endpoint on your server. Much like a messenger delivering a letter, when an event occurs, the Quicko communicates this event to your server. It ensures real-time updates and lets you process and react to the data instantaneously.
+
+  Postback events are useful because the user can close the client app before the SDK sends out the event. In such cases, you can always rely on postbacks to notify your systems.
+</Card>
+
+## 2. Client Events
+
+<Card
+  title="Client Events"
+  icon="smartphone"
+>
+  On the flip side, Client Events are geared towards the handling events within your application. These events are designed to be processed directly within the client, offering an interactive response to the user.
+
+  Client events are great for updating the state of your application without needing to make an API request to Quicko's servers.
+</Card>
+
+### Processing
+
+Handling SDK Client Events differs from their server counterpart. These events require client-side logic to interpret and respond. They can be utilized to update the user interface, prompt user actions, or offer feedback.
+
+The SDK emits several events during its lifecycle. Developers can set listeners for these events to execute custom logic or to capture specific feedback.
+
+#### Setting up Event Listener
+
+Setting up an event listener involves monitoring and responding to specific events or changes in a system or application.
+
+<Tabs>
+  <Tab title="Java">
+    ```java
+    QuickoSDK.INSTANCE.setEventListener(new EventListener() {
+        @Override
+        public void onEvent(@NonNull Event event) {
+            super.onEvent(event);
+            // your implementation
+        }
+    });
+    ```
+  </Tab>
+  <Tab title="Kotlin">
+    ```kotlin
+    QuickoSDK.setEventListener(object : EventListener() {
+        override fun onEvent(event: Event) {
+            super.onEvent(event)
+            // your implementation
+        }
+    })
+    ```
+  </Tab>
+  <Tab title="Swift">
+    ```swift
+    QuickoSDK.instance.setEventListener(eventListener: MyEventListener())
+
+    class MyEventListener: EventListener {
+        override func onEvent(event: Event) {
+            // your implementation
+        }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+Here's a breakdown of the process:
+
+<Steps>
+  <Step title="Initialization">
+    `setEventListener(...)`: This is a method call that tells the SDK to prepare to listen for specific events.
+  </Step>
+
+  <Step title="Creating the Event Listener">
+    `EventListener() { ... }`: This creates a new instance of an `QuickoSDK.EventListener` class.
+  </Step>
+
+  <Step title="Overriding the onEvent Method">
+    `onEvent(EventDetails details) { ... }`: Provide a custom implementation for this method but overriding `EventListener.onEvent` method.
+
+    When an event occurs, you'll get a native `EventDetails` model (Java, Swift).
+  </Step>
+</Steps>
+
+## Conclusion
+
+<Card
+  title="Key Takeaway"
+  icon="lightbulb"
+>
+  Events fall under both categories, but how you process them vastly differs based on their nature and your use case. Ensure that you're equipped to handle both types to offer a seamless experience for both your backend processes and your end users. Always keep an eye on the events for the most accurate picture of your user's activity.
+</Card>
+

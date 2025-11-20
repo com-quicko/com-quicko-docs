@@ -1,0 +1,75 @@
+---
+title: "Domestic Securities Holdings"
+description: "Holdings data for domestic securities including Equity, Mutual Funds, and ETF"
+---
+
+## Headers of Equity Holdings
+
+| Param               | Type   | Required | Description                                              |
+| ------------------- | ------ | -------- | -------------------------------------------------------- |
+| isin                | string | Yes      | ISIN is the international security identification number |
+| symbol              | string | Yes      | Symbol or description of the instrument                  |
+| quantity            | number | Yes      | Quantity of shares held of the instrument                |
+| buy_date           | number | Yes      | buy date epoch                                           |
+| buy_average        | number | Yes      | Average buy price across all trades                      |
+| label               | string | No       | Refer to Annexure for possible values                    |
+| last_traded_price | number | Yes      | Last traded price of the instrument                      |
+
+## Headers of Mutual Fund Holdings
+
+| Param               | Type   | Required | Description                                                         |
+| ------------------- | ------ | -------- | ------------------------------------------------------------------- |
+| isin                | string | Yes      | ISIN is the international security identification number            |
+| symbol              | string | Yes      | Symbol or description of the scheme                                 |
+| scheme_type        | enum   | Yes      | Scheme type of mutual fundPossible values are : Equity, Debt, Other |
+| quantity            | number | Yes      | Quantity of units held of the scheme                                |
+| buy_date           | number | Yes      | buy date epoch                                                      |
+| buy_average        | number | Yes      | Average buy price across all trades                                 |
+| label               | string | No       | Refer to Annexure for possible values                               |
+| last_traded_price | number | Yes      | Pervious closing NAV for the scheme                                 |
+
+## Headers of ETF Holdings
+
+| Param               | Type   | Required | Description                                                 |
+| ------------------- | ------ | -------- | ----------------------------------------------------------- |
+| isin                | string | Yes      | ISIN is the international security identification number    |
+| symbol              | string | Yes      | Symbol or description of the ETF                            |
+| asset_class        | enum   | Yes      | Scheme type of ETFPossible values are : Equity, Debt, Other |
+| quantity            | number | Yes      | Quantity of units held of the scheme                        |
+| buy_date           | number | Yes      | buy date epoch                                              |
+| buy_average        | number | Yes      | Average buy price across all trades                         |
+| label               | string | No       | Refer to Annexure for possible values                       |
+| last_traded_price | number | Yes      | Last traded price of the instrument                         |
+
+## Annexure
+
+| Corporate Action                       | ENUM                            |
+| -------------------------------------- | ------------------------------- |
+| Amalgamation                           | amalgamation                    |
+| Bonus Issue                            | bonus_issue                    |
+| Buy Back of Shares                     | buy_back                       |
+| Consolidation of Shares                | consolidation                   |
+| Dividend                               | dividend                        |
+| Dividend on Preference Shares          | dividend                        |
+| Income Distribution (InvIT)            | income_distribution_invit     |
+| Income Distribution RITES              | income_distribution_rites     |
+| InvIT - Return of CapitaL              | return_of_capital_invit      |
+| Preferential Issue of shares           | preferential_issue             |
+| Reduction of Capital                   | reduction_of_capital          |
+| Right Issue of Equity Shares           | right_issue                    |
+| Scheme of Arrangement                  | scheme_of_arrangement         |
+| Spin Off                               | spin_off                       |
+| Stock Split                            | stock_split                    |
+| Voluntary Delisting of Shares          | voluntary_delisting_of_share |
+| Donation of security                   | donation                        |
+| Transfer of securities in form of gift | transfer                        |
+| Loss of security                       | lost                            |
+| Transfer of securities                 | transfer                        |
+| Other                                  | other                           |
+
+<Info>
+**Quantity of Holdings**
+
+The holding quantity in the response should be unpledged.
+</Info>
+

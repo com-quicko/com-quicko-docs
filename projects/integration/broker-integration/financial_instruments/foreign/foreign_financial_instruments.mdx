@@ -1,0 +1,63 @@
+---
+title: "Foreign Financial Instruments"
+description: "Financial instruments reference data for foreign securities"
+---
+
+## Headers of Foreign Financial Instruments API
+
+### Stock Reference Data Sheet
+
+#### Stock Reference Data Table
+
+| Param          | Type   | Required | Description                                               |
+| -------------- | ------ | -------- | --------------------------------------------------------- |
+| isin           | string | No       | ISIN is the international security identification number  |
+| symbol         | string | Yes      | Symbol or description of stock                            |
+| address        | string | No       | Address of the company                                    |
+| country        | string | Yes      | Country of the company                                    |
+| zip_code      | string | Yes      | Zip code of the address                                   |
+| 52_week_high | number | Yes      | 52 week high price for the calendar year                  |
+| closing_value | number | Yes      | Closing value as of last traded date of the calendar year |
+
+### Depository Receipts Reference Data Sheet
+
+#### Depository Receipts Reference Data Table
+
+| Param          | Type   | Required | Description                                               |
+| -------------- | ------ | -------- | --------------------------------------------------------- |
+| isin           | string | No       | ISIN is the international security identification number  |
+| symbol         | string | Yes      | Symbol or description of receipt                          |
+| address        | string | No       | Address of the company                                    |
+| country        | string | Yes      | Country of the company                                    |
+| zip_code      | string | Yes      | Zip code of the address                                   |
+| 52_week_high | number | Yes      | 52 week high price for the calendar year                  |
+| closing_value | number | Yes      | Closing value as of last traded date of the calendar year |
+
+### Mutual Fund Reference Data Sheet
+
+#### Mutual Fund Reference Data Table
+
+| Param          | Type   | Required | Description                                               |
+| -------------- | ------ | -------- | --------------------------------------------------------- |
+| isin           | string | No       | ISIN is the international security identification number  |
+| scheme_name   | string | Yes      | Symbol or description of fund                             |
+| address        | string | No       | Address of the company                                    |
+| country        | string | Yes      | Country of the company                                    |
+| zip_code      | string | Yes      | Zip code of the address                                   |
+| 52_week_high | number | Yes      | 52 week high price for the calendar year                  |
+| closing_value | number | Yes      | Closing value as of last traded date of the calendar year |
+
+### ETF Reference Data Sheet
+
+#### ETF Reference Data Table
+
+| Param          | Type   | Required | Description                                               |
+| -------------- | ------ | -------- | --------------------------------------------------------- |
+| isin           | string | No       | ISIN is the international security identification number  |
+| scheme_name   | string | Yes      | Symbol or description of fund                             |
+| address        | string | No       | Address of the company                                    |
+| country        | string | Yes      | Country of the company                                    |
+| zip_code      | string | Yes      | Zip code of the address                                   |
+| 52_week_high | number | Yes      | 52 week high price for the calendar year                  |
+| closing_value | number | Yes      | Closing value as of last traded date of the calendar year |
+

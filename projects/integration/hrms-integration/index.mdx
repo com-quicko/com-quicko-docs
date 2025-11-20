@@ -1,0 +1,43 @@
+---
+title: "Introduction"
+description: "HRMS Integration with Quicko for tax compliance"
+---
+
+Salaried Individuals have to file Income Tax Return form ITR-1\. Form-16 TDS Certificate has details including employer name, salary breakdown, deductions and tax credits necessary to prepare ITR.
+
+Quicko is India's leading tax planning, preparation and filing platform. Customers can connect their Broker, HRMS, Bank and Investment apps to Quicko and import data into their income tax returns with ease.
+
+There were 7 crore ITRs filed in FY 22 of which 3.5 crore were ITR-1s. HRMS platforms can easily integrate with Quicko to simplify tax compliance for employees. This documentation explains how HRMS platforms can integrate with Quicko using APIs.
+
+## Integration Journey
+
+Most modern HRMS platforms help employers with TDS compliances. Employers must file Form 24Q for TDS on Salary. Q4 filing also includes Schedule Salary Details which forms the basis of Form 16\. Employees can easily file their tax returns by sourcing Salary details information from their HRMS platforms. Basic Employer details must also be filled in as they are the deductor. The following diagram shows how this journey would work.
+
+<Steps>
+  <Step title="User Logs into Quicko">
+    User Logs into Quicko
+  </Step>
+  <Step title="User explores Apps">
+    User explores Apps (includes Broker, HRMS, Bank and Investment Apps)
+  </Step>
+  <Step title="User selects HRMS app">
+    User selects HRMS app
+  </Step>
+  <Step title="OAuth Connection">
+    If the app is not connected
+    - User gets redirected to the HRMS OAuth app
+    - OAuth-Redirection Based
+    - User logs into his/her account and grants access to Quicko
+  </Step>
+  <Step title="Import Data">
+    Once connected, user can import salary and employer details using API integrations
+  </Step>
+  <Step title="Prepare Tax Return">
+    Quicko prepares tax return by mapping salary details to income tax return forms
+    - Refer Salary Details for salary schedule data points
+      - Salary Details API
+    - Refer Employer Details for basic employer data points
+      - Employer Details API
+    User files return without any hassle
+  </Step>
+</Steps>

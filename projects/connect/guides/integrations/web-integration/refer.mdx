@@ -1,0 +1,32 @@
+---
+title: "Refer"
+description: "Lite integration workflow for hassle-free integration with Quicko"
+---
+
+The Refer Integration Workflow is designed for channel partners seeking a hassle-free, minimal development effort integration with Quicko. This method primarily involves redirecting your user to our Income Tax Web Application.
+
+![Quicko Web Integration Refer Workflow](/projects/connect/assets/integrations/web/refer.png)
+
+## Workflow Overview
+
+<Steps>
+  <Step title="Building the Redirect URL">
+    The redirect URL would look like:
+
+    ```
+    https://it.quicko.com?affiliate_id={{YOUR_AFFILIATE_ID}}
+    ```
+
+    <Card
+      title="Affiliate ID"
+      icon="id"
+    >
+      An `affiliate_id` helps Quicko attribute a user conversion to you. You can also use your affiliate dashboard to keep track of all the conversions and transactions performed by the users attributed to you. To get started, head over to Clique.
+    </Card>
+  </Step>
+
+  <Step title="Redirection Implementation">
+    Integrate a simple redirection mechanism in your system to navigate users to the acquired URL.
+  </Step>
+</Steps>
+

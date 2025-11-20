@@ -1,0 +1,43 @@
+---
+title: "Introduction to API Based OAuth"
+---
+
+API-based OAuth workflow that allows access without any exposure of resource owner's credentials
+
+## API Based Workflow
+
+The API-based workflow is a two step process:
+
+<Steps>
+  <Step title="Generate OTP">
+    Generate OTP for users using Generate OTP endpoints. User will obtain a One Time Password (OTP) on their registered email address with a validity of 10 mins.
+  </Step>
+  <Step title="Verify OTP">
+    Provide the OTP and username (user's email) to Verify OTP endpoint. Obtain the `access_token` and use that with all subsequent requests.
+  </Step>
+</Steps>
+
+### Step 1
+
+Generate OTP for users using Generate OTP endpoints. User will obtain a One Time Password (OTP) on their registered email address with a validity of 10 mins.
+
+| HTTP Method | Resource                                                   | Description                                             |
+| ----------- | ---------------------------------------------------------- | ------------------------------------------------------- |
+| GET         | See code block below                                        | API accepts username and sends OTP to registered email. |
+
+```
+{{your_oauth_app_authenticate}}/otp?username={username}
+```
+
+### Step 2
+
+Provide the OTP and username (user's email) to Verify OTP endpoint. Obtain the `access_token` and use that with all subsequent requests.
+
+| HTTP Method | Resource                                                             | Description                                                            |
+| ----------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| POST        | See code block below                                                 | API accepts username and OTP to obtain resource owner's access_token. |
+
+```
+{{your_oauth_app_authenticate}}/otp?username={username}&otp={otp}
+```
+

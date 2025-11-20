@@ -1,0 +1,226 @@
+---
+title: "Integrations"
+description: "Integrate Quicko Connect into your platform with mobile SDK, web, or API integrations"
+---
+
+Quicko Connect offers flexible integration options to suit your platform's needs. Whether you're building a mobile app, web application, or need direct API access, we provide seamless integration paths that prioritize user privacy and developer experience.
+
+<Card
+  title="Choose Your Integration Type"
+  icon="workflow"
+  href="/projects/connect/guides/getting-started/index"
+  horizontal
+>
+  Not sure which integration method is right for you? Check our getting started guide to help you decide.
+</Card>
+
+## Integration Options
+
+<AccordionGroup>
+  <Accordion title="Mobile SDK Integration" icon="smartphone" defaultOpen>
+    Integrate Quicko Connect into your native iOS or Android applications using our plug-and-play SDK. The SDK uses Material 3 design to blend seamlessly into your app's theme, ensuring a consistent user experience.
+
+    <Columns cols={2}>
+      <Card
+        title="iOS Integration"
+        icon="apple"
+      >
+        Native iOS SDK that integrates effortlessly with Swift and Objective-C applications. Supports iOS 13.0 and above.
+      </Card>
+      <Card
+        title="Android Integration"
+        icon="smartphone"
+      >
+        Native Android SDK built with Kotlin and Java support. Compatible with Android API level 21 and above.
+      </Card>
+    </Columns>
+
+    **Key Features:**
+    - Plug-and-play SDK with minimal setup
+    - Material 3 design system integration
+    - Customizable theme matching
+    - Event-driven callback system
+    - User consent management built-in
+  </Accordion>
+
+  <Accordion title="Web Integration" icon="monitor" defaultOpen>
+    Integrate Quicko Connect into your web platform using our redirect-based journey. Guide users seamlessly to the Quicko Income Tax Web App while maintaining full control over the user experience.
+
+    **Integration Flow:**
+    - User initiates tax filing from your platform
+    - Redirect to Quicko Connect web interface
+    - User completes tax filing journey
+    - Return to your platform with status updates
+
+    **Benefits:**
+    - Quick implementation with minimal code
+    - No SDK dependencies required
+    - Full feature access through web interface
+    - Seamless user experience with redirects
+  </Accordion>
+
+  <Accordion title="OAuth Integration" icon="key">
+    Implement OAuth 2.0 flow to authenticate users and obtain access tokens for API interactions. This integration method provides the most control and flexibility for custom implementations.
+
+    **OAuth Flow Steps:**
+    1. Obtain API User Access Token via `/authenticate` endpoint
+    2. Initialize OAuth authorization flow
+    3. User grants consent through authorization endpoint
+    4. Receive Resource Owner Access Token
+    5. Use token for Open API requests
+
+    **Use Cases:**
+    - Custom UI implementations
+    - Server-side integrations
+    - Advanced workflow customization
+    - Multi-platform integrations
+  </Accordion>
+
+  <Accordion title="Direct API Integration" icon="terminal">
+    Integrate directly with Quicko Connect APIs for complete control over user experience and data flow. Perfect for advanced use cases requiring custom implementations.
+
+    **Available APIs:**
+    - User management endpoints
+    - Tax filing endpoints
+    - Tax computation APIs
+    - Advisory services APIs
+    - Event webhooks
+
+    **Requirements:**
+    - Valid API credentials (key and secret)
+    - OAuth flow implementation
+    - User consent management
+    - Secure token storage
+  </Accordion>
+</AccordionGroup>
+
+## Integration Architecture
+
+<AccordionGroup>
+  <Accordion title="Event-Driven System" icon="zap" defaultOpen>
+    Quicko Connect uses an event-driven architecture that keeps your platform informed about user actions and journey progress. All events are shared transparently with channel partners.
+
+    **Event Types:**
+    - User journey milestones
+    - Tax filing status updates
+    - Payment transactions
+    - Document uploads
+    - User consent changes
+
+    **Implementation:**
+    - Register event listeners in your app
+    - Handle events asynchronously
+    - Update UI based on event data
+    - Track user journey progress
+  </Accordion>
+
+  <Accordion title="User Privacy & Consent" icon="shield-check">
+    Privacy and user consent are fundamental to Quicko Connect integrations. All data access and actions require explicit user consent, ensuring compliance with privacy regulations.
+
+    **Consent Management:**
+    - Explicit consent prompts
+    - Granular permission controls
+    - Consent revocation support
+    - Transparent data usage policies
+
+    **Best Practices:**
+    - Request consent at appropriate times
+    - Explain data usage clearly
+    - Provide easy opt-out mechanisms
+    - Maintain consent records
+  </Accordion>
+
+  <Accordion title="Token Management" icon="lock">
+    Proper token management is crucial for secure integrations. Understand how to acquire, store, and refresh access tokens throughout your application lifecycle.
+
+    **Token Types:**
+    - **API User Access Token**: Authenticates your application
+    - **Resource Owner Access Token**: Represents user consent
+
+    **Security Practices:**
+    - Store tokens securely (never in client-side code)
+    - Implement token refresh mechanisms
+    - Use HTTPS for all API requests
+    - Handle token expiration gracefully
+  </Accordion>
+</AccordionGroup>
+
+## Quick Start
+
+<Steps>
+  <Step title="Choose Your Platform">
+    Determine whether you need mobile SDK (iOS/Android), web integration, or direct API access based on your platform and requirements.
+  </Step>
+  <Step title="Get API Credentials">
+    Obtain your API credentials (key and secret) from the Quicko Connect dashboard. Use test credentials for development and live credentials for production.
+  </Step>
+  <Step title="Implement Authentication">
+    Set up authentication using the OAuth flow or API User Access Token, depending on your integration type.
+  </Step>
+  <Step title="Handle Events">
+    Implement event listeners to track user journey progress and update your application state accordingly.
+  </Step>
+  <Step title="Test & Deploy">
+    Test your integration thoroughly in the test environment before deploying to production.
+  </Step>
+</Steps>
+
+## Integration Best Practices
+
+<Columns cols={2}>
+  <Card
+    title="Secure Credentials"
+    icon="shield"
+  >
+    Never expose API keys or secrets in client-side code. Store credentials securely on your backend and use them for server-side API calls.
+  </Card>
+  <Card
+    title="Error Handling"
+    icon="triangle-alert"
+  >
+    Implement comprehensive error handling for authentication failures, network errors, and API rate limits. Provide clear error messages to users.
+  </Card>
+  <Card
+    title="User Experience"
+    icon="users"
+  >
+    Design seamless user flows that guide users through the tax filing process. Provide clear progress indicators and status updates.
+  </Card>
+  <Card
+    title="Testing"
+    icon="flask"
+  >
+    Test thoroughly in the test environment before production deployment. Use test credentials and verify all integration flows work correctly.
+  </Card>
+</Columns>
+
+---
+
+## Next Steps
+
+Ready to start integrating? Choose your integration method and follow the detailed guides:
+
+<Card
+  title="Mobile SDK Documentation"
+  icon="smartphone"
+  href="/projects/connect/guides/integrations/iosandroid-integration/index"
+>
+  Learn how to integrate Quicko Connect into your iOS or Android application.
+</Card>
+
+<Card
+  title="Web Integration Guide"
+  icon="monitor"
+  href="/projects/connect/guides/integrations/web-integration/index"
+>
+  Get started with web integration using redirect-based flows.
+</Card>
+
+<Card
+  title="API Reference"
+  icon="terminal"
+  href="/projects/connect/api-reference/authentication/authentication"
+>
+  Explore the complete API reference for direct API integrations.
+</Card>
+
