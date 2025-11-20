@@ -20,9 +20,7 @@
     "dark": "static/favicon/favicon.svg"
   },
   "navigation": {
-    "pages": [
-      "index"
-    ],
+    "pages": ["index"],
     "products": [
       {
         "product": "Connect",
@@ -43,16 +41,12 @@
               {
                 "group": "OAuth",
                 "icon": "book-open",
-                "pages": [
-                  "projects/connect/guides/oauth/oauth"
-                ]
+                "pages": ["projects/connect/guides/oauth/oauth"]
               },
               {
                 "group": "Open APIs",
                 "icon": "square-terminal",
-                "pages": [
-                  "projects/connect/guides/open-apis/open-apis"
-                ]
+                "pages": ["projects/connect/guides/open-apis/open-apis"]
               },
               {
                 "group": "Integration",
@@ -119,9 +113,7 @@
               {
                 "group": "OAuth",
                 "icon": "book-open",
-                "pages": [
-                  "projects/connect/api-reference/oauth/authorize"
-                ]
+                "pages": ["projects/connect/api-reference/oauth/authorize"]
               },
               {
                 "group": "Open APIs",
@@ -163,9 +155,7 @@
           {
             "group": "Getting started",
             "icon": "rocket",
-            "pages": [
-              "projects/integration/index"
-            ]
+            "pages": ["projects/integration/index"]
           },
           {
             "group": "OAuth",
@@ -343,6 +333,171 @@
                 "pages": [
                   "projects/integration/bank-integration/account-details/bank_account_details",
                   "projects/integration/bank-integration/account-details/bank_account_details_api"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "product": "GSP",
+        "description": "Access GST Network APIs through Quicko GSP.",
+        "icon": "gst",
+        "href": "/project/gsp",
+        "groups": [
+          {
+            "group": "Quicko GSP Auth",
+            "icon": "key",
+            "pages": [
+              "projects/gsp/api-reference/quicko-gsp-auth/authenticate",
+              "projects/gsp/api-reference/quicko-gsp-auth/refresh"
+            ]
+          },
+          {
+            "group": "GSP API",
+            "icon": "api",
+            "pages": [
+              {
+                "group": "Public",
+                "pages": [
+                  "projects/gsp/api-reference/gsp-api/public/search-taxpayer",
+                  "projects/gsp/api-reference/gsp-api/public/view-and-track-returns"
+                ]
+              },
+              {
+                "group": "Taxpayer",
+                "pages": [
+                  {
+                    "group": "Taxpayer Auth",
+                    "pages": [
+                      "projects/gsp/api-reference/gsp-api/taxpayer/taxpayer-auth/request-for-otp",
+                      "projects/gsp/api-reference/gsp-api/taxpayer/taxpayer-auth/initiate-otp-for-evc"
+                    ]
+                  },
+                  {
+                    "group": "Returns",
+                    "pages": [
+                      {
+                        "group": "GSTR-1",
+                        "pages": [
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-1/get-b2b-invoices",
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-1/save-gstr1-data"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-2B",
+                        "pages": [
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-2b/get-2b",
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-2b/gstr-2b-regen-status",
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-2b/regenerate-gstr-2b"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-3B",
+                        "pages": [
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr3b/get-3b"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-9",
+                        "pages": [
+                          "projects/gsp/api-reference/gsp-api/taxpayer/returns/gstr-9/get-details"
+                        ]
+                      },
+                      "projects/gsp/api-reference/gsp-api/taxpayer/returns/get-preference",
+                      "projects/gsp/api-reference/gsp-api/taxpayer/returns/get-return-status"
+                    ]
+                  },
+                  {
+                    "group": "e-Invoice",
+                    "pages": [
+                      "projects/gsp/api-reference/gsp-api/taxpayer/e-invoice/get-irn-list"
+                    ]
+                  },
+                  {
+                    "group": "Ledgers",
+                    "pages": [
+                      "projects/gsp/api-reference/gsp-api/taxpayer/ledgers/itc-ledger"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "IRP API",
+            "icon": "server",
+            "pages": [
+              {
+                "group": "e-Invoice",
+                "pages": [
+                  {
+                    "group": "Vital API",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-invoice/vital-api/authentication",
+                      "projects/gsp/api-reference/irp-api/e-invoice/vital-api/gstin-details",
+                      "projects/gsp/api-reference/irp-api/e-invoice/vital-api/sync-gstin-details-from-cp"
+                    ]
+                  },
+                  {
+                    "group": "Core API",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-invoice/core-api/generate-irn",
+                      "projects/gsp/api-reference/irp-api/e-invoice/core-api/cancel-irn",
+                      "projects/gsp/api-reference/irp-api/e-invoice/core-api/irn-details",
+                      "projects/gsp/api-reference/irp-api/e-invoice/core-api/irn-details-by-doc",
+                      "projects/gsp/api-reference/irp-api/e-invoice/core-api/rejected-irn-details"
+                    ]
+                  },
+                  {
+                    "group": "E-Way Bill",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-invoice/e-way-bill/generate-ewb-by-irn",
+                      "projects/gsp/api-reference/irp-api/e-invoice/e-way-bill/ewb-details-by-irn"
+                    ]
+                  },
+                  {
+                    "group": "Health",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-invoice/health/eivital",
+                      "projects/gsp/api-reference/irp-api/e-invoice/health/eicore",
+                      "projects/gsp/api-reference/irp-api/e-invoice/health/eiewb"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "E-Way Bill",
+                "pages": [
+                  {
+                    "group": "Core",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-way-bill/core/authentication",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/core/hsn-details",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/core/gstin-details",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/core/error-list"
+                    ]
+                  },
+                  {
+                    "group": "Taxpayer",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-way-bill/taxpayer/generate-ewb",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/taxpayer/ewb-details",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/taxpayer/consolidated-ewb",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/taxpayer/ewb-gen-by-cosigner",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/taxpayer/other-party-ewb-details"
+                    ]
+                  },
+                  {
+                    "group": "Transporter",
+                    "pages": [
+                      "projects/gsp/api-reference/irp-api/e-way-bill/transporter/transin-details",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/transporter/transporter-1-state-date",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/transporter/transporter-2-date",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/transporter/transporter-3-gstin-date",
+                      "projects/gsp/api-reference/irp-api/e-way-bill/transporter/transporter-4-assigned-date"
+                    ]
+                  }
                 ]
               }
             ]

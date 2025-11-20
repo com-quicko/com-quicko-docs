@@ -1,0 +1,6592 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "com-quicko-gsp",
+    "version": "1.0.0",
+    "description": "## 👋 Introduction\n\nWelcome to the Quicko GSP API documentation. Here you'll find all information to start communicating and exchanging data with the GST Network via Quicko GSP.\n\n## 🚀 Getting Started\n\n#### **Environments and Endpoints**\n\nWe have two environments and their URLs are as below.\n\n| **Environment** | **Host URL** |\n| --- | --- |\n| UAT | uat-api.gsp.quicko.com |\n| PROD (Live) | api.gsp.quicko.com |\n\n#### Authorization\n\nOnce you are onboard with Quicko GSP, we will provision you two pairs of API Key and API Secret, one for each environment. These credentials are to be used to generate an access token using which API requests can be sent to Quicko GSP.\n\n## 🌐 Ecosystem\n\nQuicko GSP supports the GST Network Ecosystem, through which you can access the GST Public and Taxpayer APIs.\n\n#### GSTN Ecosystem\n\nThe GSTN maintains a developer portal where you'll be able to find the documentation for GST APIs.\n\nTo connect to the GSTN via Quicko GSP, you have to put the Quicko GSP host URL in the endpoint on the GSTN Dev Portal.\n\nFor e.g., in the below endpoint, you need to replace the {domain-name} with Quicko GSP host URL.\n\nEndpoint on GSTN Dev Portal - https://**{domain-name}**/taxpayerapi/v3.0/returns/gstr1\n\nEndpoint to be called - https://**api.gsp.quicko.com**/taxpayerapi/v3.0/returns/gstr1"
+  },
+  "servers": [
+    {
+      "url": "https://api.gsp.quicko.com"
+    }
+  ],
+  "paths": {
+    "/auth/authenticate": {
+      "post": {
+        "summary": "Authenticate",
+        "tags": ["Quicko GSP Auth"],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Requested-With": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "format": "style"
+                    },
+                    "refresh_token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Bad credential",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Requested-With": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Authenticate using your x-api-key and x-api-secret. On success, you'll receive an access_token and refresh_token."
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "summary": "Refresh",
+        "tags": ["Quicko GSP Auth"],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Requested-With": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 Unauthorized",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Verification failed",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-api-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Use this API to refresh your access_token using the refresh_token provided earlier."
+      }
+    },
+    "/commonapi/v1.3/search": {
+      "get": {
+        "summary": "Search Taxpayer",
+        "tags": ["GSP API", "Public"],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "description": "Validate a GSTIN and fetch basic taxpayer details from the GST system."
+      }
+    },
+    "/commonapi/v1.0/returns": {
+      "get": {
+        "summary": "View and Track Returns",
+        "tags": ["GSP API", "Public"],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "description": "Track status of returns filed by a taxpayer for a given financial year."
+      }
+    },
+    "/taxpayerapi/v1.0/authenticate": {
+      "post": {
+        "summary": "Request for OTP",
+        "tags": ["GSP API", "Taxpayer", "Taxpayer Auth"],
+        "parameters": [
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "description": "State code to which the Tax Payer belongs to, e.g. 11 for Sikkim",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input parameters",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "error_cd": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Trigger OTP to the taxpayer’s registered email and mobile linked to the GST portal.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "app_key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Initiate OTP for EVC",
+        "tags": ["GSP API", "Taxpayer", "Taxpayer Auth"],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "description": "Action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "gstin of Taxpayer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pan",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "form_type",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Used to generate OTP for electronic verification code (EVC) filing, applicable to returns like GSTR-1, GSTR-3B and so on."
+      }
+    },
+    "/taxpayerapi/v3.1/returns/gstr1": {
+      "get": {
+        "summary": "GSTR1 - Get B2B Invoices",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-1"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "query",
+            "description": "Return Period. E.g. 072016",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ctin",
+            "in": "query",
+            "description": "Optional. GSTIN of the Supplier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from_time",
+            "in": "query",
+            "description": "Optional. From which time taxpayer want Invoices. E.g. 04-02-2017",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch all B2B invoices for a specified return period."
+      },
+      "put": {
+        "summary": "GSTR1 - Save GSTR1 data",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-1"],
+        "parameters": [
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "description": "Return Period",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "rtn_typ",
+            "in": "header",
+            "description": "The Return Type of the end user",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userrole",
+            "in": "header",
+            "description": "The Return Type of the end user",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Encrypt, sign, and submit outward supply data to GSTN.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxpayerapi/v4.0/returns/gstr2b": {
+      "put": {
+        "summary": "Regenerate GSTR-2B",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-2B"],
+        "parameters": [
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Changes",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        },
+                        "error_cd": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Request GSTN to regenerate GSTR-2B data for a return period.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string"
+                  },
+                  "hmac": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/taxpayerapi/v2.0/returns/gstr2a": {
+      "get": {
+        "summary": "GSTR2B - Get 2B",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-2B"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ctin",
+            "in": "query",
+            "description": "Optional. GSTIN of the Supplier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from_time",
+            "in": "query",
+            "description": "Optional. From which time taxpayer want Invoices. E.g. 04-02-2017",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch all B2B invoices for a specified return period."
+      }
+    },
+    "/taxpayerapi/v3.0/returns/gstr2b": {
+      "get": {
+        "summary": "GSTR-2B Regen Status",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-2B"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rtnprd",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file_num",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status P",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "503",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "retry-after": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "error_cd": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Track the generation status using the transaction ID."
+      }
+    },
+    "/taxpayerapi/v6.0/returns/gstr3b": {
+      "get": {
+        "summary": "Get 3B",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR3B"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ctin",
+            "in": "query",
+            "description": "Optional. GSTIN of the Supplier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from_time",
+            "in": "query",
+            "description": "Optional. From which time taxpayer want Invoices. E.g. 04-02-2017",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch all B2B invoices for a specified return period."
+      }
+    },
+    "/taxpayerapi/v6.0/returns/gstr9": {
+      "get": {
+        "summary": "get details",
+        "tags": ["GSP API", "Taxpayer", "Returns", "GSTR-9"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ctin",
+            "in": "query",
+            "description": "Optional. GSTIN of the Supplier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from_time",
+            "in": "query",
+            "description": "Optional. From which time taxpayer want Invoices. E.g. 04-02-2017",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch all B2B invoices for a specified return period."
+      }
+    },
+    "/taxpayerapi/v1.0/returns": {
+      "get": {
+        "summary": "Get Preference",
+        "tags": ["GSP API", "Taxpayer", "Returns"],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "description": "Action",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fy",
+            "in": "query",
+            "description": "Financial role",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "query",
+            "description": "gstin of Taxpayer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "b2b": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ctin": {
+                            "type": "string"
+                          },
+                          "cfs": {
+                            "type": "string"
+                          },
+                          "inv": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "chksum": {
+                                  "type": "string"
+                                },
+                                "updby": {
+                                  "type": "string"
+                                },
+                                "inum": {
+                                  "type": "string"
+                                },
+                                "idt": {
+                                  "type": "string"
+                                },
+                                "val": {
+                                  "type": "number"
+                                },
+                                "pos": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "rchrg": {
+                                  "type": "string"
+                                },
+                                "etin": {
+                                  "type": "string"
+                                },
+                                "inv_typ": {
+                                  "type": "string"
+                                },
+                                "cflag": {
+                                  "type": "string"
+                                },
+                                "diff_percent": {
+                                  "type": "number"
+                                },
+                                "opd": {
+                                  "type": "string"
+                                },
+                                "srctyp": {
+                                  "type": "string"
+                                },
+                                "irn": {
+                                  "type": "string"
+                                },
+                                "irngendate": {
+                                  "type": "string"
+                                },
+                                "itms": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "num": {
+                                        "type": "integer"
+                                      },
+                                      "itm_det": {
+                                        "type": "object",
+                                        "properties": {
+                                          "rt": {
+                                            "type": "integer"
+                                          },
+                                          "txval": {
+                                            "type": "integer"
+                                          },
+                                          "iamt": {
+                                            "type": "integer"
+                                          },
+                                          "camt": {
+                                            "type": "integer"
+                                          },
+                                          "samt": {
+                                            "type": "integer"
+                                          },
+                                          "csamt": {
+                                            "type": "integer"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Use this to retrieve return filing preferences for a GSTIN, including preferred filing modes (self or via GSP)."
+      }
+    },
+    "/taxpayerapi/v1.1/returns": {
+      "get": {
+        "summary": "Get return status",
+        "tags": ["GSP API", "Taxpayer", "Returns"],
+        "parameters": [
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ref_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "description": "Public IP Address of end user who requested access to data",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "description": "Unique Transaction ID associated with the request",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API Key provisioned to you",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Valid access token",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "description": "GSTIN of the Tax Payer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "description": "Return Period",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "rtn_typ",
+            "in": "header",
+            "description": "The Return Type of the end user",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userrole",
+            "in": "header",
+            "description": "The Return Type of the end user",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api_version",
+            "in": "header",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "description": "Check the filing status and reference ID of a previously submitted return."
+      }
+    },
+    "/taxpayerapi/v1.0/einvoice": {
+      "get": {
+        "summary": "Get IRN List",
+        "tags": ["GSP API", "Taxpayer", "e-Invoice"],
+        "parameters": [
+          {
+            "name": "stin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rtin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rtnprd",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "suptyp",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch the list of IRNs generated for a taxpayer for a specific return period."
+      }
+    },
+    "/taxpayerapi/v0.3/ledgers": {
+      "get": {
+        "summary": "ITC Ledger",
+        "tags": ["GSP API", "Taxpayer", "Ledgers"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fr_dt",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to_dt",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ip-usr",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "txn",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state-cd",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ret_period",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-transaction-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_cd": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Fetch the Input Tax Credit ledger to check ITC balances, credits claimed, and availability for a GSTIN."
+      }
+    },
+    "/irp/einv/nic/eivital/v1.04/auth": {
+      "post": {
+        "summary": "Authentication",
+        "tags": ["IRP API", "e-Invoice", "Vital API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "1017 Incorrect user id/User does not exists",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Data": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eivital/v1.04/Master/gstin/{gstin}": {
+      "get": {
+        "summary": "GstinDetails",
+        "tags": ["IRP API", "e-Invoice", "Vital API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "3001 Requested data is not available",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "type": "string"
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "gstin",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/irp/einv/nic/eivital/v1.04/Master/syncgstin/{gstin}": {
+      "get": {
+        "summary": "SyncGstinDetailsFromCP",
+        "tags": ["IRP API", "e-Invoice", "Vital API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "5001 Application error",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "gstin",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/irp/einv/nic/eicore/v1.03/Invoice": {
+      "post": {
+        "summary": "GenerateIRN",
+        "tags": ["IRP API", "e-Invoice", "Core API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "5002 Missing fields",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Data": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eicore/v1.03/Invoice/Cancel": {
+      "post": {
+        "summary": "CancelIRN",
+        "tags": ["IRP API", "e-Invoice", "Core API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "5002 Application error",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Data": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eicore/v1.03/Invoice/irn/{irn}": {
+      "get": {
+        "summary": "IRNDetails",
+        "tags": ["IRP API", "e-Invoice", "Core API"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2148 IRN data not available",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "gstin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "irn",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/irp/einv/nic/eicore/v1.03/Invoice/irnbydocdetails": {
+      "get": {
+        "summary": "IRNDetailsByDoc",
+        "tags": ["IRP API", "e-Invoice", "Core API"],
+        "parameters": [
+          {
+            "name": "doctype",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "docnum",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "docdate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "1005 Invalid token",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eicore/v1.03/Invoice/rejectedirns": {
+      "get": {
+        "summary": "RejectedIRNDetails",
+        "tags": ["IRP API", "e-Invoice", "Core API"],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "2308 Ineligible date",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "gstin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eiewb/v1.03/ewaybill": {
+      "post": {
+        "summary": "GenerateEWBByIRN",
+        "tags": ["IRP API", "e-Invoice", "E-Way Bill"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 EWB Generated",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "nullable": true
+                    },
+                    "Data": {
+                      "type": "string"
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Data": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/einv/nic/eiewb/v1.03/ewaybill/irn/{irn}": {
+      "get": {
+        "summary": "EWBDetailsByIRN",
+        "tags": ["IRP API", "e-Invoice", "E-Way Bill"],
+        "parameters": [
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_name",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AuthToken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "4005 EWB details not found",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "type": "string"
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "irn",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/irp/einv/nic/eivital/v1.04/heartbeat/ping": {
+      "get": {
+        "summary": "EIVITAL",
+        "tags": ["IRP API", "e-Invoice", "Health"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/einv/nic/eicore/v1.03/heartbeat/ping": {
+      "get": {
+        "summary": "EICORE",
+        "tags": ["IRP API", "e-Invoice", "Health"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/einv/nic/eiewb/v1.03/heartbeat/ping": {
+      "get": {
+        "summary": "EIEWB",
+        "tags": ["IRP API", "e-Invoice", "Health"],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/auth": {
+      "post": {
+        "summary": "Authentication",
+        "tags": ["IRP API", "E-Way Bill", "Core"],
+        "parameters": [
+          {
+            "name": "client-id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "client-secret",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "description": "https://einv-apisandbox.nic.in/ewaybillapi/v1.03/",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "1017 Incorrect user id/User does not exists",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "strict-transport-security": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Status": {
+                      "type": "integer"
+                    },
+                    "ErrorDetails": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "ErrorCode": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          },
+                          "ErrorMessage": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "Data": {
+                      "nullable": true
+                    },
+                    "InfoDtls": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Data": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/Master/GetHsnDetailsByHsnCode": {
+      "get": {
+        "summary": "HSN Details",
+        "tags": ["IRP API", "E-Way Bill", "Core"],
+        "parameters": [
+          {
+            "name": "hsncode",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/Master/GetGSTINDetails": {
+      "get": {
+        "summary": "GSTIN Details",
+        "tags": ["IRP API", "E-Way Bill", "Core"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/Master/GetErrorList": {
+      "get": {
+        "summary": "ERROR List",
+        "tags": ["IRP API", "E-Way Bill", "Core"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi": {
+      "post": {
+        "summary": "Generate EWB",
+        "tags": ["IRP API", "E-Way Bill", "Taxpayer"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "604 Duplicate document number",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "info": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBill": {
+      "get": {
+        "summary": "EWB Details",
+        "tags": ["IRP API", "E-Way Bill", "Taxpayer"],
+        "parameters": [
+          {
+            "name": "ewbNo",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "data": {
+                      "type": "string"
+                    },
+                    "rek": {
+                      "type": "string"
+                    },
+                    "hmac": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetTripSheet": {
+      "get": {
+        "summary": "Consolidated EWB",
+        "tags": ["IRP API", "E-Way Bill", "Taxpayer"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillGeneratedByConsigner": {
+      "get": {
+        "summary": "EWB Gen By Cosigner",
+        "tags": ["IRP API", "E-Way Bill", "Taxpayer"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillsofOtherParty": {
+      "get": {
+        "summary": "Other Party EWB Details",
+        "tags": ["IRP API", "E-Way Bill", "Taxpayer"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/Master/GetTransporterDetails": {
+      "get": {
+        "summary": "Transin Details",
+        "tags": ["IRP API", "E-Way Bill", "Transporter"],
+        "parameters": [
+          {
+            "name": "trn_no",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "328 Could not retrieve transporter details",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "referrer-policy": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-ua-compatible": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-permitted-cross-domain-policies": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "accept-bytes": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "content-security-policy": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "cache-control": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-server": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "removeserverheader": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "expires": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-powered-by": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "pragma": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-credentials": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "x-aspnet-version": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "info": {
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillsForTransporterByState": {
+      "get": {
+        "summary": "Transporter 1 State Date",
+        "tags": ["IRP API", "E-Way Bill", "Transporter"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillsForTransporter": {
+      "get": {
+        "summary": "Transporter 2 Date",
+        "tags": ["IRP API", "E-Way Bill", "Transporter"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillsForTransporterByGstin": {
+      "get": {
+        "summary": "Transporter 3 Gstin Date",
+        "tags": ["IRP API", "E-Way Bill", "Transporter"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/irp/ewb/nic/ewaybillapi/v1.03/ewayapi/GetEwayBillReportByTransporterassignedDate": {
+      "get": {
+        "summary": "Transporter 4 Assigned Date",
+        "tags": ["IRP API", "E-Way Bill", "Transporter"],
+        "parameters": [
+          {
+            "name": "gstin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authtoken",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    }
+  }
+}
