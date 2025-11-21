@@ -28,6 +28,7 @@
         "tabs": [
           {
             "tab": "Guides",
+            "icon": "book-open",
             "groups": [
               {
                 "group": "Getting started",
@@ -104,6 +105,7 @@
           },
           {
             "tab": "API Reference",
+            "icon": "code-xml",
             "groups": [
               {
                 "group": "Authentication",
@@ -352,7 +354,8 @@
     "links": [
       {
         "label": "Help Center",
-        "href": "https://help.quicko.com"
+        "href": "https://help.quicko.com",
+        "icon": "headset"
       }
     ]
   },
