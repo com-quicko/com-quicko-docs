@@ -388,5 +388,10 @@
   },
   "background": {
     "decoration": "windows"
+  },
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-PGKJ3JKF"
+    }
   }
 }
