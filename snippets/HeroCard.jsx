@@ -1,13 +1,13 @@
-export const HeroCard = ({ filename, title, description, href, darkFilename }) => {
+export const HeroCard = ({ imageUri, darkImageUri, title, description, href }) => {
   return (
     <a className="group cursor-pointer pb-8" href={href}>
       <img
-        src={filename}
-        className="block dark:hidden pointer-events-none group-hover:scale-105 transition-all duration-100"
+        src={imageUri}
+        className="block dark:hidden w-full pointer-events-none group-hover:scale-105 transition-all duration-100"
       />
       <img
-        src={darkFilename}
-        className="pointer-events-none group-hover:scale-105 transition-all duration-100 hidden dark:block"
+        src={darkImageUri}
+        className="w-full pointer-events-none group-hover:scale-105 transition-all duration-100 hidden dark:block"
       />
       <h3 className="mt-5 text-gray-900 dark:text-zinc-50 font-medium">
         {title}
