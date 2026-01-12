@@ -157,7 +157,6 @@
         "product": "Integration",
         "description": "Set up workflows with Quicko APIs.",
         "icon": "puzzle",
-        "href": "/project/integration",
         "groups": [
           {
             "group": "Getting started",
