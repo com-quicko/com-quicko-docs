@@ -1,9 +1,8 @@
 # Quicko Integration — Overview
 
-The **Quicko Integration Documentation** helps you integrate your application with Quicko to securely access user, financial, payroll, and banking data.  
-This section covers authentication flows and multiple integration categories that power tax, finance, and reporting use cases.
+The **Quicko Integration Documentation** is intended for partners and platforms that want to **extend their offerings by integrating with Quicko** and **sending relevant data to Quicko for compliance and regulatory workflows**.
 
-All APIs are consent-driven and designed to be used after successful authentication.
+These integrations enable external systems—such as brokers, payroll providers, and banks—to push structured data into Quicko so it can be used for tax computation, reporting, and statutory compliance.
 
 ---
 
@@ -34,78 +33,32 @@ The Integration project is organized into focused sections, each addressing a sp
 </CardGroup>
 
 ---
+## Integration flow
 
-## Authentication & OAuth
+The following steps outline the typical process for integrating your system with Quicko, regardless of whether you are a bank, broker, HRMS provider, or another platform.
 
-All Quicko integrations begin with authentication. This section explains how to obtain access tokens and user consent using OAuth.
+<Steps>
+  <Step title="Understand integration requirements">
+    Identify the nature of your integration (for example, bank, broker, or HRMS) and review the data requirements defined in the relevant integration section.  
+    This helps determine the APIs, payload structures, and compliance data expected by Quicko.
+  </Step>
 
-Supported flows include:
+  <Step title="Implement APIs as per Quicko specifications">
+    Build the required APIs and data pipelines based on the integration documentation.  
+    Ensure request formats, authentication mechanisms, and validations match the specifications provided.
+  </Step>
 
-- **Redirection-based OAuth** — Redirect users to Quicko for authorization and consent.
-- **API-based OAuth** — Handle authentication programmatically using APIs.
+  <Step title="Share endpoints and credentials">
+    Provide the implemented API endpoints and required credentials to the Quicko team so the integration can be configured and reviewed.
+  </Step>
 
-Once generated, access tokens are used across all Integration APIs.
+  <Step title="Test the integration">
+    Validate data exchange in the testing environment to ensure accuracy, completeness, and compliance with expected workflows.
+  </Step>
 
----
-
-## Profile APIs
-
-Profile APIs allow you to retrieve verified user information after authentication.  
-These APIs are commonly used for:
-
-- Identity verification  
-- User personalization  
-- Pre-filling user data in downstream workflows  
-
----
-
-## Broker Integration APIs
-
-Broker APIs provide access to financial and trading data from supported brokerage platforms. These endpoints enable investment insights, reporting, and tax calculations.
-
-Available data includes:
-
-- Tradebook  
-- Tradewise P&L  
-- Financial instruments  
-- Holdings  
-- Open positions  
-- Balances  
-
----
-
-## HRMS Integration
-
-HRMS APIs enable integration with payroll systems to retrieve:
-
-- Salary details  
-- Employer information  
-
-This data is typically used for income computation, tax filing, and financial analysis.
-
----
-
-## Bank Integration
-
-Bank Integration APIs allow access to banking data with user consent, including:
-
-- Account statements  
-- Account details  
-
-These APIs support reconciliation, expense analysis, and financial reporting use cases.
-
----
-
-## How to navigate this section
-
-Each integration category includes:
-
-- Conceptual overviews  
-- Detailed API references with request and response formats  
-- Guides for common integration flows  
-
-We recommend starting with **Authentication**, then exploring the integration category relevant to your use case.
-
-Use the navigation on the left to dive into specific sections.
+  <Step title="Go live">
+    Once testing is complete and approved, move the integration to production and begin submitting live data to Quicko.
+  </Step>
+</Steps>
 
 ---
