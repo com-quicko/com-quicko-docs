@@ -1,17 +1,111 @@
+# Quicko Integration — Overview
+
+The **Quicko Integration Documentation** helps you integrate your application with Quicko to securely access user, financial, payroll, and banking data.  
+This section covers authentication flows and multiple integration categories that power tax, finance, and reporting use cases.
+
+All APIs are consent-driven and designed to be used after successful authentication.
+
 ---
-title: "Introduction"
+
+## What this documentation covers
+
+The Integration project is organized into focused sections, each addressing a specific integration capability.
+
+<CardGroup>
+  <Card title="Authentication & OAuth" icon="lock" href="/projects/integration/oauth">
+    Securely authenticate users and generate access tokens required to call Quicko APIs.
+  </Card>
+
+  <Card title="Profile APIs" icon="user" href="/projects/integration/profile">
+    Retrieve authenticated user profile and identity information.
+  </Card>
+
+  <Card title="Broker Integrations" icon="chart-line" href="/projects/integration/broker-integration">
+    Access trading, portfolio, and financial data from supported brokers.
+  </Card>
+
+  <Card title="HRMS Integrations" icon="building-office" href="/projects/integration/hrms-integration">
+    Fetch salary and employer data from payroll systems.
+  </Card>
+
+  <Card title="Bank Integrations" icon="banknotes" href="/projects/integration/bank-integration">
+    Retrieve bank account details and transaction statements.
+  </Card>
+</CardGroup>
+
 ---
 
-OAuth is a standard that apps can use to provide client applications with "secure delegated access"
+## Authentication & OAuth
 
-OAuth 2.0 protocol allows the resource owner to grant limited access to their resources available on one platform, to another platform. Users can revoke access to their data at any time.
+All Quicko integrations begin with authentication. This section explains how to obtain access tokens and user consent using OAuth.
 
-## OAuth Flows
+Supported flows include:
 
-Two standard types of OAuth flows are supported:
+- **Redirection-based OAuth** — Redirect users to Quicko for authorization and consent.
+- **API-based OAuth** — Handle authentication programmatically using APIs.
 
-<Columns cols={2}>
-  <Card title="Redirection based workflow" icon="arrow-right" horizontal href="/projects/integration/oauth/redirection_based/redirection_based" />
-  <Card title="API based workflow" icon="code" horizontal href="/projects/integration/oauth/api_based/api_based" />
-</Columns>
+Once generated, access tokens are used across all Integration APIs.
 
+---
+
+## Profile APIs
+
+Profile APIs allow you to retrieve verified user information after authentication.  
+These APIs are commonly used for:
+
+- Identity verification  
+- User personalization  
+- Pre-filling user data in downstream workflows  
+
+---
+
+## Broker Integration APIs
+
+Broker APIs provide access to financial and trading data from supported brokerage platforms. These endpoints enable investment insights, reporting, and tax calculations.
+
+Available data includes:
+
+- Tradebook  
+- Tradewise P&L  
+- Financial instruments  
+- Holdings  
+- Open positions  
+- Balances  
+
+---
+
+## HRMS Integration
+
+HRMS APIs enable integration with payroll systems to retrieve:
+
+- Salary details  
+- Employer information  
+
+This data is typically used for income computation, tax filing, and financial analysis.
+
+---
+
+## Bank Integration
+
+Bank Integration APIs allow access to banking data with user consent, including:
+
+- Account statements  
+- Account details  
+
+These APIs support reconciliation, expense analysis, and financial reporting use cases.
+
+---
+
+## How to navigate this section
+
+Each integration category includes:
+
+- Conceptual overviews  
+- Detailed API references with request and response formats  
+- Guides for common integration flows  
+
+We recommend starting with **Authentication**, then exploring the integration category relevant to your use case.
+
+Use the navigation on the left to dive into specific sections.
+
+---
