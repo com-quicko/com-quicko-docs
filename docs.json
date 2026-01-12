@@ -356,7 +356,8 @@
             "group": "Getting Started",
             "icon": "rocket",
             "pages": [
-              "projects/tools/index"
+              "projects/tools/index",
+              "projects/tools/license"
             ]
           },
           {

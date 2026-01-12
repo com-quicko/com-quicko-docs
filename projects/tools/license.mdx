@@ -1,0 +1,138 @@
+---
+title: "License"
+description: "Quicko Tools are free to use with proper attribution to Quicko."
+---
+
+Quicko Tools are **free to use** for both commercial and non-commercial purposes. There are no usage fees, API limits, or hidden costs associated with embedding our tools into your platform.
+
+## Attribution Requirement
+
+While Quicko Tools are free, **attribution is required**. We believe in the philosophy of giving credit where it's due. By providing proper attribution:
+
+- You help others discover these tools
+- You support the ecosystem of free, high-quality tax utilities
+- You acknowledge the expertise and effort behind building these tools
+
+> [!IMPORTANT]
+> Attribution is not just recommended—it is **required** when using Quicko Tools. The attribution must be visible to end users.
+
+## Attribution Guidelines
+
+When embedding Quicko Tools, you must include a visible attribution that links back to Quicko. The attribution should be:
+
+1. **Visible** – Easily noticeable to users
+2. **Proximate** – Near the embedded tool
+3. **Linked** – Hyperlinked to `https://quicko.com`
+
+## Attribution Snippets
+
+Add attribution near your embedded tool. Here are ready-to-use snippets:
+
+<Tabs>
+  <Tab title="HTML">
+    ```html
+    <p style="text-align: center; font-size: 14px; color: #666; margin-top: 16px;">
+      Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
+    </p>
+    ```
+  </Tab>
+  <Tab title="React/JSX">
+    ```jsx
+    <p style={{ textAlign: 'center', fontSize: '14px', color: '#666', marginTop: '16px' }}>
+      Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
+    </p>
+    ```
+  </Tab>
+  <Tab title="Markdown">
+    ```markdown
+    *Powered by [Quicko](https://quicko.com)*
+    ```
+  </Tab>
+</Tabs>
+
+### Complete Integration Example
+
+Here's how to embed a tool with proper attribution:
+
+```html
+<div class="quicko-tool-container">
+  <iframe
+    src="https://tools.quicko.com/hra-calculator"
+    width="100%"
+    height="500"
+    frameborder="0"
+    allow="clipboard-write"
+  ></iframe>
+  <p style="text-align: center; font-size: 14px; color: #666; margin-top: 16px;">
+    Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
+  </p>
+</div>
+```
+
+### Mobile SDK Attribution
+
+For mobile integrations, include attribution text within your app's UI near the tool:
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    ```swift
+    // Add below your tool view
+    let attributionLabel = UILabel()
+    attributionLabel.text = "Powered by Quicko"
+    attributionLabel.textAlignment = .center
+    attributionLabel.font = .systemFont(ofSize: 14)
+    attributionLabel.textColor = .gray
+    ```
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    ```kotlin
+    // Add below your tool view in XML or programmatically
+    TextView(context).apply {
+        text = "Powered by Quicko"
+        textAlignment = View.TEXT_ALIGNMENT_CENTER
+        textSize = 14f
+        setTextColor(Color.GRAY)
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Why We Choose This Model
+
+<AccordionGroup>
+  <Accordion title="Free Access for Everyone" icon="heart" defaultOpen>
+    We believe tax-related utilities should be accessible to all. By offering free tools, we empower developers, businesses, and end-users to make informed tax decisions.
+  </Accordion>
+  <Accordion title="Building Community" icon="users">
+    Attribution creates awareness and helps build a community of developers and partners who contribute to the ecosystem of tax utilities.
+  </Accordion>
+  <Accordion title="Sustainable Growth" icon="trending-up">
+    When you attribute Quicko, you help us grow organically. This allows us to continue developing and maintaining high-quality, free tools for everyone.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Terms Summary
+
+| Aspect | Terms |
+|--------|-------|
+| **Usage** | Free for commercial and non-commercial use |
+| **Attribution** | Required and must be visible to end users |
+| **Modifications** | Tools must be embedded as-is; no modifications |
+| **Liability** | Quicko provides tools "as-is" without warranties |
+
+For complete terms and conditions, please refer to our [Terms of Service](https://quicko.com/terms).
+
+---
+
+## Questions?
+
+<Card
+  title="Contact Us"
+  icon="message-circle"
+  href="https://quicko.com/contact-sales?utm_source=com-quicko-developer&utm_medium=referral&utm_campaign=tools_license"
+  horizontal
+>
+  Have questions about usage or attribution? Reach out to our team.
+</Card>
