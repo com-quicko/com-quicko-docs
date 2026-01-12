@@ -1,0 +1,192 @@
+---
+title: "HRA Calculator"
+description: "Calculate HRA exemption based on your salary to optimize your tax savings."
+---
+
+import { Iframe } from "/snippets/Iframe.jsx";
+
+The HRA (House Rent Allowance) Calculator helps employees determine the tax-exempt portion of their HRA, enabling them to optimize their tax savings legally.
+
+## Features
+
+<Columns cols={2}>
+  <Card title="Instant Calculation" icon="zap">
+    Get results immediately as users enter their salary details.
+  </Card>
+  <Card title="Metro/Non-Metro Support" icon="building">
+    Automatically applies the correct percentage based on city type.
+  </Card>
+  <Card title="Detailed Breakdown" icon="list">
+    Shows all three components so users understand the calculation.
+  </Card>
+  <Card title="Copy Results" icon="clipboard">
+    Users can easily copy the results for their records.
+  </Card>
+</Columns>
+
+## Integration
+
+### Web (iframe)
+
+```html
+<iframe
+  src="https://tools.quicko.com/hra-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+```
+
+With customization:
+
+```html
+<iframe
+  id="hra-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+
+<script>
+  const theme = {
+    mode: "dark",
+    seed: "#006AD4"
+  };
+  
+  const base64Theme = btoa(encodeURIComponent(JSON.stringify(theme)));
+  document.getElementById('hra-calculator').src = 
+    `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
+</script>
+```
+
+### Mobile (WebView)
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    ```swift
+    import WebKit
+
+    let theme: [String: Any] = [
+        "mode": "light",
+        "seed": "#006AD4"
+    ]
+
+    if let jsonData = try? JSONSerialization.data(withJSONObject: theme),
+       let base64Theme = jsonData.base64EncodedString()
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        let toolUrl = "https://tools.quicko.com/hra-calculator?theme=\(base64Theme)"
+        webView.load(URLRequest(url: URL(string: toolUrl)!))
+    }
+    ```
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    ```kotlin
+    import android.util.Base64
+    import org.json.JSONObject
+
+    val theme = JSONObject().apply {
+        put("mode", "light")
+        put("seed", "#006AD4")
+    }
+
+    val base64Theme = Base64.encodeToString(
+        theme.toString().toByteArray(Charsets.UTF_8),
+        Base64.NO_WRAP
+    )
+    val toolUrl = "https://tools.quicko.com/hra-calculator?theme=$base64Theme"
+    webView.loadUrl(toolUrl)
+    ```
+  </Tab>
+  <Tab title="Flutter">
+    ```dart
+    import 'dart:convert';
+
+    final theme = {'mode': 'light', 'seed': '#006AD4'};
+    final base64Theme = base64Encode(utf8.encode(jsonEncode(theme)));
+    final toolUrl = 'https://tools.quicko.com/hra-calculator?theme=$base64Theme';
+    
+    controller.loadRequest(Uri.parse(toolUrl));
+    ```
+  </Tab>
+  <Tab title="React Native">
+    ```jsx
+    import { Buffer } from 'buffer';
+
+    const theme = { mode: 'light', seed: '#006AD4' };
+    const base64Theme = Buffer.from(JSON.stringify(theme)).toString('base64');
+    const toolUrl = `https://tools.quicko.com/hra-calculator?theme=${base64Theme}`;
+    
+    <WebView source={{ uri: toolUrl }} />
+    ```
+  </Tab>
+</Tabs>
+
+## Input Fields
+
+The HRA Calculator collects the following information:
+
+| Field | Description | Required |
+|-------|-------------|----------|
+| Basic Salary | Basic salary amount | Yes |
+| HRA Received | HRA component in salary | Yes |
+| Rent Paid | Rent paid for accommodation | Yes |
+| Metro City | Whether the city is a metro (Mumbai, Delhi, Chennai, Kolkata) | Yes |
+
+## Output
+
+The calculator displays:
+
+- **Exempt HRA Amount** – The tax-exempt portion of HRA
+- **Taxable HRA Amount** – The portion that will be taxed
+- **Breakdown** – All three calculation components for transparency
+
+---
+
+## Use Cases
+
+<AccordionGroup>
+  <Accordion title="Content & Tax Guidance Websites" icon="book-open" defaultOpen>
+    Enhance tax-related articles and guides by embedding an interactive HRA calculator.
+  </Accordion>
+  <Accordion title="Tax Filing Platforms" icon="file-text">
+    Pre-calculate HRA exemption to streamline the tax filing process.
+  </Accordion>
+  <Accordion title="HR & Payroll Systems" icon="users">
+    Provide employees with a tool to understand their salary components.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Demo
+
+<Iframe
+  title="HRA Calculator"
+  lightUrl="https://tools.quicko.com/hra-calculator"
+  darkUrl="https://tools.quicko.com/hra-calculator?theme=ewoibW9kZSI6ImRhcmsiCn0"
+  height={500}
+  className="rounded-l"
+/>
+
+---
+
+## Related
+
+<Columns cols={2}>
+  <Card
+    title="Integration Guide"
+    icon="code"
+    href="/projects/tools/integration/index"
+  >
+    Learn how to embed this tool in your platform.
+  </Card>
+  <Card
+    title="Customization Options"
+    icon="settings"
+    href="/projects/tools/options/index"
+  >
+    Match the tool's appearance to your brand.
+  </Card>
+</Columns>

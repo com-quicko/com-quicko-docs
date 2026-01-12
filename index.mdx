@@ -27,7 +27,7 @@ import { HeroCard } from "/snippets/HeroCard.jsx";
     </div>
 
     <h2 className="text-xl font-medium text-gray-900 dark:text-zinc-50 mb-4">Products</h2>
-    <div className="md:px-6 lg:px-0 gap-x-4 gap-y-4 grid sm:grid-cols-2 mb-12">
+    <div className="md:px-6 lg:px-0 gap-x-4 gap-y-4 grid sm:grid-cols-3 mb-12">
         <HeroCard 
           imageUri="/static/images/landing/connect_light.svg" 
           darkImageUri="/static/images/landing/connect_dark.svg" 
@@ -41,6 +41,13 @@ import { HeroCard } from "/snippets/HeroCard.jsx";
           title="Integration" 
           description="Integrate with Quicko to enhance your platform's tax capabilities" 
           href="/projects/integration/index" 
+        />
+        <HeroCard 
+          imageUri="/static/images/landing/tools_light.svg" 
+          darkImageUri="/static/images/landing/tools_dark.svg" 
+          title="Tools" 
+          description="Embed themeable, plug & play tax tools into your website or mobile app." 
+          href="/projects/tools/index" 
         />
     </div>
 
