@@ -3,25 +3,9 @@ title: "HRA Calculator"
 description: "Calculate HRA exemption based on your salary to optimize your tax savings."
 ---
 
+import { Iframe } from "/snippets/Iframe.jsx";
+
 The HRA (House Rent Allowance) Calculator helps employees determine the tax-exempt portion of their HRA, enabling them to optimize their tax savings legally.
-
-## What is HRA Exemption?
-
-HRA exemption is a tax benefit available to salaried individuals who receive House Rent Allowance as part of their salary and pay rent for their accommodation. The exemption amount is the **minimum** of:
-
-1. Actual HRA received
-2. Rent paid minus 10% of basic salary
-3. 50% of basic salary (metro cities) or 40% (non-metro cities)
-
-<Accordion title="HRA Exemption Formula" icon="function-square" defaultOpen>
-  ```
-  Exempt HRA = MIN(
-    Actual HRA received,
-    Rent paid - 10% of Basic Salary,
-    50% of Basic Salary (metro) OR 40% of Basic Salary (non-metro)
-  )
-  ```
-</Accordion>
 
 ## Features
 
@@ -71,7 +55,7 @@ With customization:
     seed: "#006AD4"
   };
   
-  const encodedOptions = encodeURIComponent(JSON.stringify(theme));
+  const base64Theme = btoa(encodeURIComponent(JSON.stringify(theme)));
   document.getElementById('hra-calculator').src = 
     `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
 </script>
@@ -141,6 +125,18 @@ The calculator displays:
     Provide employees with a tool to understand their salary components.
   </Accordion>
 </AccordionGroup>
+
+---
+
+## Demo
+
+<Iframe
+  title="HRA Calculator"
+  lightUrl="https://tools.quicko.com/hra-calculator"
+  darkUrl="https://tools.quicko.com/hra-calculator?theme=ewoibW9kZSI6ImRhcmsiCn0"
+  height={500}
+  className="rounded-l"
+/>
 
 ---
 
