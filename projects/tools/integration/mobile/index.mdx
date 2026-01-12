@@ -1,111 +1,215 @@
 ---
 title: "Mobile Integration"
-description: "Integrate Quicko Tools into your iOS or Android app using our lightweight native SDK."
+description: "Integrate Quicko Tools into your iOS or Android app using WebView."
 ---
 
-Quicko Tools provides a thin, lightweight SDK for native mobile applications. The SDK uses Material 3 design principles to blend seamlessly with your app's existing theme.
+Quicko Tools can be easily integrated into your mobile app by loading the tool URL in a WebView. This approach is identical to using an iframe on web—simply load the tool URL and it renders seamlessly within your app.
 
 ## Overview
 
-The mobile SDK enables you to embed Quicko Tools natively within your iOS or Android application, providing a smooth user experience that feels part of your app.
+The mobile integration uses a WebView to display Quicko Tools, providing a consistent experience across platforms with minimal setup.
 
 <AccordionGroup>
-  <Accordion title="Lightweight" icon="feather" defaultOpen>
-    The SDK is designed to be thin and performant, adding minimal overhead to your app's size.
+  <Accordion title="No SDK Required" icon="feather" defaultOpen>
+    Simply use your platform's native WebView component—no additional dependencies needed.
   </Accordion>
-  <Accordion title="Native Experience" icon="smartphone" defaultOpen>
-    Tools render natively within your app, providing smooth animations and interactions.
+  <Accordion title="Consistent Experience" icon="smartphone" defaultOpen>
+    Tools render exactly as they would on web, ensuring feature parity across platforms.
   </Accordion>
-  <Accordion title="Material 3 Design" icon="palette">
-    The SDK follows Material 3 specifications, automatically adapting to your app's theme.
+  <Accordion title="Easy Theming" icon="palette">
+    Customize appearance using URL parameters, just like web integration.
   </Accordion>
 </AccordionGroup>
-
-## Installation
-
-<Tabs>
-  <Tab title="iOS (Swift)">
-    Add the QuickoTools SDK to your project using Swift Package Manager:
-
-    ```swift
-    dependencies: [
-        .package(url: "https://github.com/nicq-io/quicko-tools-ios.git", from: "1.0.0")
-    ]
-    ```
-
-    Or add via Xcode:
-    1. Go to **File → Add Packages**
-    2. Enter the repository URL
-    3. Select the version and add to your target
-  </Tab>
-  <Tab title="Android (Kotlin)">
-    Add the dependency to your `build.gradle`:
-
-    ```kotlin
-    dependencies {
-        implementation("com.nicq.tools:quicko-tools:1.0.0")
-    }
-    ```
-
-    Make sure you have the Maven Central repository in your project:
-
-    ```kotlin
-    repositories {
-        mavenCentral()
-    }
-    ```
-  </Tab>
-</Tabs>
 
 ## Quick Start
 
 <Tabs>
   <Tab title="iOS (Swift)">
+    Use `WKWebView` to load the tool URL:
+
     ```swift
-    import QuickoTools
+    import WebKit
+    import Foundation
 
-    // Create options with theme configuration
-    let theme: [String: Any] = [
-        "mode": "light",
-        "seed": "#006AD4"
-    ]
+    class ToolViewController: UIViewController {
+        private var webView: WKWebView!
 
-    // Present a tool
-    QuickoTools.launchHraCalculator(theme: theme, from: self)
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+            webView = WKWebView(frame: view.bounds)
+            webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.addSubview(webView)
+            
+            // Define theme configuration
+            let theme: [String: Any] = [
+                "mode": "dark",
+                "seed": "#2962FF"
+            ]
+            
+            // Convert theme to base64
+            if let jsonData = try? JSONSerialization.data(withJSONObject: theme),
+               let base64Theme = jsonData.base64EncodedString()
+                    .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                
+                // Construct the tool URL with base64 encoded theme
+                let toolUrl = "https://tools.quicko.com/calculators/hra?theme=\(base64Theme)"
+                
+                if let url = URL(string: toolUrl) {
+                    webView.load(URLRequest(url: url))
+                }
+            }
+        }
+    }
     ```
   </Tab>
   <Tab title="Android (Kotlin)">
+    Use `WebView` to load the tool URL:
+
     ```kotlin
-    import com.nicq.tools.QuickoTools
+    import android.os.Bundle
+    import android.util.Base64
+    import android.webkit.WebView
+    import android.webkit.WebViewClient
+    import androidx.appcompat.app.AppCompatActivity
     import org.json.JSONObject
 
-    // Create options with theme configuration
-    val theme = JSONObject().apply {
-        put("mode", "light")
-        put("seed", "#006AD4")
+    class ToolActivity : AppCompatActivity() {
+        private lateinit var webView: WebView
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            
+            webView = WebView(this).apply {
+                settings.javaScriptEnabled = true
+                webViewClient = WebViewClient()
+            }
+            setContentView(webView)
+            
+            // Define theme configuration
+            val theme = JSONObject().apply {
+                put("mode", "dark")
+                put("seed", "#2962FF")
+            }
+            
+            // Convert theme to base64
+            val base64Theme = Base64.encodeToString(
+                theme.toString().toByteArray(Charsets.UTF_8),
+                Base64.NO_WRAP
+            )
+            
+            // Construct the tool URL with base64 encoded theme
+            val toolUrl = "https://tools.quicko.com/calculators/hra?theme=$base64Theme"
+            webView.loadUrl(toolUrl)
+        }
+    }
+    ```
+  </Tab>
+  <Tab title="Flutter">
+    Use the `webview_flutter` package to load the tool URL:
+
+    ```dart
+    import 'dart:convert';
+    import 'package:flutter/material.dart';
+    import 'package:webview_flutter/webview_flutter.dart';
+
+    class ToolPage extends StatefulWidget {
+      @override
+      State<ToolPage> createState() => _ToolPageState();
     }
 
-    // Launch a tool
-    QuickoTools.launchHraCalculator(this, theme)
+    class _ToolPageState extends State<ToolPage> {
+      late final WebViewController controller;
+
+      @override
+      void initState() {
+        super.initState();
+        
+        // Define theme configuration
+        final theme = {
+          'mode': 'dark',
+          'seed': '#2962FF',
+        };
+        
+        // Convert theme to base64
+        final base64Theme = base64Encode(utf8.encode(jsonEncode(theme)));
+        
+        // Construct the tool URL with base64 encoded theme
+        final toolUrl = 'https://tools.quicko.com/calculators/hra?theme=$base64Theme';
+        
+        controller = WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..loadRequest(Uri.parse(toolUrl));
+      }
+
+      @override
+      Widget build(BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(title: const Text('HRA Calculator')),
+          body: WebViewWidget(controller: controller),
+        );
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="React Native">
+    Use the `react-native-webview` package to load the tool URL:
+
+    ```jsx
+    import React, { useMemo } from 'react';
+    import { WebView } from 'react-native-webview';
+    import { Buffer } from 'buffer';
+
+    const ToolScreen = () => {
+      const toolUrl = useMemo(() => {
+        // Define theme configuration
+        const theme = {
+          mode: 'dark',
+          seed: '#2962FF',
+        };
+        
+        // Convert theme to base64
+        const base64Theme = Buffer.from(JSON.stringify(theme)).toString('base64');
+        
+        // Construct the tool URL with base64 encoded theme
+        return `https://tools.quicko.com/calculators/hra?theme=${base64Theme}`;
+      }, []);
+
+      return (
+        <WebView
+          source={{ uri: toolUrl }}
+          javaScriptEnabled={true}
+          style={{ flex: 1 }}
+        />
+      );
+    };
+
+    export default ToolScreen;
     ```
   </Tab>
 </Tabs>
 
-## Options Structure
+## URL Structure
 
-The SDK accepts an options object to customize the tool's appearance:
+The tool URL follows this pattern:
+
+```
+https://tools.quicko.com/{tool-path}?theme={base64-encoded-theme}
+```
+
+The `theme` parameter is a base64-encoded JSON object:
 
 ```json
-"theme": {
-    "mode": "light",
-    "seed": "#006AD4"
+{
+  "mode": "dark",
+  "seed": "#2962FF"
 }
 ```
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `theme.mode` | `String` | Theme mode: `light` or `dark` |
-| `theme.seed` | `String` | Seed color (hex with #) for theme generation |
+| `mode` | `String` | Theme mode: `light` or `dark` |
+| `seed` | `String` | Seed color (hex with #) for theme generation |
 
 <Card
   title="View All Options"
@@ -119,17 +223,17 @@ The SDK accepts an options object to customize the tool's appearance:
 ## Integration Steps
 
 <Steps>
-  <Step title="Install the SDK">
-    Add the QuickoTools dependency to your iOS or Android project.
+  <Step title="Get the Tool URL">
+    Find the tool you want to integrate from the [Tools Directory](/projects/tools/directory/index) and note its URL path.
   </Step>
-  <Step title="Configure Options">
-    Create an theme object with your preferred mode and brand color.
+  <Step title="Create Theme Object">
+    Define a theme object with `mode` (light/dark) and `seed` (hex color) properties.
   </Step>
-  <Step title="Present the Tool">
-    Use the SDK's launch methods to present the desired tool to your users.
+  <Step title="Encode as Base64">
+    Convert the theme JSON to a base64 string.
   </Step>
-  <Step title="Handle Results">
-    Optionally, implement delegate/callback methods to receive results or events from the tool.
+  <Step title="Load in WebView">
+    Append the base64 theme to the URL and load it in your platform's WebView component.
   </Step>
 </Steps>
 
@@ -142,11 +246,11 @@ The SDK accepts an options object to customize the tool's appearance:
   <Card title="Respect System Theme" icon="sun-moon">
     Detect the user's system theme preference and set the mode accordingly.
   </Card>
-  <Card title="Handle Orientation" icon="rotate-3d">
-    Tools support both portrait and landscape orientations.
+  <Card title="Handle Navigation" icon="arrow-left">
+    Consider implementing back button handling for WebView navigation.
   </Card>
-  <Card title="Memory Management" icon="cpu">
-    The SDK handles memory efficiently, but dismiss tools when no longer needed.
+  <Card title="Loading States" icon="loader">
+    Show a loading indicator while the WebView content loads.
   </Card>
 </Columns>
 

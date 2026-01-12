@@ -129,34 +129,6 @@ Here's how to embed a tool with proper attribution:
 </div>
 ```
 
-### Mobile SDK Attribution
-
-For mobile integrations, include attribution text within your app's UI near the tool:
-
-<Tabs>
-  <Tab title="iOS (Swift)">
-    ```swift
-    // Add below your tool view
-    let attributionLabel = UILabel()
-    attributionLabel.text = "Powered by Quicko"
-    attributionLabel.textAlignment = .center
-    attributionLabel.font = .systemFont(ofSize: 14)
-    attributionLabel.textColor = .gray
-    ```
-  </Tab>
-  <Tab title="Android (Kotlin)">
-    ```kotlin
-    // Add below your tool view in XML or programmatically
-    TextView(context).apply {
-        text = "Powered by Quicko"
-        textAlignment = View.TEXT_ALIGNMENT_CENTER
-        textSize = 14f
-        setTextColor(Color.GRAY)
-    }
-    ```
-  </Tab>
-</Tabs>
-
 ## Why We Choose This Model
 
 <AccordionGroup>

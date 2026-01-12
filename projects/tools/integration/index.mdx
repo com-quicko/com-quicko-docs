@@ -36,33 +36,33 @@ Quicko Tools offers two integration channels designed to fit your platform's nee
   </Accordion>
 
   <Accordion title="Mobile Integration" icon="smartphone" defaultOpen>
-    Integrate Quicko Tools into your iOS or Android app using our lightweight native SDK. The SDK uses Material 3 design principles to blend seamlessly into your app's theme.
+    Integrate Quicko Tools into your iOS or Android app using a WebView. Simply load the tool URL in a WebView—just like using an iframe on web.
 
     **Key Benefits:**
-    - Thin and lightweight SDK
-    - Native performance
-    - Material 3 design integration
-    - iOS and Android support
+    - No SDK dependencies
+    - Works on iOS, Android, Flutter, React Native
+    - Easy theming via URL parameters
+    - Consistent experience across platforms
 
     <Card
       title="Mobile Integration Guide"
       icon="arrow-right"
       href="/projects/tools/integration/mobile/index"
     >
-      Learn how to integrate the mobile SDK
+      Learn how to integrate tools using WebView
     </Card>
   </Accordion>
 </AccordionGroup>
 
 ## Quick Comparison
 
-| Feature | Web (iframe) | Mobile (SDK) |
-|---------|--------------|--------------|
-| Setup complexity | Minimal | Low |
-| Platform | Any web browser | iOS & Android |
-| Theming | Via URL parameters | Via SDK config |
-| Performance | Web-based | Native |
-| Dependencies | None | Lightweight SDK |
+| Feature | Web (iframe) | Mobile (WebView) |
+|---------|--------------|------------------|
+| Setup complexity | Minimal | Minimal |
+| Platform | Any web browser | iOS, Android, Flutter, React Native |
+| Theming | Via URL parameters | Via URL parameters |
+| Dependencies | None | None (uses native WebView) |
+| Experience | Web-based | Web-based in native container |
 
 ---
 
@@ -81,6 +81,6 @@ Quicko Tools offers two integration channels designed to fit your platform's nee
     icon="smartphone"
     href="/projects/tools/integration/mobile/index"
   >
-    Integrate the native SDK into your iOS or Android app.
+    Load tools in a WebView within your iOS or Android app.
   </Card>
 </Columns>
