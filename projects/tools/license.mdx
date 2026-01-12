@@ -31,16 +31,56 @@ Add attribution near your embedded tool. Here are ready-to-use snippets:
 <Tabs>
   <Tab title="HTML">
     ```html
-    <p style="text-align: center; font-size: 14px; color: #666; margin-top: 16px;">
-      Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
-    </p>
+    <div
+      onclick="window.open('https://quicko.com', '_blank', 'noopener,noreferrer')"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 56px;
+        padding: 0 8px;
+        border-top: 1px solid #c6c5d0;
+        background-color: #f6f7f8;
+        cursor: pointer;
+      "
+    >
+      <span style="font-size: 14px; line-height: 1; color: #666;">
+        Powered by
+      </span>
+      <img
+        src="https://cdn.brandfetch.io/id6OWxavk2/theme/dark/idpHm6Kke3.svg?c=1bxid64Mup7aczewSAYMX&t=1765534843947"
+        alt="Quicko"
+        style="height: 16px; object-fit: contain;"
+      />
+    </div>
     ```
   </Tab>
   <Tab title="React/JSX">
     ```jsx
-    <p style={{ textAlign: 'center', fontSize: '14px', color: '#666', marginTop: '16px' }}>
-      Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
-    </p>
+    <div
+      onClick={() => window.open("https://quicko.com", "_blank", "noopener,noreferrer")}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
+        height: '56px',
+        padding: '0 8px',
+        borderTop: '1px solid #c6c5d0',
+        backgroundColor: '#f6f7f8',
+        cursor: 'pointer'
+      }}
+    >
+      <span style={{ fontSize: '14px', lineHeight: 1, color: '#666' }}>
+        Powered by
+      </span>
+      <img
+        src="https://cdn.brandfetch.io/id6OWxavk2/theme/dark/idpHm6Kke3.svg?c=1bxid64Mup7aczewSAYMX&t=1765534843947"
+        alt="Quicko"
+        style={{ height: '16px', objectFit: 'contain' }}
+      />
+    </div>
     ```
   </Tab>
   <Tab title="Markdown">
@@ -63,9 +103,29 @@ Here's how to embed a tool with proper attribution:
     frameborder="0"
     allow="clipboard-write"
   ></iframe>
-  <p style="text-align: center; font-size: 14px; color: #666; margin-top: 16px;">
-    Powered by <a href="https://quicko.com" target="_blank" rel="noopener noreferrer">Quicko</a>
-  </p>
+  <div
+    onclick="window.open('https://quicko.com', '_blank', 'noopener,noreferrer')"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 56px;
+      padding: 0 8px;
+      border-top: 1px solid #c6c5d0;
+      background-color: #f6f7f8;
+      cursor: pointer;
+    "
+  >
+    <span style="font-size: 14px; line-height: 1; color: #666;">
+      Powered by
+    </span>
+    <img
+      src="https://cdn.brandfetch.io/id6OWxavk2/theme/dark/idpHm6Kke3.svg?c=1bxid64Mup7aczewSAYMX&t=1765534843947"
+      alt="Quicko"
+      style="height: 16px; object-fit: contain;"
+    />
+  </div>
 </div>
 ```
 
