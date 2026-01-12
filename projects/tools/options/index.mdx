@@ -1,0 +1,163 @@
+---
+title: "Theme"
+description: "Customize Quicko Tools appearance with theme mode and color options based on Material 3 design."
+---
+
+Quicko Tools support customization to match your platform's branding. You pass an `options` object that contains theme configuration to generate a complete Material 3 color scheme.
+
+## Structure
+
+The `options` object contains a `theme` key with the following properties:
+
+```json
+{
+  "theme": {
+    "mode": "light",
+    "seed": "#2962FF"
+  }
+}
+```
+
+| Property | Description | Default |
+|----------|-------------|---------|
+| `$.theme.mode` | Theme mode (`light` or `dark`) | `light` |
+| `$.theme.seed` | Seed color for theme generation (hex with `#`) | `#2962FF` |
+
+## Theme Mode
+
+Control whether the tool displays in light or dark mode:
+
+<Columns cols={2}>
+  <Card title="Light Mode" icon="sun">
+    Clean, bright interface suitable for light-themed applications.
+  </Card>
+  <Card title="Dark Mode" icon="moon">
+    Dark interface that reduces eye strain and suits dark-themed applications.
+  </Card>
+</Columns>
+
+<Tabs>
+  <Tab title="Web (JSON)">
+    ```json
+    {
+      "theme": {
+        "mode": "dark"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="iOS (Map)">
+    ```swift
+    let options: [String: Any] = [
+        "theme": [
+            "mode": "dark"
+        ]
+    ]
+    ```
+  </Tab>
+  <Tab title="Android (JSONObject)">
+    ```kotlin
+    val options = JSONObject().apply {
+        put("theme", JSONObject().apply {
+            put("mode", "dark")
+        })
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Seed Color
+
+Provide a seed color and Quicko Tools will generate a complete color scheme based on Material 3 specifications. This ensures harmonious colors across the entire tool interface.
+
+<Accordion title="How Material 3 Color Generation Works" icon="palette" defaultOpen>
+  Material 3 uses a seed color to derive a complete palette including:
+  - Primary, secondary, and tertiary colors
+  - Surface and background colors
+  - On-color variants for text and icons
+  - Error and outline colors
+
+  This approach ensures visual harmony while allowing brand customization.
+</Accordion>
+
+<Tabs>
+  <Tab title="Web (JSON)">
+    ```json
+    {
+      "theme": {
+        "mode": "light",
+        "seed": "#2962FF"
+      }
+    }
+    ```
+  </Tab>
+  <Tab title="iOS (Map)">
+    ```swift
+    let options: [String: Any] = [
+        "theme": [
+            "mode": "light",
+            "seed": "#2962FF"
+        ]
+    ]
+    ```
+  </Tab>
+  <Tab title="Android (JSONObject)">
+    ```kotlin
+    val options = JSONObject().apply {
+        put("theme", JSONObject().apply {
+            put("mode", "light")
+            put("seed", "#2962FF")
+        })
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Your Brand's Primary Color" icon="palette" defaultOpen>
+    Pass your brand's primary color as the seed. Material 3 will generate complementary colors automatically.
+  </Accordion>
+  <Accordion title="Respect User Preferences" icon="user-check">
+    Detect the user's system theme preference and set the mode accordingly for a consistent experience.
+  </Accordion>
+  <Accordion title="Test Both Modes" icon="sun-moon">
+    Always test your integration in both light and dark modes to ensure readability and visual appeal.
+  </Accordion>
+  <Accordion title="Avoid Low-Contrast Colors" icon="eye">
+    Choose seed colors with sufficient contrast. Very light or very dark colors may produce themes with accessibility issues.
+  </Accordion>
+</AccordionGroup>
+
+## Example Themes
+
+Here are some example seed color configurations:
+
+| Brand Color | Hex Code | Usage |
+|-------------|----------|-------|
+| Quicko Blue | `#2962FF` | Default Quicko branding |
+| Forest Green | `#2E7D32` | Eco-friendly or financial apps |
+| Deep Purple | `#673AB7` | Creative or premium apps |
+| Orange | `#F57C00` | Energetic or action-oriented apps |
+
+---
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card
+    title="Web Integration"
+    icon="monitor"
+    href="/projects/tools/integration/web/index"
+  >
+    Learn how to pass options when embedding tools.
+  </Card>
+  <Card
+    title="Mobile Integration"
+    icon="smartphone"
+    href="/projects/tools/integration/mobile/index"
+  >
+    Learn how to configure options in the mobile SDK.
+  </Card>
+</Columns>

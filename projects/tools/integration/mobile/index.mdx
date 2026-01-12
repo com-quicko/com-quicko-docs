@@ -1,0 +1,169 @@
+---
+title: "Mobile Integration"
+description: "Integrate Quicko Tools into your iOS or Android app using our lightweight native SDK."
+---
+
+Quicko Tools provides a thin, lightweight SDK for native mobile applications. The SDK uses Material 3 design principles to blend seamlessly with your app's existing theme.
+
+## Overview
+
+The mobile SDK enables you to embed Quicko Tools natively within your iOS or Android application, providing a smooth user experience that feels part of your app.
+
+<AccordionGroup>
+  <Accordion title="Lightweight" icon="feather" defaultOpen>
+    The SDK is designed to be thin and performant, adding minimal overhead to your app's size.
+  </Accordion>
+  <Accordion title="Native Experience" icon="smartphone" defaultOpen>
+    Tools render natively within your app, providing smooth animations and interactions.
+  </Accordion>
+  <Accordion title="Material 3 Design" icon="palette">
+    The SDK follows Material 3 specifications, automatically adapting to your app's theme.
+  </Accordion>
+</AccordionGroup>
+
+## Installation
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    Add the QuickoTools SDK to your project using Swift Package Manager:
+
+    ```swift
+    dependencies: [
+        .package(url: "https://github.com/nicq-io/quicko-tools-ios.git", from: "1.0.0")
+    ]
+    ```
+
+    Or add via Xcode:
+    1. Go to **File → Add Packages**
+    2. Enter the repository URL
+    3. Select the version and add to your target
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    Add the dependency to your `build.gradle`:
+
+    ```kotlin
+    dependencies {
+        implementation("com.nicq.tools:quicko-tools:1.0.0")
+    }
+    ```
+
+    Make sure you have the Maven Central repository in your project:
+
+    ```kotlin
+    repositories {
+        mavenCentral()
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Quick Start
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    ```swift
+    import QuickoTools
+
+    // Create options with theme configuration
+    let options: [String: Any] = [
+        "theme": [
+            "mode": "light",
+            "seed": "#006AD4"
+        ]
+    ]
+
+    // Present a tool
+    QuickoTools.launchHraCalculator(options: options, from: self)
+    ```
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    ```kotlin
+    import com.nicq.tools.QuickoTools
+    import org.json.JSONObject
+
+    // Create options with theme configuration
+    val options = JSONObject().apply {
+        put("theme", JSONObject().apply {
+            put("mode", "light")
+            put("seed", "#006AD4")
+        })
+    }
+
+    // Launch a tool
+    QuickoTools.launchHraCalculator(this, options)
+    ```
+  </Tab>
+</Tabs>
+
+## Options Structure
+
+The SDK accepts an options object to customize the tool's appearance:
+
+```json
+{
+  "theme": {
+    "mode": "light",
+    "seed": "#006AD4"
+  }
+}
+```
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `theme.mode` | `String` | Theme mode: `light` or `dark` |
+| `theme.seed` | `String` | Seed color (hex with #) for Material 3 theme generation |
+
+<Card
+  title="View All Options"
+  icon="settings"
+  href="/projects/tools/options/index"
+  horizontal
+>
+  Learn about all available customization options and how they affect the generated theme.
+</Card>
+
+## Integration Steps
+
+<Steps>
+  <Step title="Install the SDK">
+    Add the QuickoTools dependency to your iOS or Android project.
+  </Step>
+  <Step title="Configure Options">
+    Create an options object with your preferred theme mode and brand color.
+  </Step>
+  <Step title="Present the Tool">
+    Use the SDK's launch methods to present the desired tool to your users.
+  </Step>
+  <Step title="Handle Results">
+    Optionally, implement delegate/callback methods to receive results or events from the tool.
+  </Step>
+</Steps>
+
+## Best Practices
+
+<Columns cols={2}>
+  <Card title="Match App Theme" icon="palette">
+    Use your app's primary color as the seed color for consistent branding.
+  </Card>
+  <Card title="Respect System Theme" icon="sun-moon">
+    Detect the user's system theme preference and set the mode accordingly.
+  </Card>
+  <Card title="Handle Orientation" icon="rotate-3d">
+    Tools support both portrait and landscape orientations.
+  </Card>
+  <Card title="Memory Management" icon="cpu">
+    The SDK handles memory efficiently, but dismiss tools when no longer needed.
+  </Card>
+</Columns>
+
+---
+
+## Next Steps
+
+<Card
+  title="Browse Available Tools"
+  icon="grid"
+  href="/projects/tools/directory/index"
+>
+  Explore all tools available for your mobile app.
+</Card>

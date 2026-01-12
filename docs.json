@@ -346,6 +346,54 @@
             ]
           }
         ]
+      },
+      {
+        "product": "Tools",
+        "description": "Embed tax tools in your platform.",
+        "icon": "wrench",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "projects/tools/index"
+            ]
+          },
+          {
+            "group": "Integration",
+            "icon": "code",
+            "pages": [
+              "projects/tools/integration/index",
+              {
+                "group": "Web",
+                "pages": [
+                  "projects/tools/integration/web/index"
+                ]
+              },
+              {
+                "group": "Mobile",
+                "pages": [
+                  "projects/tools/integration/mobile/index"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Options",
+            "icon": "settings",
+            "pages": [
+              "projects/tools/options/index"
+            ]
+          },
+          {
+            "group": "Directory",
+            "icon": "grid",
+            "pages": [
+              "projects/tools/directory/index",
+              "projects/tools/directory/hra-calculator"
+            ]
+          }
+        ]
       }
     ]
   },

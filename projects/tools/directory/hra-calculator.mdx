@@ -1,0 +1,170 @@
+---
+title: "HRA Calculator"
+description: "Calculate HRA exemption based on your salary to optimize your tax savings."
+---
+
+The HRA (House Rent Allowance) Calculator helps employees determine the tax-exempt portion of their HRA, enabling them to optimize their tax savings legally.
+
+## What is HRA Exemption?
+
+HRA exemption is a tax benefit available to salaried individuals who receive House Rent Allowance as part of their salary and pay rent for their accommodation. The exemption amount is the **minimum** of:
+
+1. Actual HRA received
+2. Rent paid minus 10% of basic salary
+3. 50% of basic salary (metro cities) or 40% (non-metro cities)
+
+<Accordion title="HRA Exemption Formula" icon="function-square" defaultOpen>
+  ```
+  Exempt HRA = MIN(
+    Actual HRA received,
+    Rent paid - 10% of Basic Salary,
+    50% of Basic Salary (metro) OR 40% of Basic Salary (non-metro)
+  )
+  ```
+</Accordion>
+
+## Features
+
+<Columns cols={2}>
+  <Card title="Instant Calculation" icon="zap">
+    Get results immediately as users enter their salary details.
+  </Card>
+  <Card title="Metro/Non-Metro Support" icon="building">
+    Automatically applies the correct percentage based on city type.
+  </Card>
+  <Card title="Detailed Breakdown" icon="list">
+    Shows all three components so users understand the calculation.
+  </Card>
+  <Card title="Copy Results" icon="clipboard">
+    Users can easily copy the results for their records.
+  </Card>
+</Columns>
+
+## Integration
+
+### Web (iframe)
+
+```html
+<iframe
+  src="https://tools.quicko.com/hra-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+```
+
+With customization:
+
+```html
+<iframe
+  id="hra-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+
+<script>
+  const options = {
+    theme: {
+      mode: "dark",
+      seed: "#006AD4"
+    }
+  };
+  
+  const encodedOptions = encodeURIComponent(JSON.stringify(options));
+  document.getElementById('hra-calculator').src = 
+    `https://tools.quicko.com/hra-calculator?options=${encodedOptions}`;
+</script>
+```
+
+### Mobile SDK
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    ```swift
+    import QuickoTools
+
+    let options: [String: Any] = [
+        "theme": [
+            "mode": "light",
+            "seed": "#006AD4"
+        ]
+    ]
+
+    QuickoTools.launchHraCalculator(options: options, from: self)
+    ```
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    ```kotlin
+    import com.nicq.tools.QuickoTools
+    import org.json.JSONObject
+
+    val options = JSONObject().apply {
+        put("theme", JSONObject().apply {
+            put("mode", "light")
+            put("seed", "#006AD4")
+        })
+    }
+
+    QuickoTools.launchHraCalculator(this, options)
+    ```
+  </Tab>
+</Tabs>
+
+## Input Fields
+
+The HRA Calculator collects the following information:
+
+| Field | Description | Required |
+|-------|-------------|----------|
+| Basic Salary | Monthly basic salary amount | Yes |
+| HRA Received | Monthly HRA component in salary | Yes |
+| Rent Paid | Monthly rent paid for accommodation | Yes |
+| Metro City | Whether the city is a metro (Mumbai, Delhi, Chennai, Kolkata) | Yes |
+
+## Output
+
+The calculator displays:
+
+- **Exempt HRA Amount** – The tax-exempt portion of HRA
+- **Taxable HRA Amount** – The portion that will be taxed
+- **Breakdown** – All three calculation components for transparency
+
+---
+
+## Use Cases
+
+<AccordionGroup>
+  <Accordion title="Salary Planning Apps" icon="wallet" defaultOpen>
+    Help users understand their take-home salary by calculating accurate HRA exemptions.
+  </Accordion>
+  <Accordion title="Tax Filing Platforms" icon="file-text">
+    Pre-calculate HRA exemption to streamline the tax filing process.
+  </Accordion>
+  <Accordion title="HR & Payroll Systems" icon="users">
+    Provide employees with a tool to understand their salary components.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Related
+
+<Columns cols={2}>
+  <Card
+    title="Integration Guide"
+    icon="code"
+    href="/projects/tools/integration/index"
+  >
+    Learn how to embed this tool in your platform.
+  </Card>
+  <Card
+    title="Customization Options"
+    icon="settings"
+    href="/projects/tools/options/index"
+  >
+    Match the tool's appearance to your brand.
+  </Card>
+</Columns>
