@@ -25,8 +25,8 @@ Embedding a Quicko Tool is as simple as adding an iframe to your HTML:
   <Step title="Choose a Tool">
     Select the tool you want to embed from our [directory](/projects/tools/directory/index). Each tool has a unique URL endpoint.
   </Step>
-  <Step title="Configure Options">
-    Customize the tool's appearance by passing [options](/projects/tools/options/index) as a JSON object for theme mode and seed color.
+  <Step title="Configure Theme">
+    Customize the tool's appearance by passing [theme](/projects/tools/options/index) as a JSON object for mode and seed color.
   </Step>
   <Step title="Add the iframe">
     Insert the iframe code into your webpage at the desired location.
@@ -36,20 +36,18 @@ Embedding a Quicko Tool is as simple as adding an iframe to your HTML:
   </Step>
 </Steps>
 
-## Passing Options
+## Passing Theme
 
-You can customize the tool's appearance by passing an `options` JSON object as a URL-encoded query parameter:
+You can customize the tool's appearance by passing an `theme` JSON object as a URL-encoded query parameter:
 
 ```javascript
-const options = {
-  theme: {
-    mode: "dark",
-    seed: "#006AD4"
-  }
+const theme = {
+  mode: "dark",
+  seed: "#006AD4"
 };
 
-const encodedOptions = encodeURIComponent(JSON.stringify(options));
-const iframeSrc = `https://tools.quicko.com/hra-calculator?options=${encodedOptions}`;
+const encodedOptions = encodeURIComponent(JSON.stringify(theme));
+const iframeSrc = `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
 ```
 
 ```html
@@ -62,27 +60,23 @@ const iframeSrc = `https://tools.quicko.com/hra-calculator?options=${encodedOpti
 ></iframe>
 
 <script>
-  const options = {
-    theme: {
-      mode: "dark",
-      seed: "#006AD4"
-    }
+  const theme = {
+    mode: "dark",
+    seed: "#006AD4"
   };
   
-  const encodedOptions = encodeURIComponent(JSON.stringify(options));
+  const encodedOptions = encodeURIComponent(JSON.stringify(theme));
   document.getElementById('quicko-tool').src = 
-    `https://tools.quicko.com/hra-calculator?options=${encodedOptions}`;
+    `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
 </script>
 ```
 
-### Options Object Structure
+### Theme Object Structure
 
 ```json
-{
-  "theme": {
-    "mode": "light",
-    "seed": "#006AD4"
-  }
+"theme": {
+  "mode": "light",
+  "seed": "#006AD4"
 }
 ```
 
@@ -137,7 +131,7 @@ For responsive designs, wrap the iframe in a container with appropriate CSS:
 
 <Card
   title="Browse Available Tools"
-  icon="grid"
+  icon="layout-grid"
   href="/projects/tools/directory/index"
 >
   Explore all tools available for embedding on your website.

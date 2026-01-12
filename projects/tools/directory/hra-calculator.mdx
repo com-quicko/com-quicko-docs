@@ -66,16 +66,14 @@ With customization:
 ></iframe>
 
 <script>
-  const options = {
-    theme: {
-      mode: "dark",
-      seed: "#006AD4"
-    }
+  const theme = {
+    mode: "dark",
+    seed: "#006AD4"
   };
   
-  const encodedOptions = encodeURIComponent(JSON.stringify(options));
+  const encodedOptions = encodeURIComponent(JSON.stringify(theme));
   document.getElementById('hra-calculator').src = 
-    `https://tools.quicko.com/hra-calculator?options=${encodedOptions}`;
+    `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
 </script>
 ```
 
@@ -86,14 +84,12 @@ With customization:
     ```swift
     import QuickoTools
 
-    let options: [String: Any] = [
-        "theme": [
-            "mode": "light",
-            "seed": "#006AD4"
-        ]
+    let theme: [String: Any] = [
+        "mode": "light",
+        "seed": "#006AD4"
     ]
 
-    QuickoTools.launchHraCalculator(options: options, from: self)
+    QuickoTools.launchHraCalculator(theme: theme, from: self)
     ```
   </Tab>
   <Tab title="Android (Kotlin)">
@@ -101,14 +97,12 @@ With customization:
     import com.nicq.tools.QuickoTools
     import org.json.JSONObject
 
-    val options = JSONObject().apply {
-        put("theme", JSONObject().apply {
-            put("mode", "light")
-            put("seed", "#006AD4")
-        })
+    val theme = JSONObject().apply {
+        put("mode", "light")
+        put("seed", "#006AD4")
     }
 
-    QuickoTools.launchHraCalculator(this, options)
+    QuickoTools.launchHraCalculator(this, theme)
     ```
   </Tab>
 </Tabs>
@@ -119,9 +113,9 @@ The HRA Calculator collects the following information:
 
 | Field | Description | Required |
 |-------|-------------|----------|
-| Basic Salary | Monthly basic salary amount | Yes |
-| HRA Received | Monthly HRA component in salary | Yes |
-| Rent Paid | Monthly rent paid for accommodation | Yes |
+| Basic Salary | Basic salary amount | Yes |
+| HRA Received | HRA component in salary | Yes |
+| Rent Paid | Rent paid for accommodation | Yes |
 | Metro City | Whether the city is a metro (Mumbai, Delhi, Chennai, Kolkata) | Yes |
 
 ## Output
@@ -137,8 +131,8 @@ The calculator displays:
 ## Use Cases
 
 <AccordionGroup>
-  <Accordion title="Salary Planning Apps" icon="wallet" defaultOpen>
-    Help users understand their take-home salary by calculating accurate HRA exemptions.
+  <Accordion title="Content & Tax Guidance Websites" icon="book-open" defaultOpen>
+    Enhance tax-related articles and guides by embedding an interactive HRA calculator.
   </Accordion>
   <Accordion title="Tax Filing Platforms" icon="file-text">
     Pre-calculate HRA exemption to streamline the tax filing process.
