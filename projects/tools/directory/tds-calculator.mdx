@@ -1,0 +1,161 @@
+---
+title: "TDS Calculator"
+description: "Calculate TDS amounts and applicable rates for resident and non-resident payments."
+---
+
+import { Iframe } from "/snippets/Iframe.jsx";
+
+TDS Calculator helps you calculate Tax Deducted at Source on payments to residents and non-residents, showing applicable rates, TDS amount, and net payable instantly.
+## Features
+
+<Columns cols={2}>
+  <Card title="Instant TDS Calculation" icon="zap">
+   Get real-time TDS amount and net payable value as soon as payment details are entered.
+  </Card>
+  <Card title="Resident & Non-Resident Support" icon="building">
+    Calculates TDS correctly for resident and non-resident recipients.
+  </Card>
+  <Card title="PAN & Section-Based Rates" icon="list">
+    Automatically applies correct rates based on PAN availability and TDS section.
+  </Card>
+  <Card title="Clear Breakdown" icon="clipboard">
+    View TDS rate, deducted amount, and payable amount instantly.
+  </Card>
+</Columns>
+
+## Integration
+
+### Web (iframe)
+
+```html
+<iframe
+  src="https://tools.quicko.com/tds-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+```
+
+With customization:
+
+```html
+<iframe
+  id="tds-calculator"
+  width="100%"
+  height="500"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+
+<script>
+  const theme = {
+    mode: "dark",
+    seed: "#006AD4"
+  };
+  
+  const base64Theme = btoa(encodeURIComponent(JSON.stringify(theme)));
+  document.getElementById('tds-calculator').src = 
+    `https://tools.quicko.com/tds-calculator?theme=${encodedOptions}`;
+</script>
+```
+
+### Mobile SDK
+
+<Tabs>
+  <Tab title="iOS (Swift)">
+    ```swift
+    import QuickoTools
+
+    let theme: [String: Any] = [
+        "mode": "light",
+        "seed": "#006AD4"
+    ]
+
+    QuickoTools.launchHraCalculator(theme: theme, from: self)
+    ```
+  </Tab>
+  <Tab title="Android (Kotlin)">
+    ```kotlin
+    import com.nicq.tools.QuickoTools
+    import org.json.JSONObject
+
+    val theme = JSONObject().apply {
+        put("mode", "light")
+        put("seed", "#006AD4")
+    }
+
+    QuickoTools.launchHraCalculator(this, theme)
+    ```
+  </Tab>
+</Tabs>
+
+## Input Fields
+
+The HRA Calculator collects the following information:
+
+| Field | Description | Required |
+|-------|-------------|----------|
+| Recipient Type | Individual / HUF / Sole Proprietor or Others | Yes |
+| Residential Status | Resident or Non-Resident | Yes |
+| PAN Available | Whether recipient PAN is available | Yes |
+| Nature of Payment | Section & nature of payment | Yes |
+| Amount of Payment | Gross payment amount | Yes |
+
+## Output
+
+The calculator displays:
+
+- **TDS Rate** – Applicable rate based on section and conditions
+- **TDS Amount** – Tax deducted at source
+- **Amount Payable** – Net amount after TDS deduction
+- **TDS Rule** – Explanation of applicable threshold and rate
+
+---
+
+## Use Cases
+
+<AccordionGroup>
+  <Accordion title="Content & Tax Guidance Websites" icon="book-open" defaultOpen>
+    Enhance tax-related articles and guides by embedding an interactive TDS calculator.
+  </Accordion>
+  <Accordion title="Tax & Compliance Platforms" icon="file-text">
+    Help users calculate accurate TDS before making payments.
+  </Accordion>
+  <Accordion title="Payroll & Accounting Systems" icon="users">
+    Ensure correct TDS deduction for employee and vendor payments.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Demo
+
+<Iframe
+  title="HRA Calculator"
+  lightUrl="https://tools.quicko.com/tds-calculator"
+  darkUrl="https://tools.quicko.com/tds-calculator?theme=ewoibW9kZSI6ImRhcmsiCn0"
+  height={500}
+  className="rounded-l"
+/>
+
+---
+
+## Related
+
+<Columns cols={2}>
+  <Card
+    title="Integration Guide"
+    icon="code"
+    href="/projects/tools/integration/index"
+  >
+    Learn how to embed this tool in your platform.
+  </Card>
+  <Card
+    title="Customization Options"
+    icon="settings"
+    href="/projects/tools/options/index"
+  >
+    Match the tool's appearance to your brand.
+  </Card>
+</Columns>
