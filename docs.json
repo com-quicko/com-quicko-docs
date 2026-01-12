@@ -387,7 +387,7 @@
           },
           {
             "group": "Directory",
-            "icon": "grid",
+            "icon": "layout-grid",
             "pages": [
               "projects/tools/directory/index",
               "projects/tools/directory/hra-calculator"
