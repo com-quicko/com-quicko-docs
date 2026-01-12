@@ -61,24 +61,29 @@ With customization:
 </script>
 ```
 
-### Mobile SDK
+### Mobile (WebView)
 
 <Tabs>
   <Tab title="iOS (Swift)">
     ```swift
-    import QuickoTools
+    import WebKit
 
     let theme: [String: Any] = [
         "mode": "light",
         "seed": "#006AD4"
     ]
 
-    QuickoTools.launchHraCalculator(theme: theme, from: self)
+    if let jsonData = try? JSONSerialization.data(withJSONObject: theme),
+       let base64Theme = jsonData.base64EncodedString()
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+        let toolUrl = "https://tools.quicko.com/hra-calculator?theme=\(base64Theme)"
+        webView.load(URLRequest(url: URL(string: toolUrl)!))
+    }
     ```
   </Tab>
   <Tab title="Android (Kotlin)">
     ```kotlin
-    import com.nicq.tools.QuickoTools
+    import android.util.Base64
     import org.json.JSONObject
 
     val theme = JSONObject().apply {
@@ -86,7 +91,34 @@ With customization:
         put("seed", "#006AD4")
     }
 
-    QuickoTools.launchHraCalculator(this, theme)
+    val base64Theme = Base64.encodeToString(
+        theme.toString().toByteArray(Charsets.UTF_8),
+        Base64.NO_WRAP
+    )
+    val toolUrl = "https://tools.quicko.com/hra-calculator?theme=$base64Theme"
+    webView.loadUrl(toolUrl)
+    ```
+  </Tab>
+  <Tab title="Flutter">
+    ```dart
+    import 'dart:convert';
+
+    final theme = {'mode': 'light', 'seed': '#006AD4'};
+    final base64Theme = base64Encode(utf8.encode(jsonEncode(theme)));
+    final toolUrl = 'https://tools.quicko.com/hra-calculator?theme=$base64Theme';
+    
+    controller.loadRequest(Uri.parse(toolUrl));
+    ```
+  </Tab>
+  <Tab title="React Native">
+    ```jsx
+    import { Buffer } from 'buffer';
+
+    const theme = { mode: 'light', seed: '#006AD4' };
+    const base64Theme = Buffer.from(JSON.stringify(theme)).toString('base64');
+    const toolUrl = `https://tools.quicko.com/hra-calculator?theme=${base64Theme}`;
+    
+    <WebView source={{ uri: toolUrl }} />
     ```
   </Tab>
 </Tabs>
