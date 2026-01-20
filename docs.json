@@ -392,7 +392,8 @@
             "pages": [
               "projects/tools/directory/index",
               "projects/tools/directory/hra-calculator",
-              "projects/tools/directory/tds-calculator"
+              "projects/tools/directory/tds-calculator",
+              "projects/tools/directory/check-residential-status"
             ]
           }
         ]

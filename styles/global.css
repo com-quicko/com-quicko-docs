@@ -1,0 +1,8 @@
+@media (min-width: 1024px) {
+  #content-area {
+    max-width: 1080px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
