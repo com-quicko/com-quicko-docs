@@ -3,7 +3,21 @@ title: "Balance"
 description: "Balance information for trading accounts"
 ---
 
-## Headers of Balance API
+## Overview
+
+The Balance API should return the trading account balance information for a user's account on a specific date. This is essential for Quicko to accurately compute taxes and prepare financial reports based on account balances as of a particular date (e.g., year-end, month-end, or any regulatory date).
+
+## Query Parameters
+
+Your API should accept a `date` query parameter to retrieve balance information for that specific date. This allows Quicko to fetch historical balance data when needed for compliance and tax computation purposes.
+
+```
+GET /user/balance?date=YYYY-MM-DD
+```
+
+### Response
+
+Your Balance API should return the following balance information:
 
 | Param             | Type   | Required | Description                                                                                                                                                  |
 | ----------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |

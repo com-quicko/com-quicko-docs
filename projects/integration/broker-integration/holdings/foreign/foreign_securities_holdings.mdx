@@ -3,9 +3,25 @@ title: "Foreign Securities Holdings"
 description: "Holdings data for foreign securities including Stocks, Depository Receipts, Mutual Funds, and ETF"
 ---
 
-## Client Details Sheet
+## Overview
 
-### Client Details List
+The Foreign Securities Holdings API provides a snapshot of all foreign securities currently held by a user on a specific date. This includes foreign stocks, depository receipts, mutual funds, and ETFs. Foreign holdings data is critical for Quicko to understand international portfolio composition, calculate capital gains/losses in foreign currencies, and prepare accurate tax reports for international investments.
+
+## Query Parameters
+
+Your API should accept an `as_on_date` query parameter to retrieve holdings for a specific date. This allows Quicko to fetch historical holdings snapshots when needed for tax compliance and regulatory reporting on foreign investments.
+
+```
+GET /securities/foreign/holdings?as_on_date=YYYY-MM-DD
+```
+
+## Response Format
+
+Your API should return holdings data organized by client details and four security categories:
+
+## Client Details
+
+Client information should include the following fields:
 
 | Param      | Type   | Required | Description                                          |
 | ---------- | ------ | -------- | ---------------------------------------------------- |
@@ -15,9 +31,9 @@ description: "Holdings data for foreign securities including Stocks, Depository 
 | country    | string | Yes      | Country where investments were made                  |
 | tin        | string | Yes      | TIN for the country or passport number               |
 
-## Stock Holdings Sheet
+## Stock Holdings
 
-### Stock Tradewise Holdings Table
+Stock holdings data should include the following fields:
 
 | Param               | Type   | Description                                                                                        |
 | ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
@@ -31,9 +47,9 @@ description: "Holdings data for foreign securities including Stocks, Depository 
 | label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
 | last_traded_price | string | Last traded market price of the equity stock.                                                      |
 
-## Depository Receipt Holdings Sheet
+## Depository Receipt Holdings
 
-### Depository Receipt Tradewise Holdings Table
+Depository receipt holdings data should include the following fields:
 
 | Param               | Type   | Description                                                                                        |
 | ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
@@ -47,9 +63,9 @@ description: "Holdings data for foreign securities including Stocks, Depository 
 | label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
 | last_traded_price | string | Last traded market price of the receipt..                                                          |
 
-## Mutual Fund Holdings Sheet
+## Mutual Fund Holdings
 
-### Mutual Fund Tradewise Holdings Table
+Mutual fund holdings data should include the following fields:
 
 | Param               | Type   | Description                                                                                        |
 | ------------------- | ------ | -------------------------------------------------------------------------------------------------- |
@@ -63,9 +79,9 @@ description: "Holdings data for foreign securities including Stocks, Depository 
 | label               | string | Refer to [label](/projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl#annexure-1-labels) for possible values |
 | last_traded_price | string | Last traded market price of the fund.                                                              |
 
-## ETF Holdings Sheet
+## ETF Holdings
 
-### ETF Tradewise Holdings Table
+ETF holdings data should include the following fields:
 
 | Param               | Type   | Description                                                                                        |
 | ------------------- | ------ | -------------------------------------------------------------------------------------------------- |

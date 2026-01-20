@@ -3,6 +3,28 @@ title: "Foreign Securities Tradewise P&L"
 description: "Tradewise P&L helps calculate profit and loss on a trade-level basis"
 ---
 
+## Overview
+
+The Foreign Securities Tradewise P&L API provides profit and loss calculations on a trade-level basis for completed foreign transactions. This is critical for Quicko to:
+- Calculate realized capital gains and losses on international investments
+- Track foreign currency implications and exchange rate impacts
+- Segregate transactions by holding period (long-term vs short-term)
+- Generate accurate P&L statements for foreign investment tax compliance
+- Track dividend and interest income from foreign securities with TDS deductions
+- Identify tax harvesting opportunities on international positions
+
+## Query Parameters
+
+Your API should accept `from` and `to` query parameters to retrieve P&L data for a specific date range.
+
+```
+GET /securities/foreign/tradewise-pnl?from=YYYY-MM-DD&to=YYYY-MM-DD
+```
+
+## Response Format
+
+Your API should return matched trade pairs with complete P&L calculations organized by security type:
+
 ## Stock Tradewise Settlement Sheet
 
 ### Stock Tradewise Settlement Table

@@ -3,50 +3,74 @@ title: "Open Positions"
 description: "Open Positions for Derivatives Trades"
 ---
 
-Open Positions for Derivatives Trades
+## Overview
 
-## Headers of Equity Derivatives
+The Open Positions API provides information about all currently open derivative positions held by a user on a specific date. Open positions represent active futures and options contracts that have not yet been closed. This data is essential for Quicko to:
+- Calculate unrealized P&L on active derivative positions
+- Monitor margin requirements and risk exposure
+- Prepare accurate profit/loss statements for tax compliance
+- Track derivative holdings for regulatory reporting
 
-| Param                        | Type   | Required | Description                                                 |
-| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
-| symbol                       | string | Yes      | Symbol or description of the instrument                     |
-| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
-| strike_price                | number | No       | strike price of the contract                                |
-| expiry_date                 | number | No       | contract expiry date epoch                                  |
-| buy_date                    | number | Yes      | buy date epoch                                              |
-| exchange                     | string | No       | Exchange where trade is made                                |
-| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
-| average_price               | number | Yes      | Average buy price across all trades                         |
-| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
-| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+## Query Parameters
 
-## Headers of Currency Derivatives
+Your API should accept an `as_on_date` query parameter to retrieve open positions for a specific date. This allows Quicko to fetch historical snapshots of derivative positions when needed for tax and compliance purposes.
 
-| Param                        | Type   | Required | Description                                                 |
-| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
-| symbol                       | string | Yes      | Symbol or description of the instrument                     |
-| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
-| strike_price                | number | No       | strike price of the contract                                |
-| expiry_date                 | number | No       | contract expiry date epoch                                  |
-| buy_date                    | number | Yes      | buy date epoch                                              |
-| exchange                     | string | No       | Exchange where trade is made                                |
-| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
-| average_price               | number | Yes      | Average buy price across all trades                         |
-| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
-| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+```
+GET /open-positions?as_on_date=YYYY-MM-DD
+```
 
-## Headers of Commodity Derivatives
+## Response Format
+
+Your API should return open positions data organized by derivative category:
+
+## Equity Derivatives
+
+Equity derivatives open positions data should include the following fields:
 
 | Param                        | Type   | Required | Description                                                 |
 | ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
 | symbol                       | string | Yes      | Symbol or description of the instrument                     |
-| instrument_type             | string | Yes      | Type, possible valuesFutures, Options                       |
-| strike_price                | number | No       | strike price of the contract                                |
-| expiry_date                 | number | No       | contract expiry date epoch                                  |
-| buy_date                    | number | Yes      | buy date epoch                                              |
+| instrument_type             | string | Yes      | Type, possible values: Futures, Options                       |
+| strike_price                | number | No       | Strike price of the contract                                |
+| expiry_date                 | number | No       | Contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | Buy date epoch                                              |
 | exchange                     | string | No       | Exchange where trade is made                                |
-| open_quantity               | number | Yes      | Quantity of shares held of the instrument                   |
+| open_quantity               | number | Yes      | Quantity of units held of the instrument                   |
 | average_price               | number | Yes      | Average buy price across all trades                         |
 | previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
-| unrealized_profit_or_loss | number | No       | Difference between Average Price and Previous Closing Price |
+| unrealized_profit_or_loss | number | No       | Unrealized P&L = (Previous Closing Price - Average Price) × Open Quantity |
+
+## Currency Derivatives
+
+Currency derivatives open positions data should include the following fields:
+
+| Param                        | Type   | Required | Description                                                 |
+| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
+| symbol                       | string | Yes      | Symbol or description of the instrument                     |
+| instrument_type             | string | Yes      | Type, possible values: Futures, Options                       |
+| strike_price                | number | No       | Strike price of the contract                                |
+| expiry_date                 | number | No       | Contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | Buy date epoch                                              |
+| exchange                     | string | No       | Exchange where trade is made                                |
+| open_quantity               | number | Yes      | Quantity of units held of the instrument                   |
+| average_price               | number | Yes      | Average buy price across all trades                         |
+| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
+| unrealized_profit_or_loss | number | No       | Unrealized P&L = (Previous Closing Price - Average Price) × Open Quantity |
+
+## Commodity Derivatives
+
+Commodity derivatives open positions data should include the following fields:
+
+| Param                        | Type   | Required | Description                                                 |
+| ---------------------------- | ------ | -------- | ----------------------------------------------------------- |
+| symbol                       | string | Yes      | Symbol or description of the instrument                     |
+| instrument_type             | string | Yes      | Type, possible values: Futures, Options                       |
+| strike_price                | number | No       | Strike price of the contract                                |
+| expiry_date                 | number | No       | Contract expiry date epoch                                  |
+| buy_date                    | number | Yes      | Buy date epoch                                              |
+| exchange                     | string | No       | Exchange where trade is made                                |
+| open_quantity               | number | Yes      | Quantity of units held of the instrument                   |
+| average_price               | number | Yes      | Average buy price across all trades                         |
+| previous_closing_price     | number | Yes      | Last traded price of the instrument                         |
+| unrealized_profit_or_loss | number | No       | Unrealized P&L = (Previous Closing Price - Average Price) × Open Quantity |
 
