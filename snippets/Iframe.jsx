@@ -9,7 +9,7 @@ export const Iframe = ({
     typeof height === "number" ? `${height}px` : height
 
   return (
-    <div className="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-zinc-800">
+    <div className="w-full overflow-hidden">
       {/* Iframe container */}
       <div className="w-full">
         {/* Light */}
@@ -37,9 +37,11 @@ export const Iframe = ({
       className="
         flex items-center justify-center gap-2
         h-14 px-2
-        border-t border-[#c6c5d0] dark:border-[#313b4a]
+        border-x border-b
+        border-[#c6c5d0] dark:border-[#313b4a]
         bg-[#f6f7f8] dark:bg-[#1c1c1f]
         cursor-pointer
+        rounded-b-md
       ">
         <span className="text-sm leading-none dark:text-zinc-400">
           Powered by
