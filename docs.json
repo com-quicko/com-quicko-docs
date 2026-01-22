@@ -23,8 +23,8 @@
     "products": [
       {
         "product": "Connect",
-        "description": "Integrate seamless tax solutions.",
         "icon": "cable",
+        "description": "Integrate seamless tax solutions.",
         "tabs": [
           {
             "tab": "Guides",
@@ -55,7 +55,6 @@
               {
                 "group": "Integration",
                 "icon": "workflow",
-                "href": "api-reference/overview",
                 "pages": [
                   "projects/connect/guides/integrations/index",
                   {
@@ -155,8 +154,8 @@
       },
       {
         "product": "Integration",
-        "description": "Set up workflows with Quicko APIs.",
         "icon": "puzzle",
+        "description": "Set up workflows with Quicko APIs.",
         "groups": [
           {
             "group": "Getting started",
@@ -169,17 +168,8 @@
             "group": "OAuth",
             "icon": "book-open",
             "pages": [
-              {
-                "group": "Redirection Based",
-                "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based"                ]
-              },
-              {
-                "group": "API Based",
-                "pages": [
-                  "projects/integration/oauth/api_based/api_based"
-                ]
-              }
+              "projects/integration/oauth/redirection_based/redirection_based",
+              "projects/integration/oauth/api_based/api_based"
             ]
           },
           {
@@ -189,7 +179,8 @@
               {
                 "group": "User Details",
                 "pages": [
-                  "projects/integration/profile/user_details"                ]
+                  "projects/integration/profile/user_details"
+                ]
               }
             ]
           },
@@ -204,12 +195,14 @@
                   {
                     "group": "Domestic Securities",
                     "pages": [
-                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities"                    ]
+                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities"
+                    ]
                   },
                   {
                     "group": "Crypto",
                     "pages": [
-                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook"                    ]
+                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook"
+                    ]
                   }
                 ]
               },
@@ -219,12 +212,14 @@
                   {
                     "group": "Domestic Securities",
                     "pages": [
-                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl"                    ]
+                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl"
+                    ]
                   },
                   {
                     "group": "Foreign Securities",
                     "pages": [
-                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl"                    ]
+                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl"
+                    ]
                   }
                 ]
               },
@@ -234,12 +229,14 @@
                   {
                     "group": "Domestic",
                     "pages": [
-                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments"                    ]
+                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments"
+                    ]
                   },
                   {
                     "group": "Foreign",
                     "pages": [
-                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments"                    ]
+                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments"
+                    ]
                   }
                 ]
               },
@@ -249,24 +246,28 @@
                   {
                     "group": "Domestic",
                     "pages": [
-                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings"                    ]
+                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings"
+                    ]
                   },
                   {
                     "group": "Foreign",
                     "pages": [
-                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings"                    ]
+                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings"
+                    ]
                   }
                 ]
               },
               {
                 "group": "Open Positions",
                 "pages": [
-                  "projects/integration/broker-integration/open_positions/open_positions"                ]
+                  "projects/integration/broker-integration/open_positions/open_positions"
+                ]
               },
               {
                 "group": "Balance",
                 "pages": [
-                  "projects/integration/broker-integration/balance/balance"                ]
+                  "projects/integration/broker-integration/balance/balance"
+                ]
               }
             ]
           },
@@ -278,12 +279,14 @@
               {
                 "group": "Salary Details",
                 "pages": [
-                  "projects/integration/hrms-integration/salary-details/salary_details"                ]
+                  "projects/integration/hrms-integration/salary-details/salary_details"
+                ]
               },
               {
                 "group": "Employer Details",
                 "pages": [
-                  "projects/integration/hrms-integration/employer-details/employer_details"                ]
+                  "projects/integration/hrms-integration/employer-details/employer_details"
+                ]
               }
             ]
           },
@@ -294,12 +297,14 @@
               {
                 "group": "Account Statement",
                 "pages": [
-                  "projects/integration/bank-integration/account-statement/bank_account_statement"                ]
+                  "projects/integration/bank-integration/account-statement/bank_account_statement"
+                ]
               },
               {
                 "group": "Account Details",
                 "pages": [
-                  "projects/integration/bank-integration/account-details/bank_account_details"                ]
+                  "projects/integration/bank-integration/account-details/bank_account_details"
+                ]
               }
             ]
           }
@@ -307,8 +312,8 @@
       },
       {
         "product": "Tools",
-        "description": "Embed tax tools in your platform.",
         "icon": "wrench",
+        "description": "Embed tax tools in your platform.",
         "groups": [
           {
             "group": "Getting Started",
