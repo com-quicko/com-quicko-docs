@@ -341,9 +341,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Help Center",
-        "href": "https://help.quicko.com",
-        "icon": "headset"
+        "label": "Contact Us",
+        "href": "https://quicko.com/contact-sales?utm_source=referral&utm_medium=api-docs&utm_campaign=navigation"
       }
     ]
   },
