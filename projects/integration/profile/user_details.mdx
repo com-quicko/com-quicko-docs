@@ -1,5 +1,5 @@
 ---
-title: "User Details Datapoints"
+title: "User Details"
 description: "User Details API is required to establish the identity of the user"
 ---
 
@@ -9,9 +9,9 @@ The response data points are explained below:
 
 | Param       | Type   | Required | Description                             |
 | ----------- | ------ | -------- | --------------------------------------- |
-| client_id   | string | Yes      | Unique identifier of user at broker end |
-| email       | string | Yes      | Customer Indentifier                    |
-| PAN         | string | Yes      | Tax Payer Identifier                    |
+| client_id   | string | Yes      | Unique identifier of user in source system |
+| email       | string | Yes      | Verified Customer Email                    |
+| PAN         | string | Yes      | Verified Tax Payer Identifier                    |
 | first_name  | string | No       | First name of the user                  |
 | last_name   | string | No       | Last name of the user                   |
 | dob         | string | No       | Date of Birth                           |

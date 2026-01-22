@@ -176,12 +176,7 @@
             "group": "Profile",
             "icon": "user",
             "pages": [
-              {
-                "group": "User Details",
-                "pages": [
-                  "projects/integration/profile/user_details"
-                ]
-              }
+              "projects/integration/profile/user_details"
             ]
           },
           {
