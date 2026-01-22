@@ -271,36 +271,16 @@
             "icon": "user",
             "pages": [
               "projects/integration/hrms-integration/index",
-              {
-                "group": "Salary Details",
-                "pages": [
-                  "projects/integration/hrms-integration/salary-details/salary_details"
-                ]
-              },
-              {
-                "group": "Employer Details",
-                "pages": [
-                  "projects/integration/hrms-integration/employer-details/employer_details"
-                ]
-              }
+              "projects/integration/hrms-integration/salary-details/salary_details",
+              "projects/integration/hrms-integration/employer-details/employer_details"
             ]
           },
           {
             "group": "Bank Integration",
             "icon": "credit-card",
             "pages": [
-              {
-                "group": "Account Statement",
-                "pages": [
-                  "projects/integration/bank-integration/account-statement/bank_account_statement"
-                ]
-              },
-              {
-                "group": "Account Details",
-                "pages": [
-                  "projects/integration/bank-integration/account-details/bank_account_details"
-                ]
-              }
+              "projects/integration/bank-integration/account-statement/bank_account_statement",
+              "projects/integration/bank-integration/account-details/bank_account_details"
             ]
           }
         ]
