@@ -3,11 +3,24 @@ title: "Crypto Tradebook"
 description: "Tradebook provides you with all the trades that have been executed by an investor or trader. Brokers/Exchanges can share Tradebook to Report and calculate the Taxes"
 ---
 
-Tradebook provides you with all the trades that have been executed by an investor or trader. Brokers/Exchanges can share Tradebook to Report and calculate the Taxes
+## Overview
 
-## Virtual Digital Asset
+The Crypto Tradebook API provides a comprehensive record of all cryptocurrency transactions executed by a user. This includes buy/sell transactions, crypto-to-crypto swaps, transfers, staking rewards, mining rewards, and other income events. This data is critical for Quicko to:
+- Calculate capital gains and losses on cryptocurrency transactions
+- Track cost basis for tax compliance
+- Report cryptocurrency income (mining, staking, airdrops, etc.)
+- Prepare accurate crypto tax reports
+- Ensure compliance with tax regulations on virtual digital assets
 
-The headers are explained below:
+<Info>
+**Important**
+
+All the transactions should be passed in the request since inception of the account to ensure accurate tax calculations and compliance.
+</Info>
+
+## Response Format
+
+Your API should return cryptocurrency transaction data with the following structure:
 
 | Param              | Type   | Required | Description                                                                                                                                                                   |
 | ------------------ | ------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

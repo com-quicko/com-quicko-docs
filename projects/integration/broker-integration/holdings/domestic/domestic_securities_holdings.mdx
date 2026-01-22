@@ -3,7 +3,25 @@ title: "Domestic Securities Holdings"
 description: "Holdings data for domestic securities including Equity, Mutual Funds, and ETF"
 ---
 
-## Headers of Equity Holdings
+## Overview
+
+The Domestic Securities Holdings API provides a snapshot of all securities currently held by a user on a specific date. This includes equities, mutual funds, and ETFs. Holdings data is critical for Quicko to understand the user's portfolio composition, calculate capital gains/losses, and prepare accurate tax reports.
+
+## Query Parameters
+
+Your API should accept an `as_on_date` query parameter to retrieve holdings for a specific date. This allows Quicko to fetch historical holdings snapshots when needed for tax compliance and regulatory reporting.
+
+```
+GET /securities/domestic/holdings?as_on_date=YYYY-MM-DD
+```
+
+## Response Format
+
+Your API should return holdings data organized by three categories:
+
+## Equity Holdings
+
+Equity holdings data should include the following fields:
 
 | Param               | Type   | Required | Description                                              |
 | ------------------- | ------ | -------- | -------------------------------------------------------- |
@@ -15,7 +33,9 @@ description: "Holdings data for domestic securities including Equity, Mutual Fun
 | label               | string | No       | Refer to Annexure for possible values                    |
 | last_traded_price | number | Yes      | Last traded price of the instrument                      |
 
-## Headers of Mutual Fund Holdings
+## Mutual Fund Holdings
+
+Mutual fund holdings data should include the following fields:
 
 | Param               | Type   | Required | Description                                                         |
 | ------------------- | ------ | -------- | ------------------------------------------------------------------- |
@@ -28,7 +48,9 @@ description: "Holdings data for domestic securities including Equity, Mutual Fun
 | label               | string | No       | Refer to Annexure for possible values                               |
 | last_traded_price | number | Yes      | Pervious closing NAV for the scheme                                 |
 
-## Headers of ETF Holdings
+## ETF Holdings
+
+ETF holdings data should include the following fields:
 
 | Param               | Type   | Required | Description                                                 |
 | ------------------- | ------ | -------- | ----------------------------------------------------------- |

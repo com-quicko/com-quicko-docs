@@ -4,7 +4,7 @@ title: "Introduction to Redirection Based OAuth"
 
 OAuth is a standard that apps can use to provide client applications with "secure delegated access". OAuth works over HTTPS and authorizes devices, APIs, servers, and applications with access tokens rather than credentials.
 
-Quicko uses redirection based OAuth journeys to get secure access to apps, just like any modern app may use Google OAuth to get access to your google profile, contacts, calendar, emails etc. Following diagram explains a standard OAuth journey.
+Quicko uses redirection based OAuth journeys to get secure access to apps, just like any modern app may use Google OAuth to get access to your google profile, contacts, calendar, emails etc. Following steps explain a standard OAuth journey:
 
 <Steps>
   <Step title="User navigates to your OAuth Login Page">
@@ -24,12 +24,24 @@ Quicko uses redirection based OAuth journeys to get secure access to apps, just 
 <Info>
   **Note**
   
-  An optional redirect param should be supported by your OAuth login endpoint, which will be used to navigate the user after a successful login attempt. Redirect URL request parameter must be Base64 encoded, eg: `https://quicko.com` will be used like:
+  An optional redirect param should be supported by your OAuth login endpoint, which will be used to navigate the user after a successful login attempt. Redirect URL request parameter must be Base64 encoded, eg: `https://join.quicko.com` will be used like:
   
   ```
-  {{your_oauth_app_url}}/login?api_key={api_key}&redirect=aHR0cHM6Ly9xdWlja28uY29t
+  {{your_oauth_app_url}}/login?api_key={api_key}&redirect=aHR0cHM6Ly9qb2luLnF1aWNrby5jb20=
   ```
 </Info>
+
+## Authorize Endpoint
+
+The authorize endpoint is used to exchange a request token for a resource owner's access token.
+
+<Accordion title="Authorize Request">
+  <ParamField query="request_token" type="string" required>
+    The short-lived request token obtained from the OAuth login page
+  </ParamField>
+</Accordion>
+
+<OpenAPI url="/projects/integration/api-reference/oauth_openapi.json" method="GET" path="/oauth/authorize" />
 
 ## API Reference
 

@@ -3,9 +3,20 @@ title: "Bank Account Details"
 description: "Bank Account details enable tracking of the inflow and outflow in the user's account"
 ---
 
-Bank Account details enable tracking of the inflow and outflow in the user's account
+## Overview
 
-Bank Account details help identify the sender or receiver of the user and further provide account type and account number information
+The Bank Account Details API provides information about the user's bank accounts, including account type, account number, and banking identifiers (IFSC, SWIFT, MICR, UPI ID). This data is essential for Quicko to:
+- Identify and reconcile bank transactions for income tracking
+- Match deposits and withdrawals to their sources and purposes
+- Validate bank account ownership and verify authenticity
+- Link salary deposits to employer bank account details
+- Prepare accurate bank reconciliation statements for tax compliance
+
+Bank Account details enable tracking of the inflow and outflow in the user's account. Bank Account details help identify the sender or receiver of the user and further provide account type and account number information.
+
+## Response Format
+
+Your API should return bank account information with the following data points:
 
 ## Bank Account Details
 

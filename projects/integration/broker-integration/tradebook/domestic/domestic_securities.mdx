@@ -3,7 +3,22 @@ title: "Domestic Securities Tradebook"
 description: "A comprehensive trade book for domestic securities including equity, mutual funds, F&O, and foreign securities"
 ---
 
-A trade book provides a detailed record of all trades executed by an investor or trader. Brokers/Exchanges can share trade book data to help calculate taxes and maintain compliance with tax regulations.
+## Overview
+
+The Domestic Securities Tradebook API provides a comprehensive record of all trades executed by a user for domestic securities. A trade book includes details of every buy and sell transaction, along with associated taxes and expenses. This data is critical for Quicko to:
+- Calculate capital gains and losses
+- Track cost basis and holding periods for tax compliance
+- Identify tax harvesting opportunities
+- Prepare accurate tax reports and maintain audit trails
+- Ensure compliance with tax regulations
+
+## Query Parameters
+
+Your API should accept `from` and `to` query parameters to retrieve trades within a specific date range. Quicko typically requests all trades since account inception for accurate tax calculations.
+
+```
+GET /domestic-securities-trade-book?from=YYYY-MM-DD&to=YYYY-MM-DD
+```
 
 <Info>
 **Important**
