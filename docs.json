@@ -211,18 +211,8 @@
                   "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings"
                 ]
               },
-              {
-                "group": "Open Positions",
-                "pages": [
-                  "projects/integration/broker-integration/open_positions/open_positions"
-                ]
-              },
-              {
-                "group": "Balance",
-                "pages": [
-                  "projects/integration/broker-integration/balance/balance"
-                ]
-              }
+              "projects/integration/broker-integration/open_positions/open_positions",
+              "projects/integration/broker-integration/balance/balance"
             ]
           },
           {
