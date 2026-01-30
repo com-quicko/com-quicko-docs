@@ -18,48 +18,41 @@ This documentation is organized into focused sections, each addressing a specifi
   <Card title="OAuth" icon="lock" href="/projects/integration/oauth">
     OAuth app for users to securely authenticate and grant necessary claims to Quicko to access APIs.
   </Card>
-
   <Card title="Profile APIs" icon="user" href="/projects/integration/profile">
     Retrieve authenticated user profile and identity information.
   </Card>
-
   <Card title="Broker Integrations" icon="chart-line" href="/projects/integration/broker-integration">
     Fetch holdings, trades, and financial instruments data from brokers.
   </Card>
-
-  <Card title="HRMS Integrations" icon="building-office" href="/projects/integration/hrms-integration">
+  <Card title="HRMS Integrations" icon="building" href="/projects/integration/hrms-integration">
     Fetch employer, employee and salary data from payroll systems.
   </Card>
-
-  <Card title="Bank Integrations" icon="banknotes" href="/projects/integration/bank-integration">
+  <Card title="Bank Integrations" icon="banknote" href="/projects/integration/bank-integration">
     Retrieve bank account details and transaction statements.
   </Card>
 </CardGroup>
 
 ---
+
 ## Integration flow
 
 The following steps outline the typical process for integrating your system with Quicko, regardless of whether you are a bank, broker, HRMS provider, or another platform.
 
 <Steps>
   <Step title="Understand integration requirements">
-    Identify the nature of your integration (for example, bank, broker, or HRMS) and review the data requirements defined in the relevant integration section.  
+    Identify the nature of your integration (for example, bank, broker, or HRMS) and review the data requirements defined in the relevant integration section.\
     This helps determine the APIs, payload structures, and compliance data expected by Quicko.
   </Step>
-
   <Step title="Implement APIs as per Quicko specifications">
-    Build the required APIs and data pipelines based on the integration documentation.  
+    Build the required APIs and data pipelines based on the integration documentation.\
     Ensure request formats, authentication mechanisms, and validations match the specifications provided.
   </Step>
-
   <Step title="Share endpoints and credentials">
     Provide the implemented API endpoints and required credentials to the Quicko team so the integration can be coded and deployed.
   </Step>
-
   <Step title="Test the integration">
     Validate data exchange in the testing environment to ensure accuracy, completeness, and compliance with expected workflows.
   </Step>
-
   <Step title="Go live">
     Once testing is complete and approved, move the integration to production and begin referring customers to Quicko.
   </Step>
