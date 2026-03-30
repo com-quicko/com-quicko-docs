@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "palm",
   "name": "Quicko | Docs",
   "description": "Provide an intuitive tax filing experience that imports client data and offers both do-it-yourself and expert assisted options.",
   "logo": {
@@ -8,9 +8,9 @@
     "dark": "static/logo/dark.svg"
   },
   "colors": {
-    "primary": "#006AD4",
-    "light": "#007FFF",
-    "dark": "#006AD4"
+    "primary": "#2962FF",
+    "light": "#2962FF",
+    "dark": "#2962FF"
   },
   "icons": {
     "library": "lucide"
@@ -329,7 +329,7 @@
     "eyebrows": "breadcrumbs"
   },
   "background": {
-    "decoration": "windows"
+    "decoration": "gradient"
   },
   "integrations": {
     "gtm": {
