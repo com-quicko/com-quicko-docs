@@ -1,9 +1,9 @@
 ---
 title: "Quickstart"
-description: "Set up a Quicko account, register your app, and provision credentials for consent-based access to your users' data."
+description: "Set up a Quicko account, register your app, and provision credentials to connect your app to your users' Quicko accounts."
 ---
 
-This quickstart walks through onboarding to **Quicko Connect** — the OAuth-based workflow that lets your application access your users' data on Quicko after they grant consent.
+This quickstart walks through onboarding to **Quicko Connect** — the OAuth-based workflow that lets you connect your app to your users' Quicko accounts once they grant consent.
 
 <Note>
   **Not what you're looking for?** If your app does not need consent-based access and only needs to redirect users into Quicko, use a redirection workflow instead:
@@ -48,8 +48,32 @@ Fill in the following details:
 | **Logo URL** | Direct URL to your app's logo (`.png`, `.svg`, or `.jpg`). Displayed on the consent screen. |
 
 <Warning>
-  Newly created apps are in **Draft** status and cannot be used to make live OAuth requests. After submitting the form, notify the Quicko team to review and approve the app.
+  Newly created apps are in **Draft** status and cannot be used to make live OAuth requests. After submitting the form, email **developer@quicko.com** with the subject **Quicko Connect Integration** and include your registered email and use case in the body so the team can review and approve your app.
 </Warning>
+
+<CardGroup cols={3}>
+  <Card
+    title="Open in Gmail"
+    icon="mail"
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=developer@quicko.com&su=Quicko%20Connect%20Integration&body=Hi%20Quicko%20team%2C%0A%0AWe%27ve%20created%20a%20Connect%20app%20and%20would%20like%20it%20reviewed%20for%20approval.%0A%0ARegistered%20email%3A%20%0AUse%20case%3A%20%0A%0AThanks%21"
+  >
+    Compose in Gmail web.
+  </Card>
+  <Card
+    title="Open in Outlook"
+    icon="mail"
+    href="https://outlook.office.com/mail/deeplink/compose?to=developer@quicko.com&subject=Quicko%20Connect%20Integration&body=Hi%20Quicko%20team%2C%0A%0AWe%27ve%20created%20a%20Connect%20app%20and%20would%20like%20it%20reviewed%20for%20approval.%0A%0ARegistered%20email%3A%20%0AUse%20case%3A%20%0A%0AThanks%21"
+  >
+    Compose in Outlook web.
+  </Card>
+  <Card
+    title="Default mail app"
+    icon="at-sign"
+    href="mailto:developer@quicko.com?subject=Quicko%20Connect%20Integration&body=Hi%20Quicko%20team%2C%0A%0AWe%27ve%20created%20a%20Connect%20app%20and%20would%20like%20it%20reviewed%20for%20approval.%0A%0ARegistered%20email%3A%20%0AUse%20case%3A%20%0A%0AThanks%21"
+  >
+    Open in your system's default mail client.
+  </Card>
+</CardGroup>
 
 ## 3. Generate API credentials
 
@@ -57,7 +81,7 @@ Once your app is approved, navigate to **Settings → Integrations & Access → 
 
 You will receive an **API Key** and an **API Secret**:
 
-- Use credentials prefixed with `key_test_…` / `secret_test_…` against the test environment, and `key_live_…` / `secret_live_…` against production.
+- Credentials are prefixed with `key_live_…` / `secret_live_…`.
 - These are used to call the [Authenticate API](/projects/connect/api-reference/authentication/authentication) and obtain your API User Access Token.
 
 <Warning>
