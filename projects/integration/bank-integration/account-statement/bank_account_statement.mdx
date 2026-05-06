@@ -3,9 +3,29 @@ title: "Bank Account Statement"
 description: "Bank Account Statement is an official document that summarizes taxpayers' account activity"
 ---
 
-Bank Account Statement is an official document that summarizes taxpayers' account activity
+## Overview
 
-Bank Account Statement helps understand the type of transaction an individual has incurred which would help Quicko to identify business transactions activity.
+The Bank Account Statement API provides a detailed transaction history for a user's bank account over a specific period. This includes all deposits and withdrawals with transaction dates, amounts, and descriptions. This data is critical for Quicko to:
+- Reconcile bank transactions with income sources
+- Identify and classify business vs personal transactions
+- Track cash flow and account balances
+- Verify salary deposits and other income sources
+- Maintain audit trails for tax compliance
+- Identify potential undisclosed income or expenses
+
+Bank Account Statement is an official document that summarizes taxpayers' account activity. Bank Account Statement helps understand the type of transaction an individual has incurred which would help Quicko to identify business transactions activity.
+
+## Query Parameters
+
+Your API should accept `from` and `to` query parameters to retrieve bank transactions within a specific date range.
+
+```
+GET /statement?from=YYYY-MM-DD&to=YYYY-MM-DD
+```
+
+## Response Format
+
+Your API should return bank statement transactions with the following fields:
 
 ## Headers of Bank Statement API
 

@@ -2,16 +2,60 @@
 title: "Introduction"
 ---
 
-OAuth is a standard that apps can use to provide client applications with "secure delegated access"
+# Overview
 
-OAuth 2.0 protocol allows the resource owner to grant limited access to their resources available on one platform, to another platform. Users can revoke access to their data at any time.
+This **Integration Documentation** is intended for partners that want to **integrate with Quicko** to simplify tax compliances for their customers.
 
-## OAuth Flows
+The integration enables Quicko to pull structured data from partners—such as brokers, payroll providers, and banks—so it can be used for tax computation, reporting, and filing compliance.
 
-Two standard types of OAuth flows are supported:
+---
 
-<Columns cols={2}>
-  <Card title="Redirection based workflow" icon="arrow-right" horizontal href="/projects/integration/oauth/redirection_based/redirection_based" />
-  <Card title="API based workflow" icon="code" horizontal href="/projects/integration/oauth/api_based/api_based" />
-</Columns>
+## What this documentation covers
 
+This documentation is organized into focused sections, each addressing a specific integration capability.
+
+<CardGroup>
+  <Card title="OAuth" icon="lock" href="/projects/integration/oauth">
+    OAuth app for users to securely authenticate and grant necessary claims to Quicko to access APIs.
+  </Card>
+  <Card title="Profile APIs" icon="user" href="/projects/integration/profile">
+    Retrieve authenticated user profile and identity information.
+  </Card>
+  <Card title="Broker Integrations" icon="chart-line" href="/projects/integration/broker-integration">
+    Fetch holdings, trades, and financial instruments data from brokers.
+  </Card>
+  <Card title="HRMS Integrations" icon="building" href="/projects/integration/hrms-integration">
+    Fetch employer, employee and salary data from payroll systems.
+  </Card>
+  <Card title="Bank Integrations" icon="banknote" href="/projects/integration/bank-integration">
+    Retrieve bank account details and transaction statements.
+  </Card>
+</CardGroup>
+
+---
+
+## Integration flow
+
+The following steps outline the typical process for integrating your system with Quicko, regardless of whether you are a bank, broker, HRMS provider, or another platform.
+
+<Steps>
+  <Step title="Understand integration requirements">
+    Identify the nature of your integration (for example, bank, broker, or HRMS) and review the data requirements defined in the relevant integration section.\
+    This helps determine the APIs, payload structures, and compliance data expected by Quicko.
+  </Step>
+  <Step title="Implement APIs as per Quicko specifications">
+    Build the required APIs and data pipelines based on the integration documentation.\
+    Ensure request formats, authentication mechanisms, and validations match the specifications provided.
+  </Step>
+  <Step title="Share endpoints and credentials">
+    Provide the implemented API endpoints and required credentials to the Quicko team so the integration can be coded and deployed.
+  </Step>
+  <Step title="Test the integration">
+    Validate data exchange in the testing environment to ensure accuracy, completeness, and compliance with expected workflows.
+  </Step>
+  <Step title="Go live">
+    Once testing is complete and approved, move the integration to production and begin referring customers to Quicko.
+  </Step>
+</Steps>
+
+---

@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
+  "theme": "palm",
   "name": "Quicko | Docs",
   "description": "Provide an intuitive tax filing experience that imports client data and offers both do-it-yourself and expert assisted options.",
   "logo": {
@@ -8,9 +8,9 @@
     "dark": "static/logo/dark.svg"
   },
   "colors": {
-    "primary": "#006AD4",
-    "light": "#007FFF",
-    "dark": "#006AD4"
+    "primary": "#2962FF",
+    "light": "#2962FF",
+    "dark": "#2962FF"
   },
   "icons": {
     "library": "lucide"
@@ -23,8 +23,8 @@
     "products": [
       {
         "product": "Connect",
-        "description": "Integrate seamless tax solutions.",
         "icon": "cable",
+        "description": "Integrate seamless tax solutions.",
         "tabs": [
           {
             "tab": "Guides",
@@ -55,7 +55,6 @@
               {
                 "group": "Integration",
                 "icon": "workflow",
-                "href": "api-reference/overview",
                 "pages": [
                   "projects/connect/guides/integrations/index",
                   {
@@ -155,9 +154,8 @@
       },
       {
         "product": "Integration",
-        "description": "Set up workflows with Quicko APIs.",
         "icon": "puzzle",
-        "href": "/project/integration",
+        "description": "Set up workflows with Quicko APIs.",
         "groups": [
           {
             "group": "Getting started",
@@ -170,139 +168,57 @@
             "group": "OAuth",
             "icon": "book-open",
             "pages": [
-              {
-                "group": "Redirection Based",
-                "pages": [
-                  "projects/integration/oauth/redirection_based/redirection_based",
-                  "projects/integration/oauth/redirection_based/authorize"
-                ]
-              },
-              {
-                "group": "API Based",
-                "pages": [
-                  "projects/integration/oauth/api_based/api_based",
-                  "projects/integration/oauth/api_based/generate_otp",
-                  "projects/integration/oauth/api_based/verify_otp"
-                ]
-              }
+              "projects/integration/oauth/redirection_based/redirection_based",
+              "projects/integration/oauth/api_based/api_based"
             ]
           },
           {
             "group": "Profile",
             "icon": "user",
             "pages": [
-              {
-                "group": "User Details",
-                "pages": [
-                  "projects/integration/profile/user_details",
-                  "projects/integration/profile/user_details_api"
-                ]
-              }
+              "projects/integration/profile/user_details"
             ]
           },
           {
-            "group": "Broker Integration API",
+            "group": "Broker Integration",
             "icon": "file-text",
             "pages": [
               {
                 "group": "Trade Book",
                 "pages": [
                   "projects/integration/broker-integration/tradebook/index",
-                  {
-                    "group": "Domestic Securities",
-                    "pages": [
-                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities",
-                      "projects/integration/broker-integration/tradebook/domestic/domestic_securities_tradebook_api"
-                    ]
-                  },
-                  {
-                    "group": "Crypto",
-                    "pages": [
-                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook",
-                      "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook_api"
-                    ]
-                  }
+                  "projects/integration/broker-integration/tradebook/domestic/domestic_securities"
                 ]
               },
               {
                 "group": "Tradewise P&L",
                 "pages": [
-                  {
-                    "group": "Domestic Securities",
-                    "pages": [
-                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl",
-                      "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl_api"
-                    ]
-                  },
-                  {
-                    "group": "Foreign Securities",
-                    "pages": [
-                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl",
-                      "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl_api"
-                    ]
-                  }
+                  "projects/integration/broker-integration/tradewise_pnl/domestic/domestic_securities_tradewise_pnl",
+                  "projects/integration/broker-integration/tradewise_pnl/foreign/foreign_securities_tradewise_pnl"
                 ]
               },
               {
                 "group": "Financial Instruments",
                 "pages": [
-                  {
-                    "group": "Domestic",
-                    "pages": [
-                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments",
-                      "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments_api"
-                    ]
-                  },
-                  {
-                    "group": "Foreign",
-                    "pages": [
-                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments",
-                      "projects/integration/broker-integration/financial_instruments/foreign/foreign_finanical_instruments_api"
-                    ]
-                  }
+                  "projects/integration/broker-integration/financial_instruments/foreign/foreign_financial_instruments",
+                  "projects/integration/broker-integration/financial_instruments/domestic/domestic_financial_instruments"
                 ]
               },
               {
                 "group": "Holdings",
                 "pages": [
-                  {
-                    "group": "Domestic",
-                    "pages": [
-                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings",
-                      "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings_api"
-                    ]
-                  },
-                  {
-                    "group": "Foreign",
-                    "pages": [
-                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings",
-                      "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings_api"
-                    ]
-                  }
+                  "projects/integration/broker-integration/holdings/foreign/foreign_securities_holdings",
+                  "projects/integration/broker-integration/holdings/domestic/domestic_securities_holdings"
                 ]
               },
-              {
-                "group": "Open Positions",
-                "pages": [
-                  "projects/integration/broker-integration/open_positions/open_positions",
-                  "projects/integration/broker-integration/open_positions/open_positions_api"
-                ]
-              },
-              {
-                "group": "Balance",
-                "pages": [
-                  "projects/integration/broker-integration/balance/balance",
-                  "projects/integration/broker-integration/balance/balance_api"
-                ]
-              },
-              {
-                "group": "Orders",
-                "pages": [
-                  "projects/integration/broker-integration/orders/orders",
-                  "projects/integration/broker-integration/orders/place_order_api",
-                  "projects/integration/broker-integration/orders/track_order_api"
-                ]
-              }
+              "projects/integration/broker-integration/open_positions/open_positions",
+              "projects/integration/broker-integration/balance/balance"
+            ]
+          },
+          {
+            "group": "Crypto Integration",
+            "pages": [
+              "projects/integration/broker-integration/tradebook/crypto/crypto_tradebook"
             ]
           },
           {
@@ -310,40 +226,67 @@
             "icon": "user",
             "pages": [
               "projects/integration/hrms-integration/index",
-              {
-                "group": "Salary Details",
-                "pages": [
-                  "projects/integration/hrms-integration/salary-details/salary_details",
-                  "projects/integration/hrms-integration/salary-details/salary_details_api"
-                ]
-              },
-              {
-                "group": "Employer Details",
-                "pages": [
-                  "projects/integration/hrms-integration/employer-details/employer_details",
-                  "projects/integration/hrms-integration/employer-details/employer_details_api"
-                ]
-              }
+              "projects/integration/hrms-integration/salary-details/salary_details",
+              "projects/integration/hrms-integration/employer-details/employer_details"
             ]
           },
           {
             "group": "Bank Integration",
             "icon": "credit-card",
             "pages": [
+              "projects/integration/bank-integration/account-statement/bank_account_statement",
+              "projects/integration/bank-integration/account-details/bank_account_details"
+            ]
+          }
+        ]
+      },
+      {
+        "product": "Tools",
+        "icon": "wrench",
+        "description": "Embed tax tools in your platform.",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              "projects/tools/index",
+              "projects/tools/license"
+            ]
+          },
+          {
+            "group": "Integration",
+            "icon": "code",
+            "pages": [
+              "projects/tools/integration/index",
               {
-                "group": "Account Statement",
+                "group": "Web",
                 "pages": [
-                  "projects/integration/bank-integration/account-statement/bank_account_statement",
-                  "projects/integration/bank-integration/account-statement/bank_statement_api"
+                  "projects/tools/integration/web/index"
                 ]
               },
               {
-                "group": "Account Details",
+                "group": "Mobile",
                 "pages": [
-                  "projects/integration/bank-integration/account-details/bank_account_details",
-                  "projects/integration/bank-integration/account-details/bank_account_details_api"
+                  "projects/tools/integration/mobile/index"
                 ]
               }
+            ]
+          },
+          {
+            "group": "Options",
+            "icon": "settings",
+            "pages": [
+              "projects/tools/options/index"
+            ]
+          },
+          {
+            "group": "Directory",
+            "icon": "layout-grid",
+            "pages": [
+              "projects/tools/directory/index",
+              "projects/tools/directory/hra-calculator",
+              "projects/tools/directory/tds-calculator",
+              "projects/tools/directory/check-residential-status"
             ]
           }
         ]
@@ -353,9 +296,8 @@
   "navbar": {
     "links": [
       {
-        "label": "Help Center",
-        "href": "https://help.quicko.com",
-        "icon": "headset"
+        "label": "Contact Us",
+        "href": "https://quicko.com/contact-sales?utm_source=referral&utm_medium=api-docs&utm_campaign=navigation"
       }
     ]
   },
@@ -387,7 +329,7 @@
     "eyebrows": "breadcrumbs"
   },
   "background": {
-    "decoration": "windows"
+    "decoration": "gradient"
   },
   "integrations": {
     "gtm": {

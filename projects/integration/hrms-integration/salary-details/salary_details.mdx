@@ -3,6 +3,27 @@ title: "Salary Details"
 description: "Schedule Salary Details data points for Form 24Q TDS Return"
 ---
 
+## Overview
+
+The Salary Details API provides comprehensive salary and income information for a specific financial year. This includes gross salary, allowances, exemptions, deductions (80C, 80D, 80E, etc.), perquisites, and TDS deducted. This data is essential for Quicko to:
+- Reconcile Form 16 (salary certificate) issued by employers
+- Validate TDS deduction and match with income tax filings
+- Calculate income under various sections for tax compliance
+- Prepare accurate salary schedules for income tax returns (ITR)
+- Verify eligibility for tax deductions and exemptions
+
+## Query Parameters
+
+Your API should accept a `financial_year` query parameter to retrieve salary details for a specific financial year.
+
+```
+GET /salary-details?financial_year=YYYY-YY
+```
+
+## Response Format
+
+Your API should return salary details for the specified financial year with the following data points:
+
 Employers file Form 24Q for TDS on Salary including Schedule Salary Details which forms the basis of Form 16.
 
 Schedule Salary details must be furnished along with Form 24Q TDS Return for Q4 filing. Following are the data points entailed in Schedule Salary Details. HRMS platform must avail the Salary Details for successful integration.

@@ -1,0 +1,138 @@
+---
+title: "Web Integration"
+description: "Embed Quicko Tools into your website using iframes for a seamless, no-dependency integration."
+---
+
+Quicko Tools can be embedded directly into your website using a simple iframe. This approach requires no SDK installation and works across all modern browsers.
+
+## Quick Start
+
+Embedding a Quicko Tool is as simple as adding an iframe to your HTML:
+
+```html
+<iframe
+  src="https://tools.quicko.com/hra-calculator"
+  width="100%"
+  height="600"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+```
+
+## Integration Steps
+
+<Steps>
+  <Step title="Choose a Tool">
+    Select the tool you want to embed from our [directory](/projects/tools/directory/index). Each tool has a unique URL endpoint.
+  </Step>
+  <Step title="Configure Theme">
+    Customize the tool's appearance by passing [theme](/projects/tools/options/index) as a JSON object for mode and seed color.
+  </Step>
+  <Step title="Add the iframe">
+    Insert the iframe code into your webpage at the desired location.
+  </Step>
+  <Step title="Test & Deploy">
+    Verify the tool displays correctly across different screen sizes and browsers, then deploy.
+  </Step>
+</Steps>
+
+## Passing Theme
+
+You can customize the tool's appearance by passing an `theme` JSON object as a URL-encoded query parameter:
+
+```javascript
+const theme = {
+  mode: "dark",
+  seed: "#006AD4"
+};
+
+const encodedOptions = encodeURIComponent(JSON.stringify(theme));
+const iframeSrc = `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
+```
+
+```html
+<iframe
+  id="quicko-tool"
+  width="100%"
+  height="600"
+  frameborder="0"
+  allow="clipboard-write"
+></iframe>
+
+<script>
+  const theme = {
+    mode: "dark",
+    seed: "#006AD4"
+  };
+  
+  const encodedOptions = encodeURIComponent(JSON.stringify(theme));
+  document.getElementById('quicko-tool').src = 
+    `https://tools.quicko.com/hra-calculator?theme=${encodedOptions}`;
+</script>
+```
+
+### Theme Object Structure
+
+```json
+"theme": {
+  "mode": "light",
+  "seed": "#006AD4"
+}
+```
+
+| Property | Description | Values |
+|----------|-------------|--------|
+| `theme.mode` | Theme mode | `light`, `dark` |
+| `theme.seed` | Seed color (hex with #) | e.g., `#006AD4` |
+
+<Card
+  title="View All Options"
+  icon="settings"
+  href="/projects/tools/options/index"
+  horizontal
+>
+  Learn about all available customization options.
+</Card>
+
+## Responsive Embedding
+
+For responsive designs, wrap the iframe in a container with appropriate CSS:
+
+```html
+<div style="position: relative; width: 100%; padding-bottom: 75%; overflow: hidden;">
+  <iframe
+    src="https://tools.quicko.com/hra-calculator"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+    allow="clipboard-write"
+  ></iframe>
+</div>
+```
+
+## Best Practices
+
+<Columns cols={2}>
+  <Card title="Set Appropriate Height" icon="ruler">
+    Ensure the iframe has enough height to display the tool without internal scrolling.
+  </Card>
+  <Card title="Allow Clipboard Access" icon="clipboard">
+    Include `allow="clipboard-write"` for tools that let users copy results.
+  </Card>
+  <Card title="Match Your Theme" icon="palette">
+    Use the seed color option to match the tool's accent color with your website's branding.
+  </Card>
+  <Card title="Test on Mobile" icon="smartphone">
+    Verify the embedded tool works well on mobile viewports.
+  </Card>
+</Columns>
+
+---
+
+## Next Steps
+
+<Card
+  title="Browse Available Tools"
+  icon="layout-grid"
+  href="/projects/tools/directory/index"
+>
+  Explore all tools available for embedding on your website.
+</Card>

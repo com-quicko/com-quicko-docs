@@ -3,6 +3,27 @@ title: "Domestic Securities Tradewise P&L"
 description: "Tradewise P&L helps calculate profit and loss on a trade-level basis"
 ---
 
+## Overview
+
+The Domestic Securities Tradewise P&L API provides profit and loss calculations on a trade-level basis for completed transactions. This is critical for Quicko to:
+- Calculate realized capital gains and losses
+- Segregate transactions by holding period (long-term vs short-term)
+- Generate accurate P&L statements for tax compliance
+- Provide trade-by-trade cost basis and expense tracking
+- Track specific cost identification for matched buy-sell pairs
+
+## Query Parameters
+
+Your API should accept `from` and `to` query parameters to retrieve P&L data for a specific date range.
+
+```
+GET /securities/domestic/tradewise-pnl?from=YYYY-MM-DD&to=YYYY-MM-DD
+```
+
+## Response Format
+
+Your API should return matched trade pairs with complete P&L calculations organized by security type:
+
 ## Headers of Tradewise P&L API
 
 ### Equity Trade

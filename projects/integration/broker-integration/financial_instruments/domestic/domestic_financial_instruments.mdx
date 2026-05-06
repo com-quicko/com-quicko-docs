@@ -3,9 +3,23 @@ title: "Domestic Financial Instruments"
 description: "Financial instruments reference data for domestic securities"
 ---
 
-## Headers of Domestic Financial Instruments API
+## Overview
 
-### Equity
+The Domestic Financial Instruments API provides reference data for securities held in user accounts. This data includes current market prices (last traded prices) which are essential for Quicko to calculate unrealized P&L (Profit & Loss) on holdings that have not been sold yet.
+
+When users hold securities, mutual funds, or derivatives, we need up-to-date pricing information to accurately compute:
+- Unrealized gains/losses on active positions
+- Portfolio valuations
+- Tax compliance reporting based on current market values
+- Tax gain/loss harvesting opportunities
+
+## Response Format
+
+Your API should return financial instrument reference data organized by three categories:
+
+## Equity Instruments
+
+Equity data should include the following fields:
 
 | Param               | Type   | Required | Description                                              |
 | ------------------- | ------ | -------- | -------------------------------------------------------- |
@@ -13,20 +27,24 @@ description: "Financial instruments reference data for domestic securities"
 | symbol              | String | Yes      | Symbol or description of the instrument                  |
 | name                | String | No       | Name of the scrip                                        |
 | fmv                 | Number | No       | The High Price of the stock on 31 Jan 2018               |
-| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+| last_traded_price | Number | Yes      | The last traded price of the instrument (used to calculate current market value and unrealized P&L) |
 
-### Mutual Funds
+## Mutual Fund Instruments
+
+Mutual fund data should include the following fields:
 
 | Param               | Type   | Required | Description                                              |
 | ------------------- | ------ | -------- | -------------------------------------------------------- |
 | isin                | String | No       | ISIN is the international security identification number |
 | symbol              | String | Yes      | Symbol/Scheme code or description of the instrument      |
 | name                | String | No       | Name of the scheme                                       |
-| fund_type          | String | Yes      | ​Type of fund: Equity, Debt or Hybrid                    |
+| fund_type          | String | Yes      | Type of fund: Equity, Debt or Hybrid                    |
 | fmv                 | Number | No       | High NAV of the Mutual Fund on 31 Jan 2018               |
-| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+| last_traded_price | Number | Yes      | The last traded price/NAV of the instrument (used to calculate current market value and unrealized P&L) |
 
-### Derivatives
+## Derivative Instruments
+
+Derivative data should include the following fields:
 
 | Param               | Type   | Required | Description                                              |
 | ------------------- | ------ | -------- | -------------------------------------------------------- |
@@ -34,8 +52,8 @@ description: "Financial instruments reference data for domestic securities"
 | symbol_underlying  | String | Yes      | Symbol or description of the underlying security         |
 | name                | String | No       | Name of the scrip                                        |
 | instrument_type    | String | Yes      | Indicates whether the instrument was Future or Option    |
-| category            | String | Yes      | ​Type of F&O: Equity, Commodity or Currency              |
+| category            | String | Yes      | Type of F&O: Equity, Commodity or Currency              |
 | expiry              | String | Yes      | Expiry Date (for Derivatives)                            |
 | strike              | Number | Yes      | The Strike price (for Options)                           |
-| last_traded_price | Number | Yes      | The last traded price of the instrument                  |
+| last_traded_price | Number | Yes      | The last traded price of the instrument (used to calculate current market value and unrealized P&L) |
 
