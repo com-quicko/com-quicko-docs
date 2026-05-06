@@ -1,0 +1,181 @@
+---
+title: "Quickstart"
+description: "Set up a Quicko account, register your app, and provision credentials for consent-based access to your users' data."
+---
+
+This quickstart walks through onboarding to **Quicko Connect** — the OAuth-based workflow that lets your application access your users' data on Quicko after they grant consent.
+
+<Note>
+  **Not what you're looking for?** If your app does not need consent-based access and only needs to redirect users into Quicko, use a redirection workflow instead:
+
+  - **Mobile** — embed Quicko Tools in a WebView. See [Mobile Integration](/projects/tools/integration/mobile/index).
+  - **Web** — redirect users to the Income Tax Web App with your `affiliate_id`. See [Refer](/projects/connect/guides/integrations/web-integration/refer).
+</Note>
+
+## Before you start
+
+You will need:
+
+- A Quicko account owned by your organisation (not a personal account).
+- Access to your application's hosted Redirect URL, Policy URL, and Logo URL.
+- An HTTPS endpoint on your servers if you plan to receive webhook events.
+
+## 1. Create a Quicko account
+
+Sign up at [quicko.com](https://quicko.com) using a **shared organisational email** rather than an individual employee's address. Examples:
+
+- `team-tax@yourcompany.com`
+- `tax-filing@yourcompany.com`
+- `quicko-integration@yourcompany.com`
+
+<Tip>
+  Using a shared mailbox keeps ownership with the team — credentials, app status, and webhook alerts continue to reach you when team members move on.
+</Tip>
+
+## 2. Register your app
+
+Sign in to [myaccount.quicko.com](https://myaccount.quicko.com) and navigate to **Settings → Integrations & Access → Connect**, then click **Create App**.
+
+Fill in the following details:
+
+| Field | Description |
+|---|---|
+| **App Name** | The display name your users will see on the consent screen. |
+| **App Description** | A short summary of what your app does and why it needs access to Quicko data. |
+| **Business Name** | The legal name of the business that owns the app. |
+| **Whitelisted Domain** | The domain that hosts your application (for example, `app.yourcompany.com`). Quicko accepts a `redirect_uri` during the OAuth flow only if its host matches this value, which prevents authorization codes from being delivered to an unintended destination. |
+| **Policy URL** | Public URL of your privacy policy. Shown to users during consent. |
+| **Logo URL** | Direct URL to your app's logo (`.png`, `.svg`, or `.jpg`). Displayed on the consent screen. |
+
+<Warning>
+  Newly created apps are in **Draft** status and cannot be used to make live OAuth requests. After submitting the form, notify the Quicko team to review and approve the app.
+</Warning>
+
+## 3. Generate API credentials
+
+Once your app is approved, navigate to **Settings → Integrations & Access → API Access** to generate your credentials.
+
+You will receive an **API Key** and an **API Secret**:
+
+- Use credentials prefixed with `key_test_…` / `secret_test_…` against the test environment, and `key_live_…` / `secret_live_…` against production.
+- These are used to call the [Authenticate API](/projects/connect/api-reference/authentication/authentication) and obtain your API User Access Token.
+
+<Warning>
+  The **API Secret is shown — and downloadable — only once**, immediately after it is generated. Save it to your secret manager right away. If you lose it, you must rotate the credential and update every system that uses it.
+</Warning>
+
+<Card title="Authentication" icon="key" href="/projects/connect/guides/getting-started/authentication" horizontal>
+  Learn how to exchange these credentials for an API User Access Token.
+</Card>
+
+## 4. Configure webhooks
+
+Webhooks let Quicko push event notifications to your servers as users progress through their tax journey. Go to **Settings → Integrations & Access → Webhooks** and click **Create Webhook**.
+
+| Field | Description |
+|---|---|
+| **Endpoint URL** | HTTPS URL on your server that will receive event notifications via `POST`. |
+| **Secret** *(optional)* | A shared secret used to sign every webhook delivery so you can verify it came from Quicko. See [Verifying webhook signatures](#verifying-webhook-signatures) below. |
+| **Events** | Select which events this endpoint should receive. You can configure multiple endpoints to fan-out different events to different services. |
+
+### Available events
+
+| Event | Description |
+|---|---|
+| **ITR In-Progress** | Fired when a user starts their Income Tax Return. |
+| **ITR E-Filed** | Fired when a user e-files their Income Tax Return. |
+| **ITR E-Verified** | Fired when a user e-verifies their Income Tax Return. |
+
+### Verifying webhook signatures
+
+Providing a **Secret** when creating the webhook is optional but strongly recommended. When a secret is set, Quicko signs every delivery so your server can confirm the request is authentic and was not tampered with in transit.
+
+**How the signature is produced**
+
+1. Quicko serialises the event payload as a JSON string (the same bytes sent in the request body).
+2. It computes an `HMAC-SHA256` of that string using your webhook secret as the key.
+3. The hex-encoded digest is sent in the `x-webhook-signature` request header.
+
+If no secret is configured on the webhook, the `x-webhook-signature` header is omitted and no signature is computed.
+
+**How to verify on your server**
+
+Recompute the HMAC over the raw request body using the same secret and compare it against the header value using a constant-time comparison.
+
+<Tabs>
+  <Tab title="Node.js">
+    ```javascript
+    import crypto from "crypto";
+
+    function verifyQuickoSignature(rawBody, headerSignature, secret) {
+      const expected = crypto
+        .createHmac("sha256", secret)
+        .update(rawBody)
+        .digest("hex");
+
+      const a = Buffer.from(expected, "hex");
+      const b = Buffer.from(headerSignature ?? "", "hex");
+
+      return a.length === b.length && crypto.timingSafeEqual(a, b);
+    }
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```python
+    import hashlib
+    import hmac
+
+    def verify_quicko_signature(raw_body: bytes, header_signature: str, secret: str) -> bool:
+        expected = hmac.new(
+            secret.encode("utf-8"),
+            raw_body,
+            hashlib.sha256,
+        ).hexdigest()
+        return hmac.compare_digest(expected, header_signature or "")
+    ```
+  </Tab>
+  <Tab title="Go">
+    ```go
+    import (
+        "crypto/hmac"
+        "crypto/sha256"
+        "encoding/hex"
+    )
+
+    func VerifyQuickoSignature(rawBody []byte, headerSignature, secret string) bool {
+        mac := hmac.New(sha256.New, []byte(secret))
+        mac.Write(rawBody)
+        expected := hex.EncodeToString(mac.Sum(nil))
+
+        a, _ := hex.DecodeString(expected)
+        b, _ := hex.DecodeString(headerSignature)
+        return hmac.Equal(a, b)
+    }
+    ```
+  </Tab>
+</Tabs>
+
+<Warning>
+  Verify against the **raw request body** — not a re-serialised version of the parsed JSON. Whitespace and key ordering changes will break the signature check.
+</Warning>
+
+<Tip>
+  Treat the webhook secret with the same care as your API Secret. Rotate it immediately if you suspect it has been exposed, and update every receiver before discarding the old value.
+</Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Authentication" icon="key" href="/projects/connect/guides/getting-started/authentication">
+    Exchange your API credentials for an access token to call Quicko APIs.
+  </Card>
+  <Card title="OAuth" icon="shield-check" href="/projects/connect/guides/oauth/oauth">
+    Walk through the consent flow and obtain a Resource Owner access token.
+  </Card>
+  <Card title="Open APIs" icon="square-terminal" href="/projects/connect/guides/open-apis/open-apis">
+    Explore the data and actions available through the consent-based APIs.
+  </Card>
+  <Card title="Events" icon="zap" href="/projects/connect/guides/events/index">
+    See the full directory of events you can subscribe to via webhooks.
+  </Card>
+</CardGroup>
